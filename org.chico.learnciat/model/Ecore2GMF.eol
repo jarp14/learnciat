@@ -1,0 +1,215 @@
+setHorizontalCompartments('IndividualTaskFigure','IndividualTaskLabelFigure','IndividualTaskTaskRolesCompartmentFigure',
+'IndividualTaskTaskObjectsCompartmentFigure','IndividualTaskModalityCompartmentFigure','IndividualTaskSubtypeCompartmentFigure');
+setHorizontalCompartments('GroupTaskFigure','GroupTaskLabelFigure','GroupTaskTaskRolesCompartmentFigure','GroupTaskTaskObjectsCompartmentFigure',
+'GroupTaskModalityCompartmentFigure','GroupTaskSubtypeCompartmentFigure');
+setHorizontalCompartments('AbstractTaskFigure','AbstractTaskLabelFigure','AbstractTaskTaskRolesCompartmentFigure','AbstractTaskTaskObjectsCompartmentFigure',
+'AbstractTaskModalityCompartmentFigure','AbstractTaskSubtypeCompartmentFigure');
+
+configureListFigures('RolFigure','LearningObject');
+configureListFigures('GroupFigure','LearningObject');
+configureListFigures('TemporalConditionFigure','LearningObject');
+configureListFigures('NotificationFigure','LearningObject');
+configureListFigures('ConditionFigure','LearningObject');
+configureListFigures('AssimilativeFigure','Subtype');
+configureListFigures('InformationHandlingFigure','Subtype');
+configureListFigures('CommunicativeFigure','Subtype');
+configureListFigures('ProductiveFigure','Subtype');
+configureListFigures('EvaluativeFigure','Subtype');
+configureListFigures('SupportFigure','Subtype');
+configureListFigures('AssimilativeFigure','Subtype');
+configureListFigures('ExperientialFigure','Subtype');
+configureListFigures('AdaptiveFigure','Subtype');
+configureListFigures('MolefTActivities1Figure','MolefObject');
+configureListFigures('MolefTActivities2Figure','MolefObject');
+configureListFigures('MolefTActivities3Figure','MolefObject');
+configureListFigures('MolefTActivities4Figure','MolefObject');
+configureListFigures('MolefTActivities5Figure','MolefObject');
+configureListFigures('MolefTActivities6Figure','MolefObject');
+configureListFigures('MolefTActivities7Figure','MolefObject');
+configureListFigures('MolefTActivities8Figure','MolefObject');
+configureListFigures('MolefContent1Figure','MolefObject');
+configureListFigures('MolefContent2Figure','MolefObject');
+configureListFigures('MolefContent3Figure','MolefObject');
+configureListFigures('MolefContent4Figure','MolefObject');
+configureListFigures('MolefContent5Figure','MolefObject');
+configureListFigures('MolefContent6Figure','MolefObject');
+configureListFigures('MolefSocial1Figure','MolefObject');
+configureListFigures('MolefSocial2Figure','MolefObject');
+configureListFigures('MolefSocial3Figure','MolefObject');
+configureListFigures('MolefSocial4Figure','MolefObject');
+configureListFigures('MolefMultimedia1Figure','MolefObject');
+configureListFigures('MolefMultimedia2Figure','MolefObject');
+configureListFigures('MolefMultimedia3Figure','MolefObject');
+configureListFigures('MolefMultimedia4Figure','MolefObject');
+configureListFigures('MolefMultimedia5Figure','MolefObject');
+configureListFigures('MolefMultimedia6Figure','MolefObject');
+configureListFigures('MolefMultimedia7Figure','MolefObject');
+configureListFigures('MolefPersonalization1Figure','MolefObject');
+configureListFigures('MolefPersonalization2Figure','MolefObject');
+configureListFigures('MolefPersonalization3Figure','MolefObject');
+configureListFigures('MolefPersonalization4Figure','MolefObject');
+configureListFigures('MolefPersonalization5Figure','MolefObject');
+
+var palette = GmfTool!Palette.all.first();
+var currentTools = palette.tools;
+
+var toolGroupSociogram = new GmfTool!ToolGroup;
+toolGroupSociogram.title = "Sociogram";
+toolGroupSociogram.collapsible = true;
+var toolGroupLearning = new GmfTool!ToolGroup;
+toolGroupLearning.title = "Learning-Design Diagram";
+toolGroupLearning.collapsible = true;
+var toolGroupCTT = new GmfTool!ToolGroup;
+toolGroupCTT.title = "CTT Diagram";
+toolGroupCTT.collapsible = true;
+var toolGroupMolef = new GmfTool!ToolGroup;
+toolGroupMolef.title = "MoLEF";
+toolGroupMolef.collapsible = true;
+palette.tools.add(toolGroupSociogram);
+palette.tools.add(toolGroupLearning);
+palette.tools.add(toolGroupCTT);
+palette.tools.add(toolGroupMolef);
+
+var toolGroupObjects = GmfTool!ToolGroup.all.selectOne(r|r.title = 'Objects');
+var toolGroupConnections = GmfTool!ToolGroup.all.selectOne(r|r.title = 'Connections');
+
+var SociogramObjects : Sequence = Sequence{"Sociogram","Sep","Rol","Group","Sep"};
+var SociogramConnections : Sequence = Sequence{"Acting","Inheritance","Association"};
+var LearningObjects : Sequence = Sequence{"Learning Diagram","Sep","Individual Learning","Group Learning","Abstract Learning","Detailed Abstract Learning","Sep","Initial","Final",
+"Object", "Temporal Condition","Notification","Condition","Sep","Face-to-face","Computer-Supported","Online","Sep","Assimilative","Information Handling","Adaptive","Communicative","Productive","Experiential","Evaluative","Support","Sep",
+"Tool","Text Editor", "Code Editor","Graphical Editor","Web Viewer","Session Panel","TurnTaking Panel","Chat","Telepointer","Radar View","Properties","Console","Problems"};
+var LearningConnections : Sequence = Sequence{"Traceability","Sep","Enabling w/o Information","Enabling w Information","Choice","Concurrency"};
+var CttObjects : Sequence = Sequence {"CTTDiagram","Sep","Abstract Task","Application Task","Collaborative Task","Interactive Task","User Task", "Sep", "Exclusive Edition", "Collaborative Visualization", "Individual Visualization","Sep"};
+var CttConnections : Sequence = Sequence {"Aggregation","Concurrency With Information Passing","Deterministic Choice","Disabling","Disabling With Information Passing",
+"Enabling","Enabling With Information Passing","Independent Concurrency","Order Independence","Suspend Resume","Undeterministic Choice"};
+var Molef : Sequence = Sequence {"Content 1","Content 2","Content 3","Content 4","Content 5","Content 6","Task and Activities 1","Task and Activities 2","Task and Activities 3","Task and Activities 4","Task and Activities 5",
+"Task and Activities 6","Task and Activities 7","Task and Activities 8","Social 1","Social 2","Social 3","Social 4","Personalization 1","Personalization 2","Personalization 3","Personalization 4","Personalization 5",
+"Multimedia 1","Multimedia 2","Multimedia 3","Multimedia 4","Multimedia 5","Multimedia 6","Multimedia 7"};
+
+objectsConnectionsToPalette(SociogramObjects, toolGroupSociogram, true);
+objectsConnectionsToPalette(SociogramConnections, toolGroupSociogram, false);
+objectsConnectionsToPalette(LearningObjects, toolGroupLearning, true);
+objectsConnectionsToPalette(LearningConnections, toolGroupLearning, false);
+objectsConnectionsToPalette(CttObjects, toolGroupCTT, true);
+objectsConnectionsToPalette(CttConnections, toolGroupCTT, false);
+objectsConnectionsToPalette(Molef, toolGroupMolef, true);
+
+delete toolGroupObjects;
+delete toolGroupConnections;
+
+operation objectsConnectionsToPalette(myseq: Sequence, mytg: GmfTool!ToolGroup, isObject: Boolean) {
+	var toolEntry;
+	for (o in myseq) {
+		if (o.matches('Sep')) {
+			mytg.tools.add(new GmfTool!PaletteSeparator);
+		} else {
+			if (isObject) {
+				toolEntry = toolGroupObjects.tools.selectOne(r|r.title = o);
+			} else {
+				toolEntry = toolGroupConnections.tools.selectOne(r|r.title = o);
+			}
+			mytg.tools.add(toolEntry);
+		}
+	}
+}
+
+operation configureListFigures(nodeFigure: String, nodeKind: String) {
+	var objectFigure = GmfGraph!RoundedRectangle.all.selectOne(r|r.name = nodeFigure);
+    
+    delete objectFigure.border;
+	objectFigure.outline = false;
+	
+	var size = new GmfGraph!Dimension;
+	
+	switch(nodeKind) {
+		case "LearningObject":
+			size.dx = 100;
+			size.dy = 18;
+		case "MolefObject":
+			size.dx = 605;
+			size.dy = 18;
+		case "Subtype":
+			size.dx = 120;
+			size.dy = 16;
+		default:
+			"default".println();
+	}
+
+	objectFigure.preferredSize = size;
+}
+
+operation setHorizontalCompartments(nodeFigure: String, labelFigure: String, compartment1: String, compartment2: String, modalityCompartment: String, subtypeCompartment: String) {
+	var node = GmfGraph!RoundedRectangle.all.selectOne(r|r.name=nodeFigure);
+	delete node.border;
+
+	var titleRectangle = new GmfGraph!Rectangle;
+	titleRectangle.name = node.name+'_Title';
+	titleRectangle.layout = new GmfGraph!BorderLayout;
+	titleRectangle.outline = false;
+	titleRectangle.fill = false;
+	var insets = new GmfGraph!Insets;
+	insets.bottom = 0;
+	insets.top = 5;
+	insets.left = 5;
+	insets.right = 5;
+	var titleSize = new GmfGraph!Dimension;
+	titleSize.dx = 1000;
+	titleSize.dy = 25;
+	titleRectangle.insets = insets;
+	titleRectangle.maximumSize = titleSize;
+	node.children.add(titleRectangle);
+	
+	var label = GmfGraph!Label.all.selectOne(r|r.name=labelFigure);
+	label.layoutData = new GmfGraph!BorderLayoutData;
+	label.layoutData.alignment = GmfGraph!Alignment#BEGINNING;
+	delete label.maximumSize;
+	
+	var modalityCompartmentFigure = GmfGraph!Rectangle.all.selectOne(r|r.name=modalityCompartment);
+	modalityCompartmentFigure.layoutData = new GmfGraph!BorderLayoutData;
+	modalityCompartmentFigure.layoutData.alignment = GmfGraph!Alignment#END;
+	modalityCompartmentFigure.outline = false;
+
+	var bodyRectangle = new GmfGraph!Rectangle;
+	bodyRectangle.name = node.name+'_Body';
+	bodyRectangle.layout =  new GmfGraph!BorderLayout;
+	bodyRectangle.outline = false;
+	node.children.add(bodyRectangle);
+
+	var compartmentFigure1 = GmfGraph!Rectangle.all.selectOne(r|r.name=compartment1);
+	compartmentFigure1.layoutData = new GmfGraph!BorderLayoutData;
+	compartmentFigure1.layoutData.alignment = GmfGraph!Alignment#BEGINNING;
+	compartmentFigure1.outline = true;
+
+	var compartmentFigure2 = GmfGraph!Rectangle.all.selectOne(r|r.name=compartment2);
+	compartmentFigure2.layoutData = new GmfGraph!BorderLayoutData;
+	compartmentFigure2.layoutData.alignment = GmfGraph!Alignment#CENTER;
+	compartmentFigure2.outline = true;
+	
+	var subtypeRectangle = new GmfGraph!Rectangle;
+	subtypeRectangle.name = node.name+"_Subtype";
+	subtypeRectangle.layout = new GmfGraph!BorderLayout;
+	subtypeRectangle.outline = false;
+	subtypeRectangle.fill = false;
+	var subtypeInsets = new GmfGraph!Insets;
+	subtypeInsets.bottom = 3;
+	subtypeInsets.top = 0;
+	subtypeInsets.left = 5;
+	subtypeInsets.right = 5;
+	var subtypeSize = new GmfGraph!Dimension;
+	subtypeSize.dx = 1000;
+	subtypeSize.dy = 25;
+	subtypeRectangle.maximumSize = subtypeSize;
+	subtypeRectangle.insets = subtypeInsets;
+	node.children.add(subtypeRectangle);
+	
+	var subtypeCompartmentFigure = GmfGraph!Rectangle.all.selectOne(r|r.name=subtypeCompartment);
+	subtypeCompartmentFigure.layoutData = new GmfGraph!BorderLayoutData;
+	subtypeCompartmentFigure.layoutData.alignment = GmfGraph!Alignment#BEGINNING;
+	subtypeCompartmentFigure.outline = false;
+
+	node.children.selectOne(r|r.name=titleRectangle.name).children.add(label);
+	node.children.selectOne(r|r.name=titleRectangle.name).children.add(modalityCompartmentFigure);
+	node.children.selectOne(r|r.name=bodyRectangle.name).children.add(compartmentFigure1);
+	node.children.selectOne(r|r.name=bodyRectangle.name).children.add(compartmentFigure2);
+	node.children.selectOne(r|r.name=subtypeRectangle.name).children.add(subtypeCompartmentFigure);
+}

@@ -1,0 +1,12 @@
+diff --git org.chico.learnciat.diagram/src/lciat/diagram/edit/parts/GroupTaskGroupTaskModalityCompartmentEditPart.java org.chico.learnciat.diagram/src/lciat/diagram/edit/parts/GroupTaskGroupTaskModalityCompartmentEditPart.java
+index 7ee0c42..b5f0404 100644
+--- org.chico.learnciat.diagram/src/lciat/diagram/edit/parts/GroupTaskGroupTaskModalityCompartmentEditPart.java
++++ org.chico.learnciat.diagram/src/lciat/diagram/edit/parts/GroupTaskGroupTaskModalityCompartmentEditPart.java
+@@ -62,6 +62,7 @@
+ 	public IFigure createFigure() {
+ 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();
+ 		result.setTitleVisibility(false);
++		result.setBorder(null);
+ 		return result;
+ 	}
+ 

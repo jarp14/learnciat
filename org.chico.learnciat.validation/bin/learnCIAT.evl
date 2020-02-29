@@ -1,0 +1,322 @@
+// Sociogram
+context SociogramNode {
+  	constraint HasName {
+    	check : self.name <> "<...>" and self.name <> ""
+    	message : "Element " + self + " must define a name"
+  	}
+  	
+  	critique NameStartsWithCapital {
+      	guard : self.satisfies('HasName')
+      	check : self.name.firstToUpperCase() = self.name
+      	message : 'SociogramNode '+ self.name +' should start with an upper-case letter'
+      	fix {
+          	title : 'Rename to '+ self.name.firstToUpperCase()
+          	do {
+              	self.name := self.name.firstToUpperCase();
+          	}
+      	}
+  	}
+}
+
+context Acting {
+	critique HasCardinality {
+		check : self.name <> "(n..m)" and self.name <> "" and self.name <> "(...)"
+		message : 'SociogramLink '+ self.name +' cardinality must be declared'
+	}
+}
+
+context Association {
+	critique HasCardinality {
+		check : self.name <> "(n..m)" and self.name <> "" and self.name <> "(...)"
+		message : 'SociogramLink '+ self.name +' cardinality must be declared'
+	}
+}
+// ...
+
+// Learning-Design Diagram
+/*context LearningNode {
+  	constraint HasName {
+    	check : self.name <> "<...>" and self.name <> "" and self.name <> "..."
+    	message : 'Element "+ self +" must define a name'
+  	}
+}*/
+
+context LearningDiagram {
+	critique CorrectTitle {
+		check : self.name.contains("Learning-Design ::")
+		message : 'The Learning Diagram should start with a [Learn-Design ::] statement'
+		fix {
+			title : 'Correct the title'
+			do {
+				self.name = 'Learning-Design :: '+self.name;
+			}
+		}
+	}
+}
+
+context GroupTask {
+	constraint OnlyOneForTransformation {
+		guard : self.EGL_Transformation = true
+		check {
+			var n = select(g:GroupTask | g.EGL_Transformation = true).size();
+			return n <= 1;
+		}
+		message : 'Can only exists one GroupTask prepared for transformation. Please, select only the GroupTask you want to transform'
+	}
+	constraint NotPreparedForTransformation {
+		guard : self.EGL_Transformation = true
+		check : self.EGL_Tool.isDefined()
+		message : 'Please, select the Tool for transformation'
+	}
+	constraint AdaptiveActivity {
+		guard : self.EGL_Tool.isDefined() and self.EGL_Transformation = true and self.EGL_Tool.isKindOf(GraphicalEditor)
+		check : self.itsModality = Modalities#ComputerSupported and self.itsSubtype = Subtypes#Adaptive
+		message : 'A Graphical Editor must be a computer supported and adaptive kind of learning activity'
+		fix {
+			title : 'Change the modality and subtype of the modeling tool'
+			do {
+				self.itsModality := Modalities#ComputerSupported;
+				self.itsSubtype := Subtypes#Support;
+			}
+		}
+	}
+	constraint ProductiveActivity {
+		guard : self.EGL_Tool.isDefined() and self.EGL_Transformation = true and (self.EGL_Tool.isKindOf(TextEditor) or self.EGL_Tool.isKindOf(CodeEditor))
+		check : self.itsModality = Modalities#ComputerSupported and self.itsSubtype = Subtypes#Productive
+		message : 'The '+self.EGL_Tool.eClass().name +' must be a productive and computer supported learning activity'
+		fix {
+			title : 'Change the modality and subtype of the textual tool'
+			do {
+				self.itsModality := Modalities#ComputerSupported;
+				self.itsSubtype := Subtypes#Productive;
+			}
+		}
+	}
+	constraint CommunicativeActivity {
+		guard : self.EGL_Tool.isDefined() and self.EGL_Transformation = true and self.itsModality = Modalities#ComputerSupported and self.itsSubtype = Subtypes#Communicative
+		check : self.EGL_Tool.chat = true
+		message : 'A communicative learning activity must include a chat'
+		fix {
+			title : 'Include a chat to the learning tool'
+			do {
+				self.EGL_Tool.chat := true;
+			}
+		}
+	}
+	constraint InformationHandlingActivity {
+		guard : self.EGL_Tool.isDefined() and self.EGL_Transformation = true and self.EGL_Tool.isKindOf(WebViewer)
+		check : self.itsModality = Modalities#ComputerSupported and self.itsSubtype = Subtypes#InformationHandling
+		message : 'The Web Viewer must be a computer supported and information handling kind of learning activity'
+		fix {
+			title : 'Change the modality and subtype of the web viewer tool'
+			do {
+				self.itsModality := Modalities#ComputerSupported;
+				self.itsSubtype := Subtypes#InformationHandling;
+			}
+		}
+	}
+	constraint SessionPanel {
+		guard : self.EGL_Tool.isDefined() and self.EGL_Transformation=true and self.EGL_Tool.sessionPanel.isDefined()
+		check : self.EGL_Tool.sessionPanel.size <> Size#None and self.EGL_Tool.sessionPanel.position <> Position#None and self.EGL_Tool.sessionPanel.language <> Language#None
+		message : 'Please, introduce the desired size, position and language for the session panel of the '+self.EGL_Tool.name
+	}
+	constraint Chat {
+		guard : self.EGL_Tool.isDefined() and self.EGL_Transformation=true and self.EGL_Tool.chat.isDefined()
+		check : self.EGL_Tool.chat.size <> Size#None and self.EGL_Tool.chat.position <> Position#None and self.EGL_Tool.chat.language <> Language#None
+		message : 'Please, introduce the desired size, position and language for the chat of the '+self.EGL_Tool.name
+	}
+	constraint TurnTakingTool {
+		guard : self.EGL_Tool.isDefined() and (not self.EGL_Tool.isKindOf(WebViewer)) 
+					and self.EGL_Transformation=true and self.EGL_Tool.turnTakingTool.isDefined()
+		check : self.EGL_Tool.turnTakingTool.size <> Size#None and self.EGL_Tool.turnTakingTool.position <> Position#None and self.EGL_Tool.turnTakingTool.language <> Language#None
+		message : 'Please, introduce the desired position for the turn-taking panel of the '+self.EGL_Tool.name
+	}
+	constraint Properties {
+		guard : self.EGL_Tool.isDefined() and self.EGL_Tool.isKindOf(GraphicalEditor)
+				and self.EGL_Transformation=true and self.EGL_Tool.properties.isDefined()
+		check : self.EGL_Tool.properties.position <> Position#None
+		message : 'Please, introduce the desired position for the properties view of the '+self.EGL_Tool.name
+	}
+	constraint Console {
+		guard : self.EGL_Tool.isDefined() and (self.EGL_Tool.isKindOf(CodeEditor) or self.EGL_Tool.isKindOf(TextEditor)) 
+					and self.EGL_Transformation=true and self.EGL_Tool.console.isDefined()
+		check : self.EGL_Tool.console.position <> Position#None
+		message : 'Please, introduce the desired position for the console view of the '+self.EGL_Tool.name
+	}
+	constraint Problems {
+		guard : self.EGL_Tool.isDefined() and (not self.EGL_Tool.isKindOf(WebViewer)) 
+					and self.EGL_Transformation=true and self.EGL_Tool.problems.isDefined()
+		check : self.EGL_Tool.problems.position <> Position#None
+		message : 'Please, introduce the desired position for the problems view of the '+self.EGL_Tool.name
+	}
+	constraint RadarView {
+		guard : self.EGL_Tool.isDefined() and (not self.EGL_Tool.isKindOf(WebViewer))
+					and self.EGL_Transformation=true and self.EGL_Tool.radarView.isDefined()
+		check : self.EGL_Tool.radarView.position <> Position#None
+		message : 'Please, introduce the desired position for the radar view of the '+self.EGL_Tool.name
+	}
+}
+
+context Traceability {
+	constraint RadarView {
+		guard: self.awarelement.isKindOf(RadarView)	
+		check: not self.toolelement.isKindOf(WebViewer)
+		message: 'Only textual and modeling editors can use a radar view'
+	}
+	constraint Problems {
+		guard: self.awarelement.isKindOf(Problems)
+		check: not self.toolelement.isKindOf(WebViewer)
+		message: 'Only textual and modeling editors can use a problems view'
+	}
+	constraint Console {
+		guard: self.awarelement.isKindOf(Console)
+		check: self.toolelement.isKindOf(CodeEditor) or self.target.isKindOf(TextEditor)
+		message: 'Only textual editors can use a console'
+	}
+	constraint TurnTakingTool {
+		guard: self.awarelement.isKindOf(TurnTakingTool)
+		check: not self.toolelement.isKindOf(WebViewer)
+		message: 'Only textual and modeling editors can use a turn-taking panel'
+	}
+	constraint Telepointer {
+		guard: self.awarelement.isKindOf(Telepointer)
+		check: self.toolelement.isKindOf(GraphicalEditor)
+		message: 'Only modeling editors can use telepointers'
+	}
+	constraint Properties {
+		guard: self.awarelement.isKindOf(Properties)
+		check: self.toolelement.isKindOf(GraphicalEditor)
+		message: 'Only modeling editors can use a properties view'
+	}
+}
+
+context Init {
+	constraint DontRepeat {
+		check {
+			var n = Init.allInstances.size();
+			return n <= 1;
+		}
+		message : 'There is more than one Init node'
+		fix {
+			title : 'Remove duplicated init node'
+			do {
+				delete self;
+			}
+		}
+	}
+}
+
+context End {
+	constraint DontRepeat {
+		check {
+			var n = End.allInstances.size();
+			return n <= 1;
+		}
+		message : 'There is more than one End node'
+		fix {
+			title : 'Remove duplicated end node'
+			do {
+				delete self;
+			}
+		}
+	}
+}
+// ...
+
+// MoLEF
+context MolefContent1 {
+	constraint DontRepeat {
+		check {
+			var n = MolefContent1.all.size();
+			return n <= 1;
+		}
+		message : 'There is more than one Content1 node defined'
+		fix {
+			title : 'Remove duplicated Content1 node'
+			do {
+				delete self;
+			}
+		}
+	}
+}
+context MolefContent6 {
+	constraint DontRepeat {
+		check : MolefContent6.all.size() <= 1
+		message : 'There is more than one Content6 node defined'
+		fix {
+			title : 'Remove duplicated Content6 node'
+			do {
+				delete self;
+			}
+		}
+	}
+	constraint MeetStatement {
+		check : GroupTask.all.select(gt|gt.itsModality=Modalities#ComputerSupported and gt.EGL_Tool.isDefined and gt.EGL_Tool.isKindOf(WebViewer)).size > 0
+		message : 'The C6 pedagogical statement fails - A Web Navigator may be included'
+	}
+}
+context MolefSocial1 {
+	constraint DontRepeat {
+		check : MolefSocial1.all.size() <= 1
+		message : 'There is more than one Social1 node defined'
+		fix {
+			title : 'Remove duplicated Social1 node'
+			do {
+				delete self;
+			}
+		}
+	}
+	constraint MeetStatement {
+		check : GroupTask.all.size > 0
+		message : 'The S1 pedagogical statement fails - Include at least one GroupTask activity'
+	}
+}	
+context MolefSocial2 {
+	constraint DontRepeat {
+		check : MolefSocial2.all.size() <= 1
+		message : 'There is more than one Social2 node defined'
+		fix {
+			title : 'Remove duplicated Social2 node'
+			do {
+				delete self;
+			}
+		}
+	}
+	constraint MeetStatement {
+		check : GroupTask.all.select(gt|gt.EGL_Tool.isDefined() and gt.EGL_Tool.chat.isDefined()).size > 0
+		message : 'The S2 pedagogical statement fails - Include at least one Chat'
+	}
+}
+context MolefTActivities5 {
+	constraint DontRepeat {
+		check : MolefTActivities5.all.size() <= 1
+		message : 'There is more than one TaskAndActivities5 node defined'
+		fix {
+			title : 'Remove duplicated TaskAndActivities5 node'
+			do {
+				delete self;
+			}
+		}
+	}
+	constraint MeetStatement {
+		check : LearningActivity.all.select(la|la.itsSubtype=Subtypes#Experiential).size >  0
+		message : 'The T5 pedagogical statement fails - Include at least one Experiential learning activity'
+	}
+}
+context MolefTActivities7 {
+	constraint DontRepeat {
+		check : MolefTActivities7.all.size() <= 1
+		message : 'There is more than one TaskAndActivities7 node defined'
+		fix {
+			title : 'Remove duplicated TaskAndActivities7 node'
+			do {
+				delete self;
+			}
+		}
+	}
+	constraint MeetStatement {
+		check : LearningActivity.all.select(a|a.itsSubtype = Subtypes#Evaluative).size > 0
+		message : 'The T7 pedagogical statement fails - Include at least one Evaluative activity'
+	}
+}
+// ...

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated learnCIAT -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="lciat.presentation.LciatModelWizardID"
+            name="%_UI_LciatModelWizard_label"
+            class="lciat.presentation.LciatModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/LciatModelFile.gif">
+         <description>%_UI_LciatModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated learnCIAT -->
+      <editor
+            id="lciat.presentation.LciatEditorID"
+            name="%_UI_LciatEditor_label"
+            icon="icons/full/obj16/LciatModelFile.gif"
+            extensions="lciat"
+            class="lciat.presentation.LciatEditor"
+            contributorClass="lciat.presentation.LciatActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

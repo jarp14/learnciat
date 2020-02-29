@@ -1,0 +1,35 @@
+setHorizontalCompartments('GroupTaskFigure','GroupTaskLabelFigure',
+'GroupTaskTaskRolesCompartmentFigure','GroupTaskTaskObjectsCompartmentFigure',
+'GroupTaskModalityCompartmentFigure','GroupTaskSubtypeCompartmentFigure');
+// ...
+
+operation setHorizontalCompartments(nodeFigure: String, labelFigure: String, 
+compartment1: String, compartment2: String, modalityCompartment: String, subtypeCompartment: String) {
+	var node = GmfGraph!RoundedRectangle.all.selectOne(r|r.name=nodeFigure);
+	delete node.border;
+
+	var titleRectangle = new GmfGraph!Rectangle;
+	titleRectangle.name = node.name+'_Title';
+	titleRectangle.layout = new GmfGraph!BorderLayout;
+	titleRectangle.outline = false;
+	titleRectangle.fill = false;
+	// ...
+	node.children.add(titleRectangle);
+	
+	var label = GmfGraph!Label.all.selectOne(r|r.name=labelFigure);
+	label.layoutData = new GmfGraph!BorderLayoutData;
+	label.layoutData.alignment = GmfGraph!Alignment#BEGINNING;
+	delete label.maximumSize;
+	
+	var modalityCompartmentFigure = GmfGraph!Rectangle.all.selectOne(r|r.name=modalityCompartment);
+	modalityCompartmentFigure.layoutData = new GmfGraph!BorderLayoutData;
+	modalityCompartmentFigure.layoutData.alignment = GmfGraph!Alignment#END;
+	modalityCompartmentFigure.outline = false;
+	// ...
+
+	node.children.selectOne(r|r.name=titleRectangle.name).children.add(label);
+	node.children.selectOne(r|r.name=titleRectangle.name).children.add(modalityCompartmentFigure);
+	node.children.selectOne(r|r.name=bodyRectangle.name).children.add(compartmentFigure1);
+	node.children.selectOne(r|r.name=bodyRectangle.name).children.add(compartmentFigure2);
+	node.children.selectOne(r|r.name=subtypeRectangle.name).children.add(subtypeCompartmentFigure);
+}

@@ -1,0 +1,33 @@
+// Sociogram
+context SociogramNode {
+  	constraint HasName {
+    	check : self.name <> "<...>" and self.name <> ""
+    	message : "Element " + self + " must define a name"
+  	}
+  	
+  	critique NameStartsWithCapital {
+      	guard : self.satisfies('HasName')
+      	check : self.name.firstToUpperCase() = self.name
+      	message : 'SociogramNode '+ self.name +' should start with an upper-case letter'
+      	fix {
+          	title : 'Rename to '+ self.name.firstToUpperCase()
+          	do {
+              	self.name := self.name.firstToUpperCase();
+          	}
+      	}
+  	}
+}
+
+context Acting {
+	critique HasCardinality {
+		check : self.name <> "(n..m)" and self.name <> "" and self.name <> "(...)"
+		message : 'SociogramLink '+ self.name +' cardinality must be declared'
+	}
+}
+
+context Association {
+	critique HasCardinality {
+		check : self.name <> "(n..m)" and self.name <> "" and self.name <> "(...)"
+		message : 'SociogramLink '+ self.name +' cardinality must be declared'
+	}
+}

@@ -1,0 +1,46 @@
+context GroupTask {
+	constraint InformationHandlingActivity {
+		guard : self.EGL_Tool.isDefined() and self.EGL_Transformation = true and self.EGL_Tool.isKindOf(WebViewer)
+		check : self.itsModality = Modalities#ComputerSupported and self.itsSubtype = Subtypes#InformationHandling
+		message : 'The Web Viewer must be a computer supported and information handling kind of learning activity'
+		fix {
+			title : 'Change the modality and subtype of the web viewer tool'
+			do {
+				self.itsModality := Modalities#ComputerSupported;
+				self.itsSubtype := Subtypes#InformationHandling;
+			}
+		}
+	}
+}
+
+context SociogramNode {
+  	constraint HasName {
+    	check : self.name <> "<...>" and self.name <> ""
+    	message : "Element " + self + " must define a name"
+  	}
+  	
+  	critique NameStartsWithCapital {
+      	guard : self.satisfies('HasName')
+      	check : self.name.firstToUpperCase() = self.name
+      	message : 'SociogramNode '+ self.name +' should start with an upper-case letter'
+      	fix {
+          	title : 'Rename to '+ self.name.firstToUpperCase()
+          	do {
+              	self.name := self.name.firstToUpperCase();
+          	}
+      	}
+  	}
+}
+
+context MolefContent1 {
+	constraint DontRepeat {
+		check : MolefContent1.all.size() <= 1
+		message : 'There is more than one Content1 node defined'
+		fix {
+			title : 'Remove duplicated Content1 node'
+			do {
+				delete self;
+			}
+		}
+	}
+}

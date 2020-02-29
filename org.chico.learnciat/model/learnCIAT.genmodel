@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/org.chico.learnciat/src" modelPluginID="org.chico.learnciat"
+    modelName="Lciat" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>learnCIAT.emf</foreignModel>
+  <genPackages prefix="Lciat" disposableProviderFactory="true" ecorePackage="learnCIAT.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="learnCIAT.ecore#//Subtypes">
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Subtypes/None"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Subtypes/Assimilative"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Subtypes/Adaptive"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Subtypes/InformationHandling"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Subtypes/Communicative"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Subtypes/Productive"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Subtypes/Experiential"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Subtypes/Evaluative"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Subtypes/Support"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="learnCIAT.ecore#//Modalities">
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Modalities/None"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Modalities/FaceToFace"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Modalities/ComputerSupported"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Modalities/Online"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="learnCIAT.ecore#//Position">
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Position/None"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Position/Left"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Position/Right"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Position/Bottom"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="learnCIAT.ecore#//Language">
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Language/None"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Language/English"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Language/Spanish"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="learnCIAT.ecore#//Size">
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Size/None"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Size/Large"/>
+      <genEnumLiterals ecoreEnumLiteral="learnCIAT.ecore#//Size/Small"/>
+    </genEnums>
+    <genClasses ecoreClass="learnCIAT.ecore#//LCIANDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LCIANDiagram/itsSociograms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LCIANDiagram/itsLearningDiagrams"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LCIANDiagram/itsCttDiagrams"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LCIANDiagram/itsLinks"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="learnCIAT.ecore#//Link"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//Sociogram">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Sociogram/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Sociogram/itsSociogramNodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Sociogram/mfContentNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//SociogramNode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//SociogramNode/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Rol">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Rol/itsGroup"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Rol/supertype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Rol/subtype"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Group">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Group/contains"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//SociogramLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//SociogramLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//SociogramLink/target"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Inheritance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Inheritance/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Acting">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Acting/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Acting/n"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Acting/m"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Association">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Association/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Association/n"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Association/m"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//LearningDiagram">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//LearningDiagram/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LearningDiagram/molefLearningNodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LearningDiagram/learningNodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LearningDiagram/mfLearningNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//LearningNode"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//Init">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Init/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//End">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//End/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//LearningActivity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//LearningActivity/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//LearningActivity/itsModality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//LearningActivity/itsSubtype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LearningActivity/tools"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="learnCIAT.ecore#//LeftSideLearningNode"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//IndividualTask">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//IndividualTask/taskRoles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//IndividualTask/taskObjects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//IndividualTask/subtype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//IndividualTask/modality"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//GroupTask">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GroupTask/taskRoles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GroupTask/taskObjects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GroupTask/subtype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GroupTask/modality"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GroupTask/EGL_Tool"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//GroupTask/EGL_Transformation"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//AbstractTask">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//AbstractTask/taskRoles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//AbstractTask/taskObjects"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//AbstractTask/subtype"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//AbstractTask/modality"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//DetailedAbstractTask">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//DetailedAbstractTask/LearningNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Object">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Object/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Object/object"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Object/modifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Object/modifiedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//TemporalCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//TemporalCondition/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Notification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Notification/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Condition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Condition/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Subtype"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//Assimilative">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Assimilative/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//InformationHandling">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//InformationHandling/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Adaptive">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Adaptive/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Communicative">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Communicative/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Productive">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Productive/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Experiential">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Experiential/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Evaluative">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Evaluative/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Support">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Support/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Modality">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Modality/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//FaceToFace">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//FaceToFace/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//ComputerSupported">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//ComputerSupported/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Online">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Online/kind"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//LearningLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LearningLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//LearningLink/target"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//EnablingWOInformation">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//EnablingWOInformation/eLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//EnablingWInformation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//EnablingWInformation/ewLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Choice">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Choice/dtLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Concurrency">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Concurrency/icLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Tool">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Tool/kind"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Tool/chat"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Tool/sessionPanel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//GraphicalEditor">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//GraphicalEditor/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GraphicalEditor/turnTakingTool"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GraphicalEditor/telepointer"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GraphicalEditor/radarView"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GraphicalEditor/properties"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//GraphicalEditor/problems"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//TextEditor">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//TextEditor/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//TextEditor/turnTakingTool"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//TextEditor/radarView"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//TextEditor/console"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//TextEditor/problems"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//CodeEditor">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//CodeEditor/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CodeEditor/turnTakingTool"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CodeEditor/radarView"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CodeEditor/console"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CodeEditor/problems"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//WebViewer">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//WebViewer/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="learnCIAT.ecore#//Awareness"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//SessionPanel">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//SessionPanel/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//SessionPanel/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//SessionPanel/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//SessionPanel/size"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Chat">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Chat/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Chat/isStructured"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Chat/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Chat/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Chat/size"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//TurnTakingTool">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//TurnTakingTool/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//TurnTakingTool/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//TurnTakingTool/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//TurnTakingTool/size"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Telepointer">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Telepointer/name"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//RadarView">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//RadarView/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//RadarView/position"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Properties">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Properties/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Properties/position"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Console">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Console/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Console/position"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Problems">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Problems/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Problems/position"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Traceability">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Traceability/awarelement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//Traceability/toolelement"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//CTTDiagram">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//CTTDiagram/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CTTDiagram/molefCttNodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CTTDiagram/cttTasks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CTTDiagram/mfCttNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//CTTTask">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//CTTTask/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CTTTask/cttLinks"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//ExclusiveEdition"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//CollaborativeVisualization"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//IndividualVisualization"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//UserTask"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//CTTAbstractTask"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//InteractiveTask"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//CTTCollaborativeTask"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//ApplicationTask"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//CTTLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CTTLink/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference learnCIAT.ecore#//CTTLink/target"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Aggregation"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//Enabling">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Enabling/eLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//Disabling">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//Disabling/dLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//EnablingWithInformationPassing">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//EnablingWithInformationPassing/ewLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//DisablingWithInformationPassing">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//DisablingWithInformationPassing/dwLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//IndependentConcurrency">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//IndependentConcurrency/icLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//OrderIndependence">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//OrderIndependence/oiLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//SuspendResume">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//SuspendResume/srLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//ConcurrencyWithInformationPassing">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//ConcurrencyWithInformationPassing/cLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//DeterministicChoice">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//DeterministicChoice/dtLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//UndeterministicChoice">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//UndeterministicChoice/ucLabel"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="learnCIAT.ecore#//MolefNode"/>
+    <genClasses image="false" ecoreClass="learnCIAT.ecore#//MolefContentNode"/>
+    <genClasses image="false" ecoreClass="learnCIAT.ecore#//MolefLearningNode"/>
+    <genClasses image="false" ecoreClass="learnCIAT.ecore#//MolefCttNode"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefContent1">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefContent1/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefContent2">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefContent2/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefContent3">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefContent3/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefContent4">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefContent4/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefContent5">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefContent5/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefContent6">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefContent6/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefTaskAndActivitiesNode"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefTActivities1">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefTActivities1/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefTActivities2">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefTActivities2/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefTActivities3">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefTActivities3/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefTActivities4">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefTActivities4/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefTActivities5">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefTActivities5/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefTActivities6">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefTActivities6/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefTActivities7">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefTActivities7/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefTActivities8">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefTActivities8/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefSocialNode"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefSocial1">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefSocial1/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefSocial2">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefSocial2/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefSocial3">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefSocial3/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefSocial4">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefSocial4/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefPersonalizationNode"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefPersonalization1">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefPersonalization1/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefPersonalization2">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefPersonalization2/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefPersonalization3">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefPersonalization3/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefPersonalization4">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefPersonalization4/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefPersonalization5">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefPersonalization5/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefMultimediaNode"/>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefMultimedia1">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefMultimedia1/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefMultimedia2">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefMultimedia2/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefMultimedia3">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefMultimedia3/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefMultimedia4">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefMultimedia4/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefMultimedia5">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefMultimedia5/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefMultimedia6">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefMultimedia6/characteristic"/>
+    </genClasses>
+    <genClasses ecoreClass="learnCIAT.ecore#//MolefMultimedia7">
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute learnCIAT.ecore#//MolefMultimedia7/characteristic"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

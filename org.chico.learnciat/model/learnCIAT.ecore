@@ -1,0 +1,1509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="lciat" nsURI="lciat" nsPrefix="lciat">
+  <eAnnotations source="gmf"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LCIANDiagram">
+    <eAnnotations source="gmf.diagram"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itsSociograms" upperBound="-1"
+        eType="#//Sociogram" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itsLearningDiagrams" upperBound="-1"
+        eType="#//LearningDiagram" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itsCttDiagrams" upperBound="-1"
+        eType="#//CTTDiagram" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itsLinks" upperBound="-1"
+        eType="#//Link" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Link" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Sociogram">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Sociogram.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Sociogram :: "/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itsSociogramNodes" upperBound="-1"
+        eType="#//SociogramNode" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="free"/>
+        <details key="collapsible" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mfContentNodes" upperBound="-1"
+        eType="#//MolefContentNode" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SociogramNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="&lt;...>"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rol" eSuperTypes="#//SociogramNode #//LeftSideLearningNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Rol"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Rol.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="itsGroup" upperBound="-1"
+        eType="#//Group"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supertype" upperBound="-1"
+        eType="#//Rol"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subtype" upperBound="-1"
+        eType="#//Rol"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//SociogramNode #//LeftSideLearningNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Group"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Group.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contains" upperBound="-1"
+        eType="#//Rol"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SociogramLink" eSuperTypes="#//Link">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//SociogramNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//SociogramNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//SociogramLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="condition"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="target.decoration" value="closedarrow"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Inheritance.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=" "/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Acting" eSuperTypes="#//SociogramLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="name"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="target.decoration" value="closedarrow"/>
+      <details key="style" value="dash"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Acting.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="(n..m)"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="n" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="m" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//SociogramLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="name"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Association.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="(n..m)"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="n" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="m" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LearningDiagram">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Learning Diagram"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/LearningDesignDiagram.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Learning-Design :: "/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="molefLearningNodes" upperBound="-1"
+        eType="#//MolefLearningNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="learningNodes" upperBound="-1"
+        eType="#//LearningNode" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="free"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mfLearningNodes" upperBound="-1"
+        eType="#//MolefLearningNode" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LearningNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Init" eSuperTypes="#//LearningNode">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.InitialFigure"/>
+      <details key="tool.name" value="Initial"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Initial.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral=" "/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="End" eSuperTypes="#//LearningNode">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.FinalFigure"/>
+      <details key="tool.name" value="Final"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Final.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral=" "/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LearningActivity" eSuperTypes="#//LearningNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="&lt;...>"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itsModality" lowerBound="1"
+        eType="#//Modalities"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itsSubtype" lowerBound="1"
+        eType="#//Subtypes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tools" upperBound="-1"
+        eType="#//Tool" containment="true">
+      <eAnnotations source="gmf.affixed"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LeftSideLearningNode" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IndividualTask" eSuperTypes="#//LearningActivity">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Individual Learning"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/IndividualLearningTask.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskRoles" lowerBound="1"
+        eType="#//LeftSideLearningNode" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskObjects" upperBound="-1"
+        eType="#//Object" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subtype" lowerBound="1"
+        eType="#//Subtype" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modality" lowerBound="1"
+        eType="#//Modality" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GroupTask" eSuperTypes="#//LearningActivity">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Group Learning"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/GroupLearningTask.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskRoles" upperBound="-1"
+        eType="#//LeftSideLearningNode" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskObjects" upperBound="-1"
+        eType="#//Object" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subtype" lowerBound="1"
+        eType="#//Subtype" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modality" lowerBound="1"
+        eType="#//Modality" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EGL_Tool" eType="#//Tool"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="EGL_Transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractTask" eSuperTypes="#//LearningActivity">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Abstract Learning"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/AbstractLearningTask.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskRoles" upperBound="-1"
+        eType="#//LeftSideLearningNode" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskObjects" upperBound="-1"
+        eType="#//Object" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subtype" lowerBound="1"
+        eType="#//Subtype" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modality" lowerBound="1"
+        eType="#//Modality" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="false"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DetailedAbstractTask" eSuperTypes="#//LearningActivity">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Detailed Abstract Learning"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/AbstractLearningTask.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="LearningNodes" upperBound="-1"
+        eType="#//LearningNode" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="free"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Object">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Object"/>
+      <details key="label.icon" value="false"/>
+      <details key="figure" value="rectangle"/>
+      <details key="color" value="154,236,255"/>
+      <details key="size" value="100,20"/>
+      <details key="border.color" value="0,179,255"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Object.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="C/R/W: Object"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="#//Object"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modifiedBy" eType="#//LeftSideLearningNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemporalCondition" eSuperTypes="#//LearningNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Temporal Condition"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/TemporalCondition.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="..."/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Notification" eSuperTypes="#//LearningNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Notification"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Notification.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="..."/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//LearningNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Condition"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Condition.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="? ..."/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Subtypes">
+    <eLiterals name="None"/>
+    <eLiterals name="Assimilative" value="1"/>
+    <eLiterals name="Adaptive" value="2"/>
+    <eLiterals name="InformationHandling" value="3"/>
+    <eLiterals name="Communicative" value="4"/>
+    <eLiterals name="Productive" value="5"/>
+    <eLiterals name="Experiential" value="6"/>
+    <eLiterals name="Evaluative" value="7"/>
+    <eLiterals name="Support" value="8"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Modalities">
+    <eLiterals name="None"/>
+    <eLiterals name="FaceToFace" value="1"/>
+    <eLiterals name="ComputerSupported" value="2"/>
+    <eLiterals name="Online" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Subtype"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Assimilative" eSuperTypes="#//Subtype">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Assimilative"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Assimilative.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Assimilative"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InformationHandling" eSuperTypes="#//Subtype">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Information Handling"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/InformationHandling.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Information Handling"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Adaptive" eSuperTypes="#//Subtype">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Adaptive"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Adaptive.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Adaptive"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Communicative" eSuperTypes="#//Subtype">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Communicative"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Communicative.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Communicative"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Productive" eSuperTypes="#//Subtype">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Productive"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Productive.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Productive"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Experiential" eSuperTypes="#//Subtype">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Experiential"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Experiential.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Experiential"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Evaluative" eSuperTypes="#//Subtype">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Evaluative"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Evaluative.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Evaluative"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Support" eSuperTypes="#//Subtype">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Support"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Support.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Support"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Modality">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral=" "/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FaceToFace" eSuperTypes="#//Modality">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.FaceToFaceFigure"/>
+      <details key="tool.name" value="Face-to-face"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/FaceToFace.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="FaceToFace"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputerSupported" eSuperTypes="#//Modality">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.ComputerSupportedFigure"/>
+      <details key="tool.name" value="Computer-Supported"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/ComputerSupported.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="ComputerSupported"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Online" eSuperTypes="#//Modality">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.OnlineFigure"/>
+      <details key="tool.name" value="Online"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Online.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Online"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LearningLink" eSuperTypes="#//Link">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//LearningNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//LearningNode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnablingWOInformation" eSuperTypes="#//LearningLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="eLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Enabling w/o Information"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/EnablingTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral=">>"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnablingWInformation" eSuperTypes="#//LearningLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="ewLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Enabling w Information"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/EnablingWithInformationPassingTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ewLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="[]>>"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="#//LearningLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="dtLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/DeterministicChoiceTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dtLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="[]"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Concurrency" eSuperTypes="#//LearningLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="icLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/IndependentConcurrencyTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="|||"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tool">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="kind"/>
+      <details key="tool.name" value="Tool"/>
+      <details key="figure" value="polygon"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="polygon.x" value="0 20 49 69 49 20"/>
+      <details key="polygon.y" value="20 0 0 20 40 40"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Tool.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="Tool"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="chat" eType="#//Chat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sessionPanel" eType="#//SessionPanel"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicalEditor" eSuperTypes="#//Tool">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Graphical Editor"/>
+      <details key="figure" value="polygon"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="polygon.x" value="0 20 49 69 49 20"/>
+      <details key="polygon.y" value="20 0 0 20 40 40"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/GraphicalEditor.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Graph. Editor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="turnTakingTool" lowerBound="1"
+        eType="#//TurnTakingTool"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="telepointer" eType="#//Telepointer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="radarView" eType="#//RadarView"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" eType="#//Properties"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="problems" eType="#//Problems"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextEditor" eSuperTypes="#//Tool">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Text Editor"/>
+      <details key="figure" value="polygon"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="polygon.x" value="0 20 49 69 49 20"/>
+      <details key="polygon.y" value="20 0 0 20 40 40"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/TextEditor.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Text Editor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="turnTakingTool" lowerBound="1"
+        eType="#//TurnTakingTool"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="radarView" eType="#//RadarView"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="console" eType="#//Console"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="problems" eType="#//Problems"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CodeEditor" eSuperTypes="#//Tool">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Code Editor"/>
+      <details key="figure" value="polygon"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="polygon.x" value="0 20 49 69 49 20"/>
+      <details key="polygon.y" value="20 0 0 20 40 40"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/CodeEditor.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Code Editor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="turnTakingTool" lowerBound="1"
+        eType="#//TurnTakingTool"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="radarView" eType="#//RadarView"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="console" eType="#//Console"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="problems" eType="#//Problems"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WebViewer" eSuperTypes="#//Tool">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Web Viewer"/>
+      <details key="figure" value="polygon"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="polygon.x" value="0 20 49 69 49 20"/>
+      <details key="polygon.y" value="20 0 0 20 40 40"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/WebViewer.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Web"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Awareness" abstract="true" eSuperTypes="#//LearningNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SessionPanel" eSuperTypes="#//Awareness">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Session Panel"/>
+      <details key="figure" value="ellipse"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/SessionPanel.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Session"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="#//Language"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="#//Size"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Chat" eSuperTypes="#//Awareness">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Chat"/>
+      <details key="figure" value="ellipse"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Chat.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Chat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStructured" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="#//Language"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="#//Size"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TurnTakingTool" eSuperTypes="#//Awareness">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="TurnTaking Panel"/>
+      <details key="figure" value="ellipse"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/TurnTaking.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="TurnTaking"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="#//Language"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="#//Size"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Telepointer" eSuperTypes="#//Awareness">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Telepointer"/>
+      <details key="figure" value="ellipse"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Telepointer.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Telepointer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RadarView" eSuperTypes="#//Awareness">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Radar View"/>
+      <details key="figure" value="ellipse"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/RadarView.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Radar"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Properties" eSuperTypes="#//Awareness">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Properties"/>
+      <details key="figure" value="ellipse"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Properties.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Properties"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Console" eSuperTypes="#//Awareness">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Console"/>
+      <details key="figure" value="ellipse"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Console.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Console"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Problems" eSuperTypes="#//Awareness">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.name" value="Problems"/>
+      <details key="figure" value="ellipse"/>
+      <details key="resizable" value="false"/>
+      <details key="label.icon" value="false"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/Problems.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Problems"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Position">
+    <eLiterals name="None"/>
+    <eLiterals name="Left" value="1"/>
+    <eLiterals name="Right" value="2"/>
+    <eLiterals name="Bottom" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Language">
+    <eLiterals name="None"/>
+    <eLiterals name="English" value="1"/>
+    <eLiterals name="Spanish" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Size">
+    <eLiterals name="None"/>
+    <eLiterals name="Large" value="1"/>
+    <eLiterals name="Small" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Traceability" eSuperTypes="#//Link">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="awarelement"/>
+      <details key="target" value="toolelement"/>
+      <details key="style" value="dash"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/traceability.gif"/>
+      <details key="target.decoration" value="arrow"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="awarelement" lowerBound="1"
+        eType="#//Awareness"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toolelement" lowerBound="1"
+        eType="#//Tool"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CTTDiagram">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/CTTDiagram.gif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="CTT :: "/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="molefCttNodes" upperBound="-1"
+        eType="#//MolefCttNode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cttTasks" upperBound="-1"
+        eType="#//CTTTask" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="free"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mfCttNodes" upperBound="-1"
+        eType="#//MolefCttNode" containment="true">
+      <eAnnotations source="gmf.compartment">
+        <details key="layout" value="list"/>
+        <details key="collapsible" value="true"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CTTTask">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="&lt;...>"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cttLinks" upperBound="-1"
+        eType="#//CTTLink"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExclusiveEdition" eSuperTypes="#//CTTTask">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.ExclusiveEditionFigure"/>
+      <details key="tool.name" value="Exclusive Edition"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/ExclusiveEdition.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CollaborativeVisualization" eSuperTypes="#//CTTTask">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.CollaborativeVisualizationFigure"/>
+      <details key="tool.name" value="Collaborative Visualization"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/CollaborativeVisualization.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndividualVisualization" eSuperTypes="#//CTTTask">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.IndividualVisualizationFigure"/>
+      <details key="tool.name" value="Individual Visualization"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/IndividualVisualization.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="#//CTTTask">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.UserTaskFigure"/>
+      <details key="tool.name" value="User Task"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/UserTask.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CTTAbstractTask" eSuperTypes="#//CTTTask">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.AbstractTaskFigure"/>
+      <details key="tool.name" value="Abstract Task"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/AbstractTask.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InteractiveTask" eSuperTypes="#//CTTTask">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.InteractiveTaskFigure"/>
+      <details key="tool.name" value="Interactive Task"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/InteractionTask.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CTTCollaborativeTask" eSuperTypes="#//CTTTask">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.CollaborativeTaskFigure"/>
+      <details key="tool.name" value="Collaborative Task"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/CollaborativeTask.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ApplicationTask" eSuperTypes="#//CTTTask">
+    <eAnnotations source="gmf.node">
+      <details key="figure" value="figures.ApplicationTaskFigure"/>
+      <details key="tool.name" value="Application Task"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/ApplicationTask.gif"/>
+      <details key="label" value="name"/>
+      <details key="label.icon" value="false"/>
+      <details key="label.placement" value="external"/>
+      <details key="resizable" value="false"/>
+      <details key="size" value="16,16"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CTTLink" eSuperTypes="#//Link">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//CTTTask"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+        eType="#//CTTTask"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Aggregation" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/AggregationTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Enabling" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="eLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/EnablingTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="eLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral=">>"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Disabling" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="dLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/DisablingTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="[>"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnablingWithInformationPassing" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="ewLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Enabling With Information Passing"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/EnablingWithInformationPassingTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ewLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="[]>>"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DisablingWithInformationPassing" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="dwLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Disabling With Information Passing"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/DisablingWithInformationPassingTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dwLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="[]|>"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndependentConcurrency" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="icLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Independent Concurrency"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/IndependentConcurrencyTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="|||"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrderIndependence" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="oiLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Order Independence"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/OrderIndependenceTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oiLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="|=|"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuspendResume" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="srLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Suspend Resume"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/SuspendResumeTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="srLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="|>"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConcurrencyWithInformationPassing" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="cLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Concurrency With Information Passing"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/ConcurrencyWithInformationPassingTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="|[]|"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeterministicChoice" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="dtLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Deterministic Choice"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/DeterministicChoiceTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dtLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="[]"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UndeterministicChoice" eSuperTypes="#//CTTLink">
+    <eAnnotations source="gmf.link">
+      <details key="label" value="ucLabel"/>
+      <details key="source" value="source"/>
+      <details key="target" value="target"/>
+      <details key="style" value="solid"/>
+      <details key="width" value="1"/>
+      <details key="color" value="0,0,0"/>
+      <details key="tool.name" value="Undeterministic Choice"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/UndeterministicChoiceTransition.gif"/>
+      <details key="source.constraint" value="self &lt;> oppositeEnd"/>
+      <details key="target.constraint" value="self &lt;> oppositeEnd"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ucLabel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Ç"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefNode" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefContentNode" abstract="true" eSuperTypes="#//MolefNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefLearningNode" abstract="true" eSuperTypes="#//MolefNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefCttNode" abstract="true" eSuperTypes="#//MolefNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefContent1" eSuperTypes="#//MolefContentNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Content 1"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefContent1.gif"/>
+      <details key="tool.description" value="The content is organized into modules or units"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The content is organized into modules or units"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefContent2" eSuperTypes="#//MolefContentNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Content 2"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefContent2.gif"/>
+      <details key="tool.description" value="The learning objectives are defined at the beginning of the module or unit"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The learning objectives are defined at the beginning of the module or unit"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefContent3" eSuperTypes="#//MolefContentNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Content 3"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefContent3.gif"/>
+      <details key="tool.description" value="Adviced that previous knowledge are required"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Adviced that previous knowledge are required"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefContent4" eSuperTypes="#//MolefContentNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Content 4"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefContent4.gif"/>
+      <details key="tool.description" value="The explanation of the concepts is presented in a clear and concise manner"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The explanation of the concepts is presented in a clear and concise manner"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefContent5" eSuperTypes="#//MolefContentNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Content 5"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefContent5.gif"/>
+      <details key="tool.description" value="The modules or units are organized according to levels of difficulty"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The modules or units are organized according to levels of difficulty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefContent6" eSuperTypes="#//MolefContentNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Content 6"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefContent6.gif"/>
+      <details key="tool.description" value="There are links to external resources related to the content and adapted for mobile devices"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="There are links to external resources related to the content and adapted for mobile devices"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefTaskAndActivitiesNode" eSuperTypes="#//MolefLearningNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefTActivities1" eSuperTypes="#//MolefTaskAndActivitiesNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Task and Activities 1"/>
+      <details key="border.color" value="255,255,255"/>
+      <details key="size" value="600,18"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefTActivities1.gif"/>
+      <details key="tool.description" value="Activities are proposed to acquire new skills that determine their learning -i.e. Questions, exercises, problem resolution, etc.-"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Activities are proposed to acquire new skills that determine their learning (i.e. Questions, exercises, problem resolution, etc.)"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefTActivities2" eSuperTypes="#//MolefTaskAndActivitiesNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Task and Activities 2"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefTActivities2.gif"/>
+      <details key="tool.description" value="The activities facilitate the understanding of educational content"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The activities facilitate the understanding of educational content"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefTActivities3" eSuperTypes="#//MolefTaskAndActivitiesNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Task and Activities 3"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefTActivities3.gif"/>
+      <details key="tool.description" value="Learning activities help to improve or strengthen skills"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Learning activities help to improve or strengthen skills"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefTActivities4" eSuperTypes="#//MolefTaskAndActivitiesNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Task and Activities 4"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefTActivities4.gif"/>
+      <details key="tool.description" value="The activities allow students to integrate new information with previous learning"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The activities allow students to integrate new information with previous learning"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefTActivities5" eSuperTypes="#//MolefTaskAndActivitiesNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Task and Activities 5"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefTActivities5.gif"/>
+      <details key="tool.description" value="Activities reflect practices relevant to real or professional life"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Activities reflect practices relevant to real or professional life"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefTActivities6" eSuperTypes="#//MolefTaskAndActivitiesNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Task and Activities 6"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefTActivities6.gif"/>
+      <details key="tool.description" value="The activities are consistent with the capabilities of students -neither too easy nor too dificult-"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The activities are consistent with the capabilities of students (neither too easy nor too dificult)"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefTActivities7" eSuperTypes="#//MolefTaskAndActivitiesNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Task and Activities 7"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefTActivities7.gif"/>
+      <details key="tool.description" value="There are activities to evaluate learning educational content -i.e. Tests, exercises, evaluations, etc.-"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="There are activities to evaluate learning educational content (i.e. Tests, exercises, evaluations, etc.)"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefTActivities8" eSuperTypes="#//MolefTaskAndActivitiesNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Task and Activities 8"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefTActivities8.gif"/>
+      <details key="tool.description" value="The activities take advantage of functionalities or advantages of the use of mobile devices"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The activities take advantage of functionalities or advantages of the use of mobile devices"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefSocialNode" eSuperTypes="#//MolefLearningNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefSocial1" eSuperTypes="#//MolefSocialNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Social 1"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefSocial1.gif"/>
+      <details key="tool.description" value="There are opportunities for students to do projects or group work"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="There are opportunities for students to do projects or group work"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefSocial2" eSuperTypes="#//MolefSocialNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Social 2"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefSocial2.gif"/>
+      <details key="tool.description" value="The application allows you to communicate with other peers -chat, email, etc.-"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The application allows you to communicate with other peers -chat, email, etc.-"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefSocial3" eSuperTypes="#//MolefSocialNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Social 3"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefSocial3.gif"/>
+      <details key="tool.description" value="The application allows you to share information, photos, videos or work-related documents for discussion"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The application allows you to share information, photos, videos or work-related documents for discussion"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefSocial4" eSuperTypes="#//MolefSocialNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Social 4"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefSocial4.gif"/>
+      <details key="tool.description" value="The system allows competitive opportunities among students -ie. Display achievements-"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The system allows competitive opportunities among students (ie. Display achievements)"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefPersonalizationNode" eSuperTypes="#//MolefLearningNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefPersonalization1" eSuperTypes="#//MolefPersonalizationNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Personalization 1"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefPersonalization1.gif"/>
+      <details key="tool.description" value="The students have freedom to direct their learning"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The students have freedom to direct their learning"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefPersonalization2" eSuperTypes="#//MolefPersonalizationNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Personalization 2"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefPersonalization2.gif"/>
+      <details key="tool.description" value="The students have the control of the contents they learn and the sequence they follow"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The students have the control of the contents they learn and the sequence they follow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefPersonalization3" eSuperTypes="#//MolefPersonalizationNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Personalization 3"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefPersonalization3.gif"/>
+      <details key="tool.description" value="The materials represent multiple views of the knowledge"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The materials represent multiple views of the knowledge"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefPersonalization4" eSuperTypes="#//MolefPersonalizationNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Personalization 4"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefPersonalization4.gif"/>
+      <details key="tool.description" value="The students can customize their learning to suit their learning strategies -videos, text or audios-"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The students can customize their learning to suit their learning strategies (videos, text or audios)"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefPersonalization5" eSuperTypes="#//MolefPersonalizationNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Personalization 5"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefPersonalization5.gif"/>
+      <details key="tool.description" value="The tests and evaluations can be customized to the students abilities"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="The tests and evaluations can be customized to the students abilities"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefMultimediaNode" eSuperTypes="#//MolefCttNode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefMultimedia1" eSuperTypes="#//MolefMultimediaNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Multimedia 1"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefMultimedia1.gif"/>
+      <details key="tool.description" value="Various multimedia resources -videos, images, audios, animations, simulation, etc.- related to the learning objectives are presented"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Various multimedia resources (videos, images, audios, animations, simulations, etc.) related to the learning objectives are presented"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefMultimedia2" eSuperTypes="#//MolefMultimediaNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Multimedia 2"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefMultimedia2.gif"/>
+      <details key="tool.description" value="Multimedia resources have been properly selected to facilitate learning"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Multimedia resources have been properly selected to facilitate learning"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefMultimedia3" eSuperTypes="#//MolefMultimediaNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Multimedia 3"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefMultimedia3.gif"/>
+      <details key="tool.description" value="Multimedia resources have a shorter duration than 7 minutes"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Multimedia resources have a shorter duration than 7 minutes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefMultimedia4" eSuperTypes="#//MolefMultimediaNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Multimedia 4"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefMultimedia4.gif"/>
+      <details key="tool.description" value="Multimedia content have good quality video, audio and images"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Multimedia content have good quality video, audio and images"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefMultimedia5" eSuperTypes="#//MolefMultimediaNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Multimedia 5"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefMultimedia5.gif"/>
+      <details key="tool.description" value="Multimedia resources can be downloaded to the mobile device"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Multimedia resources can be downloaded to the mobile device"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefMultimedia6" eSuperTypes="#//MolefMultimediaNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Multimedia 6"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefMultimedia6.gif"/>
+      <details key="tool.description" value="Multimedia resources are appropiately sized to be downloaded to the mobile"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Multimedia resources are appropiately sized to be downloaded to the mobile"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MolefMultimedia7" eSuperTypes="#//MolefMultimediaNode">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="characteristic"/>
+      <details key="tool.name" value="Multimedia 7"/>
+      <details key="tool.small.bundle" value="org.chico.learnciat.figures"/>
+      <details key="tool.small.path" value="images/MolefMultimedia7.gif"/>
+      <details key="tool.description" value="There is an adequate proportion of multimedia resources"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="characteristic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="There is an adequate proportion of multimedia resources"/>
+  </eClassifiers>
+</ecore:EPackage>

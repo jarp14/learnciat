@@ -1,0 +1,17 @@
+// MoLEF
+context MolefContent1 {
+	constraint DontRepeat {
+		check {
+			var n = MolefContent1.all.size();
+			return n <= 1;
+		}
+		message : 'There is more than one Molef Content one node defined'
+		fix {
+			title : 'Remove duplicated molef content node'
+			do {
+				delete self;
+			}
+		}
+	}
+}
+// ...

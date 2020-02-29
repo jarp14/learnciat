@@ -1,0 +1,2686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+
+-->
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="lciat_diagram"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="lciat_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="lciat.diagram.part.LciatDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/LciatDiagramFile.gif"
+         extensions="lciat_diagram"
+         default="true"
+         class="lciat.diagram.part.LciatDiagramEditor"
+         matchingStrategy="lciat.diagram.part.LciatMatchingStrategy"
+         contributorClass="lciat.diagram.part.LciatDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="lciat.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/LciatDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="lciat.diagram.part.LciatCreationWizard"
+  	     id="lciat.diagram.part.LciatCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="org.chico.learnciat.diagram.InitDiagram"
+            nameFilter="*.lciat"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="lciat.diagram.part.LciatInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="org.chico.learnciat.diagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="LciatPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="lciat.diagram.part.LciatDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>        
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="LciatPresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="lciat.diagram.part.LciatDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="LciatPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="lciat.diagram.part.LciatDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="LciatRender">
+         <Priority name="Lowest"/>
+         <ViewId id="lciat.diagram.part.LciatDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="lciat.diagram.providers.LciatMarkerNavigationProvider">
+         <MarkerType name="org.chico.learnciat.diagram.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+   <extension id="diagnostic" name="Lciat Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>   
+
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="lciat.diagram.providers.LciatValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="lciat.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="org.chico.learnciat.diagram.general"
+            name="%prefpage.org.chico.learnciat.diagram.general"
+            class="lciat.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="org.chico.learnciat.diagram.appearance"
+            name="%prefpage.org.chico.learnciat.diagram.appearance"
+            category="org.chico.learnciat.diagram.general"
+            class="lciat.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="org.chico.learnciat.diagram.connections"
+            name="%prefpage.org.chico.learnciat.diagram.connections"
+            category="org.chico.learnciat.diagram.general"
+            class="lciat.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="org.chico.learnciat.diagram.printing"
+            name="%prefpage.org.chico.learnciat.diagram.printing"
+            category="org.chico.learnciat.diagram.general"
+            class="lciat.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="org.chico.learnciat.diagram.rulersAndGrid"
+            name="%prefpage.org.chico.learnciat.diagram.rulersAndGrid"
+            category="org.chico.learnciat.diagram.general"
+            class="lciat.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="org.chico.learnciat.diagram"
+            labelProvider="lciat.diagram.sheet.LciatSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="org.chico.learnciat.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="org.chico.learnciat.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="lciat.diagram.sheet.LciatPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="lciat.diagram.navigator.LciatAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="lciat.diagram.providers.LciatViewProvider">
+         <Priority name="Lowest"/>
+         <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
+            <method name="getType()" value="lciat"/>
+         </object>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Lciat"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,3001,3002,3003,3004,3005,3006,3007,3008,3009,3010,3011,3012,3013,3014,3015,3016,3017,3018,3019,3020,3021,3022,3023,3024,3025,3026,3027,3028,3029,3030,3031,3032,3033,3034,3035,3036,3037,3038,3039,3040,3041,3042,3043,3044,3045,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3056,3057,3058,3059,3060,3061,3062,3063,3064,3065,3066,3067,3068,3069,3070,3071,3072,3073,3074,3075,3076,3077,3078,3079,3080,3081,3082,3083,3084,3085,3086,3087,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101,3102,3103,3104,3105,3106,3107,3108,3109,3110,3111,3112,3113,3114,3115,3116,3117,3118,3119,3120,3121"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4006,4007,4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="lciat.diagram.providers.LciatEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="Lciat"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2001,2002,2003,3001,3002,3003,3004,3005,3006,3007,3008,3009,3010,3011,3012,3013,3014,3015,3016,3017,3018,3019,3020,3021,3022,3023,3024,3025,3026,3027,3028,3029,3030,3031,3032,3033,3034,3035,3036,3037,3038,3039,3040,3041,3042,3043,3044,3045,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3056,3057,3058,3059,3060,3061,3062,3063,3064,3065,3066,3067,3068,3069,3070,3071,3072,3073,3074,3075,3076,3077,3078,3079,3080,3081,3082,3083,3084,3085,3086,3087,3088,3089,3090,3091,3092,3093,3094,3095,3096,3097,3098,3099,3100,3101,3102,3103,3104,3105,3106,3107,3108,3109,3110,3111,3112,3113,3114,3115,3116,3117,3118,3119,3120,3121"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4001,4002,4003,4004,4005,4006,4007,4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5009,5108,5124,5001,5002,5003,5004,5005,5006,5007,5008,5010,5011,5012,5013,5014,5015,5016,5017,5018,5019,5020,5021,5022,5023,5024,5025,5026,5046,5027,5028,5029,5030,5031,5032,5033,5034,5035,5036,5037,5038,5039,5040,5041,5042,5043,5044,5045,5061,5047,5048,5049,5050,5051,5052,5053,5054,5055,5056,5057,5058,5059,5060,5076,5062,5063,5064,5065,5066,5067,5068,5069,5070,5071,5072,5073,5074,5075,5094,5077,5078,5079,5093,5080,5081,5082,5083,5084,5085,5086,5087,5088,5089,5090,5091,5092,5095,5096,5097,5098,5099,5100,5101,5102,5103,5104,5105,5106,5107,5109,5110,5111,5112,5113,5114,5115,5116,5117,5118,5119,5120,5121,5122,5123"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="7001,7002,7003,7004,7005,7006,7007,7008,7009,7010,7011,7012,7013,7014,7015,7016,7017,7018,7019,7020,7021,7022,7023,7024,7025,7026,7027,7028,7029,7030,7031,7032"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfLCIANDiagramEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.LCIANDiagramEditPart" id="LCIANDiagram_1000"/>
+         <context elements="LCIANDiagram_1000"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfSociogramEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.SociogramEditPart" id="Sociogram_2001"/>
+         <context elements="Sociogram_2001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfLearningDiagramEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.LearningDiagramEditPart" id="LearningDiagram_2002"/>
+         <context elements="LearningDiagram_2002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfCTTDiagramEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.CTTDiagramEditPart" id="CTTDiagram_2003"/>
+         <context elements="CTTDiagram_2003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfRolEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.RolEditPart" id="Rol_3001"/>
+         <context elements="Rol_3001"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfGroupEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.GroupEditPart" id="Group_3002"/>
+         <context elements="Group_3002"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefContent1EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefContent1EditPart" id="MolefContent1_3003"/>
+         <context elements="MolefContent1_3003"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefContent2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefContent2EditPart" id="MolefContent2_3004"/>
+         <context elements="MolefContent2_3004"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefContent3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefContent3EditPart" id="MolefContent3_3005"/>
+         <context elements="MolefContent3_3005"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefContent4EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefContent4EditPart" id="MolefContent4_3006"/>
+         <context elements="MolefContent4_3006"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefContent5EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefContent5EditPart" id="MolefContent5_3007"/>
+         <context elements="MolefContent5_3007"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefContent6EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefContent6EditPart" id="MolefContent6_3008"/>
+         <context elements="MolefContent6_3008"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefTActivities1EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefTActivities1EditPart" id="MolefTActivities1_3009"/>
+         <context elements="MolefTActivities1_3009"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefTActivities2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefTActivities2EditPart" id="MolefTActivities2_3010"/>
+         <context elements="MolefTActivities2_3010"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefTActivities3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefTActivities3EditPart" id="MolefTActivities3_3011"/>
+         <context elements="MolefTActivities3_3011"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefTActivities4EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefTActivities4EditPart" id="MolefTActivities4_3012"/>
+         <context elements="MolefTActivities4_3012"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefTActivities5EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefTActivities5EditPart" id="MolefTActivities5_3013"/>
+         <context elements="MolefTActivities5_3013"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefTActivities6EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefTActivities6EditPart" id="MolefTActivities6_3014"/>
+         <context elements="MolefTActivities6_3014"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefTActivities7EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefTActivities7EditPart" id="MolefTActivities7_3015"/>
+         <context elements="MolefTActivities7_3015"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefTActivities8EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefTActivities8EditPart" id="MolefTActivities8_3016"/>
+         <context elements="MolefTActivities8_3016"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefSocial1EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefSocial1EditPart" id="MolefSocial1_3017"/>
+         <context elements="MolefSocial1_3017"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefSocial2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefSocial2EditPart" id="MolefSocial2_3018"/>
+         <context elements="MolefSocial2_3018"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefSocial3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefSocial3EditPart" id="MolefSocial3_3019"/>
+         <context elements="MolefSocial3_3019"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefSocial4EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefSocial4EditPart" id="MolefSocial4_3020"/>
+         <context elements="MolefSocial4_3020"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefPersonalization1EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefPersonalization1EditPart" id="MolefPersonalization1_3021"/>
+         <context elements="MolefPersonalization1_3021"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefPersonalization2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefPersonalization2EditPart" id="MolefPersonalization2_3022"/>
+         <context elements="MolefPersonalization2_3022"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefPersonalization3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefPersonalization3EditPart" id="MolefPersonalization3_3023"/>
+         <context elements="MolefPersonalization3_3023"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefPersonalization4EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefPersonalization4EditPart" id="MolefPersonalization4_3024"/>
+         <context elements="MolefPersonalization4_3024"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefPersonalization5EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefPersonalization5EditPart" id="MolefPersonalization5_3025"/>
+         <context elements="MolefPersonalization5_3025"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfIndividualTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.IndividualTaskEditPart" id="IndividualTask_3026"/>
+         <context elements="IndividualTask_3026"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfRol2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Rol2EditPart" id="Rol_3027"/>
+         <context elements="Rol_3027"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfGroup2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Group2EditPart" id="Group_3028"/>
+         <context elements="Group_3028"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfGraphicalEditorEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.GraphicalEditorEditPart" id="GraphicalEditor_3029"/>
+         <context elements="GraphicalEditor_3029"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfTextEditorEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.TextEditorEditPart" id="TextEditor_3030"/>
+         <context elements="TextEditor_3030"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfCodeEditorEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.CodeEditorEditPart" id="CodeEditor_3031"/>
+         <context elements="CodeEditor_3031"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfWebViewerEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.WebViewerEditPart" id="WebViewer_3032"/>
+         <context elements="WebViewer_3032"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfAssimilativeEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.AssimilativeEditPart" id="Assimilative_3033"/>
+         <context elements="Assimilative_3033"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfInformationHandlingEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.InformationHandlingEditPart" id="InformationHandling_3034"/>
+         <context elements="InformationHandling_3034"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfAdaptiveEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.AdaptiveEditPart" id="Adaptive_3035"/>
+         <context elements="Adaptive_3035"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfCommunicativeEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.CommunicativeEditPart" id="Communicative_3036"/>
+         <context elements="Communicative_3036"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfProductiveEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ProductiveEditPart" id="Productive_3037"/>
+         <context elements="Productive_3037"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfExperientialEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ExperientialEditPart" id="Experiential_3038"/>
+         <context elements="Experiential_3038"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfEvaluativeEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.EvaluativeEditPart" id="Evaluative_3039"/>
+         <context elements="Evaluative_3039"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfSupportEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.SupportEditPart" id="Support_3040"/>
+         <context elements="Support_3040"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfFaceToFaceEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.FaceToFaceEditPart" id="FaceToFace_3041"/>
+         <context elements="FaceToFace_3041"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfComputerSupportedEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ComputerSupportedEditPart" id="ComputerSupported_3042"/>
+         <context elements="ComputerSupported_3042"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfOnlineEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.OnlineEditPart" id="Online_3043"/>
+         <context elements="Online_3043"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfToolEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ToolEditPart" id="Tool_3044"/>
+         <context elements="Tool_3044"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfObjectEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ObjectEditPart" id="Object_3045"/>
+         <context elements="Object_3045"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfGroupTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.GroupTaskEditPart" id="GroupTask_3046"/>
+         <context elements="GroupTask_3046"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfRol3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Rol3EditPart" id="Rol_3047"/>
+         <context elements="Rol_3047"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfGroup3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Group3EditPart" id="Group_3048"/>
+         <context elements="Group_3048"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfAssimilative2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Assimilative2EditPart" id="Assimilative_3049"/>
+         <context elements="Assimilative_3049"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfInformationHandling2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.InformationHandling2EditPart" id="InformationHandling_3050"/>
+         <context elements="InformationHandling_3050"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfAdaptive2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Adaptive2EditPart" id="Adaptive_3051"/>
+         <context elements="Adaptive_3051"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfCommunicative2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Communicative2EditPart" id="Communicative_3052"/>
+         <context elements="Communicative_3052"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfProductive2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Productive2EditPart" id="Productive_3053"/>
+         <context elements="Productive_3053"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfExperiential2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Experiential2EditPart" id="Experiential_3054"/>
+         <context elements="Experiential_3054"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfEvaluative2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Evaluative2EditPart" id="Evaluative_3055"/>
+         <context elements="Evaluative_3055"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfSupport2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Support2EditPart" id="Support_3056"/>
+         <context elements="Support_3056"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfFaceToFace2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.FaceToFace2EditPart" id="FaceToFace_3057"/>
+         <context elements="FaceToFace_3057"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfComputerSupported2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ComputerSupported2EditPart" id="ComputerSupported_3058"/>
+         <context elements="ComputerSupported_3058"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfOnline2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Online2EditPart" id="Online_3059"/>
+         <context elements="Online_3059"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfObject2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Object2EditPart" id="Object_3060"/>
+         <context elements="Object_3060"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfAbstractTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.AbstractTaskEditPart" id="AbstractTask_3061"/>
+         <context elements="AbstractTask_3061"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfRol4EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Rol4EditPart" id="Rol_3062"/>
+         <context elements="Rol_3062"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfGroup4EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Group4EditPart" id="Group_3063"/>
+         <context elements="Group_3063"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfAssimilative3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Assimilative3EditPart" id="Assimilative_3064"/>
+         <context elements="Assimilative_3064"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfInformationHandling3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.InformationHandling3EditPart" id="InformationHandling_3065"/>
+         <context elements="InformationHandling_3065"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfAdaptive3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Adaptive3EditPart" id="Adaptive_3066"/>
+         <context elements="Adaptive_3066"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfCommunicative3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Communicative3EditPart" id="Communicative_3067"/>
+         <context elements="Communicative_3067"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfProductive3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Productive3EditPart" id="Productive_3068"/>
+         <context elements="Productive_3068"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfExperiential3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Experiential3EditPart" id="Experiential_3069"/>
+         <context elements="Experiential_3069"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfEvaluative3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Evaluative3EditPart" id="Evaluative_3070"/>
+         <context elements="Evaluative_3070"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfSupport3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Support3EditPart" id="Support_3071"/>
+         <context elements="Support_3071"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfFaceToFace3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.FaceToFace3EditPart" id="FaceToFace_3072"/>
+         <context elements="FaceToFace_3072"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfComputerSupported3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ComputerSupported3EditPart" id="ComputerSupported_3073"/>
+         <context elements="ComputerSupported_3073"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfOnline3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Online3EditPart" id="Online_3074"/>
+         <context elements="Online_3074"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfObject3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Object3EditPart" id="Object_3075"/>
+         <context elements="Object_3075"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfDetailedAbstractTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.DetailedAbstractTaskEditPart" id="DetailedAbstractTask_3076"/>
+         <context elements="DetailedAbstractTask_3076"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfIndividualTask2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.IndividualTask2EditPart" id="IndividualTask_3077"/>
+         <context elements="IndividualTask_3077"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfGroupTask2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.GroupTask2EditPart" id="GroupTask_3078"/>
+         <context elements="GroupTask_3078"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfAbstractTask2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.AbstractTask2EditPart" id="AbstractTask_3079"/>
+         <context elements="AbstractTask_3079"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfDetailedAbstractTask2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.DetailedAbstractTask2EditPart" id="DetailedAbstractTask_3080"/>
+         <context elements="DetailedAbstractTask_3080"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfSessionPanelEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.SessionPanelEditPart" id="SessionPanel_3081"/>
+         <context elements="SessionPanel_3081"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfChatEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ChatEditPart" id="Chat_3082"/>
+         <context elements="Chat_3082"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfTurnTakingToolEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.TurnTakingToolEditPart" id="TurnTakingTool_3083"/>
+         <context elements="TurnTakingTool_3083"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfTelepointerEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.TelepointerEditPart" id="Telepointer_3084"/>
+         <context elements="Telepointer_3084"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfRadarViewEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.RadarViewEditPart" id="RadarView_3085"/>
+         <context elements="RadarView_3085"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfPropertiesEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.PropertiesEditPart" id="Properties_3086"/>
+         <context elements="Properties_3086"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfConsoleEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ConsoleEditPart" id="Console_3087"/>
+         <context elements="Console_3087"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfProblemsEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ProblemsEditPart" id="Problems_3088"/>
+         <context elements="Problems_3088"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfInitEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.InitEditPart" id="Init_3089"/>
+         <context elements="Init_3089"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfEndEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.EndEditPart" id="End_3090"/>
+         <context elements="End_3090"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfTemporalConditionEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.TemporalConditionEditPart" id="TemporalCondition_3091"/>
+         <context elements="TemporalCondition_3091"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfNotificationEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.NotificationEditPart" id="Notification_3092"/>
+         <context elements="Notification_3092"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfConditionEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ConditionEditPart" id="Condition_3093"/>
+         <context elements="Condition_3093"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfSessionPanel2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.SessionPanel2EditPart" id="SessionPanel_3094"/>
+         <context elements="SessionPanel_3094"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfChat2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Chat2EditPart" id="Chat_3095"/>
+         <context elements="Chat_3095"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfTurnTakingTool2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.TurnTakingTool2EditPart" id="TurnTakingTool_3096"/>
+         <context elements="TurnTakingTool_3096"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfTelepointer2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Telepointer2EditPart" id="Telepointer_3097"/>
+         <context elements="Telepointer_3097"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfRadarView2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.RadarView2EditPart" id="RadarView_3098"/>
+         <context elements="RadarView_3098"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfProperties2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Properties2EditPart" id="Properties_3099"/>
+         <context elements="Properties_3099"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfConsole2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Console2EditPart" id="Console_3100"/>
+         <context elements="Console_3100"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfProblems2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Problems2EditPart" id="Problems_3101"/>
+         <context elements="Problems_3101"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfInit2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Init2EditPart" id="Init_3102"/>
+         <context elements="Init_3102"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfEnd2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.End2EditPart" id="End_3103"/>
+         <context elements="End_3103"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfTemporalCondition2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.TemporalCondition2EditPart" id="TemporalCondition_3104"/>
+         <context elements="TemporalCondition_3104"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfNotification2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Notification2EditPart" id="Notification_3105"/>
+         <context elements="Notification_3105"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfCondition2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.Condition2EditPart" id="Condition_3106"/>
+         <context elements="Condition_3106"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefMultimedia1EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefMultimedia1EditPart" id="MolefMultimedia1_3107"/>
+         <context elements="MolefMultimedia1_3107"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefMultimedia2EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefMultimedia2EditPart" id="MolefMultimedia2_3108"/>
+         <context elements="MolefMultimedia2_3108"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefMultimedia3EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefMultimedia3EditPart" id="MolefMultimedia3_3109"/>
+         <context elements="MolefMultimedia3_3109"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefMultimedia4EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefMultimedia4EditPart" id="MolefMultimedia4_3110"/>
+         <context elements="MolefMultimedia4_3110"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefMultimedia5EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefMultimedia5EditPart" id="MolefMultimedia5_3111"/>
+         <context elements="MolefMultimedia5_3111"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefMultimedia6EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefMultimedia6EditPart" id="MolefMultimedia6_3112"/>
+         <context elements="MolefMultimedia6_3112"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfMolefMultimedia7EditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.MolefMultimedia7EditPart" id="MolefMultimedia7_3113"/>
+         <context elements="MolefMultimedia7_3113"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfExclusiveEditionEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ExclusiveEditionEditPart" id="ExclusiveEdition_3114"/>
+         <context elements="ExclusiveEdition_3114"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfCollaborativeVisualizationEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.CollaborativeVisualizationEditPart" id="CollaborativeVisualization_3115"/>
+         <context elements="CollaborativeVisualization_3115"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfIndividualVisualizationEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.IndividualVisualizationEditPart" id="IndividualVisualization_3116"/>
+         <context elements="IndividualVisualization_3116"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfUserTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.UserTaskEditPart" id="UserTask_3117"/>
+         <context elements="UserTask_3117"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfCTTAbstractTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.CTTAbstractTaskEditPart" id="CTTAbstractTask_3118"/>
+         <context elements="CTTAbstractTask_3118"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfInteractiveTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.InteractiveTaskEditPart" id="InteractiveTask_3119"/>
+         <context elements="InteractiveTask_3119"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfCTTCollaborativeTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.CTTCollaborativeTaskEditPart" id="CTTCollaborativeTask_3120"/>
+         <context elements="CTTCollaborativeTask_3120"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="lciat.diagram.providers.assistants.LciatModelingAssistantProviderOfApplicationTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="lciat.diagram.edit.parts.ApplicationTaskEditPart" id="ApplicationTask_3121"/>
+         <context elements="ApplicationTask_3121"/>
+      </modelingAssistantProvider>
+      
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="lciat.diagram.providers.LciatIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="lciat.diagram.providers.LciatParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="lciat.diagram.providers.LciatShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="2001,2002,2003"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.LCIANDiagram_1000"
+               name="%metatype.name.LCIANDiagram_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="LCIANDiagram"
+               edithelper="lciat.diagram.edit.helpers.LCIANDiagramEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Sociogram_2001"
+               name="%metatype.name.Sociogram_2001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Sociogram"
+               edithelper="lciat.diagram.edit.helpers.SociogramEditHelper">
+            <param name="semanticHint" value="2001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.LearningDiagram_2002"
+               name="%metatype.name.LearningDiagram_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="LearningDiagram"
+               edithelper="lciat.diagram.edit.helpers.LearningDiagramEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.CTTDiagram_2003"
+               name="%metatype.name.CTTDiagram_2003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CTTDiagram"
+               edithelper="lciat.diagram.edit.helpers.CTTDiagramEditHelper">
+            <param name="semanticHint" value="2003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Rol_3001"
+               name="%metatype.name.Rol_3001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Rol"
+               edithelper="lciat.diagram.edit.helpers.RolEditHelper">
+            <param name="semanticHint" value="3001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Group_3002"
+               name="%metatype.name.Group_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Group"
+               edithelper="lciat.diagram.edit.helpers.GroupEditHelper">
+            <param name="semanticHint" value="3002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefContent1_3003"
+               name="%metatype.name.MolefContent1_3003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefContent1"
+               edithelper="lciat.diagram.edit.helpers.MolefContent1EditHelper">
+            <param name="semanticHint" value="3003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefContent2_3004"
+               name="%metatype.name.MolefContent2_3004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefContent2"
+               edithelper="lciat.diagram.edit.helpers.MolefContent2EditHelper">
+            <param name="semanticHint" value="3004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefContent3_3005"
+               name="%metatype.name.MolefContent3_3005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefContent3"
+               edithelper="lciat.diagram.edit.helpers.MolefContent3EditHelper">
+            <param name="semanticHint" value="3005"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefContent4_3006"
+               name="%metatype.name.MolefContent4_3006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefContent4"
+               edithelper="lciat.diagram.edit.helpers.MolefContent4EditHelper">
+            <param name="semanticHint" value="3006"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefContent5_3007"
+               name="%metatype.name.MolefContent5_3007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefContent5"
+               edithelper="lciat.diagram.edit.helpers.MolefContent5EditHelper">
+            <param name="semanticHint" value="3007"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefContent6_3008"
+               name="%metatype.name.MolefContent6_3008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefContent6"
+               edithelper="lciat.diagram.edit.helpers.MolefContent6EditHelper">
+            <param name="semanticHint" value="3008"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefTActivities1_3009"
+               name="%metatype.name.MolefTActivities1_3009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefTActivities1"
+               edithelper="lciat.diagram.edit.helpers.MolefTActivities1EditHelper">
+            <param name="semanticHint" value="3009"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefTActivities2_3010"
+               name="%metatype.name.MolefTActivities2_3010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefTActivities2"
+               edithelper="lciat.diagram.edit.helpers.MolefTActivities2EditHelper">
+            <param name="semanticHint" value="3010"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefTActivities3_3011"
+               name="%metatype.name.MolefTActivities3_3011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefTActivities3"
+               edithelper="lciat.diagram.edit.helpers.MolefTActivities3EditHelper">
+            <param name="semanticHint" value="3011"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefTActivities4_3012"
+               name="%metatype.name.MolefTActivities4_3012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefTActivities4"
+               edithelper="lciat.diagram.edit.helpers.MolefTActivities4EditHelper">
+            <param name="semanticHint" value="3012"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefTActivities5_3013"
+               name="%metatype.name.MolefTActivities5_3013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefTActivities5"
+               edithelper="lciat.diagram.edit.helpers.MolefTActivities5EditHelper">
+            <param name="semanticHint" value="3013"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefTActivities6_3014"
+               name="%metatype.name.MolefTActivities6_3014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefTActivities6"
+               edithelper="lciat.diagram.edit.helpers.MolefTActivities6EditHelper">
+            <param name="semanticHint" value="3014"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefTActivities7_3015"
+               name="%metatype.name.MolefTActivities7_3015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefTActivities7"
+               edithelper="lciat.diagram.edit.helpers.MolefTActivities7EditHelper">
+            <param name="semanticHint" value="3015"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefTActivities8_3016"
+               name="%metatype.name.MolefTActivities8_3016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefTActivities8"
+               edithelper="lciat.diagram.edit.helpers.MolefTActivities8EditHelper">
+            <param name="semanticHint" value="3016"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefSocial1_3017"
+               name="%metatype.name.MolefSocial1_3017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefSocial1"
+               edithelper="lciat.diagram.edit.helpers.MolefSocial1EditHelper">
+            <param name="semanticHint" value="3017"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefSocial2_3018"
+               name="%metatype.name.MolefSocial2_3018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefSocial2"
+               edithelper="lciat.diagram.edit.helpers.MolefSocial2EditHelper">
+            <param name="semanticHint" value="3018"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefSocial3_3019"
+               name="%metatype.name.MolefSocial3_3019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefSocial3"
+               edithelper="lciat.diagram.edit.helpers.MolefSocial3EditHelper">
+            <param name="semanticHint" value="3019"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefSocial4_3020"
+               name="%metatype.name.MolefSocial4_3020"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefSocial4"
+               edithelper="lciat.diagram.edit.helpers.MolefSocial4EditHelper">
+            <param name="semanticHint" value="3020"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefPersonalization1_3021"
+               name="%metatype.name.MolefPersonalization1_3021"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefPersonalization1"
+               edithelper="lciat.diagram.edit.helpers.MolefPersonalization1EditHelper">
+            <param name="semanticHint" value="3021"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefPersonalization2_3022"
+               name="%metatype.name.MolefPersonalization2_3022"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefPersonalization2"
+               edithelper="lciat.diagram.edit.helpers.MolefPersonalization2EditHelper">
+            <param name="semanticHint" value="3022"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefPersonalization3_3023"
+               name="%metatype.name.MolefPersonalization3_3023"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefPersonalization3"
+               edithelper="lciat.diagram.edit.helpers.MolefPersonalization3EditHelper">
+            <param name="semanticHint" value="3023"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefPersonalization4_3024"
+               name="%metatype.name.MolefPersonalization4_3024"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefPersonalization4"
+               edithelper="lciat.diagram.edit.helpers.MolefPersonalization4EditHelper">
+            <param name="semanticHint" value="3024"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefPersonalization5_3025"
+               name="%metatype.name.MolefPersonalization5_3025"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefPersonalization5"
+               edithelper="lciat.diagram.edit.helpers.MolefPersonalization5EditHelper">
+            <param name="semanticHint" value="3025"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.IndividualTask_3026"
+               name="%metatype.name.IndividualTask_3026"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="IndividualTask"
+               edithelper="lciat.diagram.edit.helpers.IndividualTaskEditHelper">
+            <param name="semanticHint" value="3026"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Rol_3027"
+               name="%metatype.name.Rol_3027"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Rol_3001"/>
+            <param name="semanticHint" value="3027"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Group_3028"
+               name="%metatype.name.Group_3028"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Group_3002"/>
+            <param name="semanticHint" value="3028"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.GraphicalEditor_3029"
+               name="%metatype.name.GraphicalEditor_3029"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="GraphicalEditor"
+               edithelper="lciat.diagram.edit.helpers.GraphicalEditorEditHelper">
+            <param name="semanticHint" value="3029"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.TextEditor_3030"
+               name="%metatype.name.TextEditor_3030"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="TextEditor"
+               edithelper="lciat.diagram.edit.helpers.TextEditorEditHelper">
+            <param name="semanticHint" value="3030"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.CodeEditor_3031"
+               name="%metatype.name.CodeEditor_3031"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CodeEditor"
+               edithelper="lciat.diagram.edit.helpers.CodeEditorEditHelper">
+            <param name="semanticHint" value="3031"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.WebViewer_3032"
+               name="%metatype.name.WebViewer_3032"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="WebViewer"
+               edithelper="lciat.diagram.edit.helpers.WebViewerEditHelper">
+            <param name="semanticHint" value="3032"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Assimilative_3033"
+               name="%metatype.name.Assimilative_3033"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Assimilative"
+               edithelper="lciat.diagram.edit.helpers.AssimilativeEditHelper">
+            <param name="semanticHint" value="3033"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.InformationHandling_3034"
+               name="%metatype.name.InformationHandling_3034"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InformationHandling"
+               edithelper="lciat.diagram.edit.helpers.InformationHandlingEditHelper">
+            <param name="semanticHint" value="3034"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Adaptive_3035"
+               name="%metatype.name.Adaptive_3035"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Adaptive"
+               edithelper="lciat.diagram.edit.helpers.AdaptiveEditHelper">
+            <param name="semanticHint" value="3035"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Communicative_3036"
+               name="%metatype.name.Communicative_3036"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Communicative"
+               edithelper="lciat.diagram.edit.helpers.CommunicativeEditHelper">
+            <param name="semanticHint" value="3036"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Productive_3037"
+               name="%metatype.name.Productive_3037"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Productive"
+               edithelper="lciat.diagram.edit.helpers.ProductiveEditHelper">
+            <param name="semanticHint" value="3037"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Experiential_3038"
+               name="%metatype.name.Experiential_3038"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Experiential"
+               edithelper="lciat.diagram.edit.helpers.ExperientialEditHelper">
+            <param name="semanticHint" value="3038"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Evaluative_3039"
+               name="%metatype.name.Evaluative_3039"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Evaluative"
+               edithelper="lciat.diagram.edit.helpers.EvaluativeEditHelper">
+            <param name="semanticHint" value="3039"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Support_3040"
+               name="%metatype.name.Support_3040"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Support"
+               edithelper="lciat.diagram.edit.helpers.SupportEditHelper">
+            <param name="semanticHint" value="3040"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.FaceToFace_3041"
+               name="%metatype.name.FaceToFace_3041"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="FaceToFace"
+               edithelper="lciat.diagram.edit.helpers.FaceToFaceEditHelper">
+            <param name="semanticHint" value="3041"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.ComputerSupported_3042"
+               name="%metatype.name.ComputerSupported_3042"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ComputerSupported"
+               edithelper="lciat.diagram.edit.helpers.ComputerSupportedEditHelper">
+            <param name="semanticHint" value="3042"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Online_3043"
+               name="%metatype.name.Online_3043"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Online"
+               edithelper="lciat.diagram.edit.helpers.OnlineEditHelper">
+            <param name="semanticHint" value="3043"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Tool_3044"
+               name="%metatype.name.Tool_3044"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Tool"
+               edithelper="lciat.diagram.edit.helpers.ToolEditHelper">
+            <param name="semanticHint" value="3044"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Object_3045"
+               name="%metatype.name.Object_3045"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Object"
+               edithelper="lciat.diagram.edit.helpers.ObjectEditHelper">
+            <param name="semanticHint" value="3045"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.GroupTask_3046"
+               name="%metatype.name.GroupTask_3046"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="GroupTask"
+               edithelper="lciat.diagram.edit.helpers.GroupTaskEditHelper">
+            <param name="semanticHint" value="3046"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Rol_3047"
+               name="%metatype.name.Rol_3047"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Rol_3001"/>
+            <param name="semanticHint" value="3047"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Group_3048"
+               name="%metatype.name.Group_3048"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Group_3002"/>
+            <param name="semanticHint" value="3048"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Assimilative_3049"
+               name="%metatype.name.Assimilative_3049"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Assimilative_3033"/>
+            <param name="semanticHint" value="3049"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.InformationHandling_3050"
+               name="%metatype.name.InformationHandling_3050"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.InformationHandling_3034"/>
+            <param name="semanticHint" value="3050"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Adaptive_3051"
+               name="%metatype.name.Adaptive_3051"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Adaptive_3035"/>
+            <param name="semanticHint" value="3051"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Communicative_3052"
+               name="%metatype.name.Communicative_3052"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Communicative_3036"/>
+            <param name="semanticHint" value="3052"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Productive_3053"
+               name="%metatype.name.Productive_3053"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Productive_3037"/>
+            <param name="semanticHint" value="3053"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Experiential_3054"
+               name="%metatype.name.Experiential_3054"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Experiential_3038"/>
+            <param name="semanticHint" value="3054"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Evaluative_3055"
+               name="%metatype.name.Evaluative_3055"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Evaluative_3039"/>
+            <param name="semanticHint" value="3055"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Support_3056"
+               name="%metatype.name.Support_3056"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Support_3040"/>
+            <param name="semanticHint" value="3056"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.FaceToFace_3057"
+               name="%metatype.name.FaceToFace_3057"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.FaceToFace_3041"/>
+            <param name="semanticHint" value="3057"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.ComputerSupported_3058"
+               name="%metatype.name.ComputerSupported_3058"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.ComputerSupported_3042"/>
+            <param name="semanticHint" value="3058"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Online_3059"
+               name="%metatype.name.Online_3059"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Online_3043"/>
+            <param name="semanticHint" value="3059"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Object_3060"
+               name="%metatype.name.Object_3060"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Object_3045"/>
+            <param name="semanticHint" value="3060"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.AbstractTask_3061"
+               name="%metatype.name.AbstractTask_3061"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="AbstractTask"
+               edithelper="lciat.diagram.edit.helpers.AbstractTaskEditHelper">
+            <param name="semanticHint" value="3061"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Rol_3062"
+               name="%metatype.name.Rol_3062"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Rol_3001"/>
+            <param name="semanticHint" value="3062"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Group_3063"
+               name="%metatype.name.Group_3063"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Group_3002"/>
+            <param name="semanticHint" value="3063"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Assimilative_3064"
+               name="%metatype.name.Assimilative_3064"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Assimilative_3033"/>
+            <param name="semanticHint" value="3064"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.InformationHandling_3065"
+               name="%metatype.name.InformationHandling_3065"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.InformationHandling_3034"/>
+            <param name="semanticHint" value="3065"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Adaptive_3066"
+               name="%metatype.name.Adaptive_3066"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Adaptive_3035"/>
+            <param name="semanticHint" value="3066"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Communicative_3067"
+               name="%metatype.name.Communicative_3067"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Communicative_3036"/>
+            <param name="semanticHint" value="3067"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Productive_3068"
+               name="%metatype.name.Productive_3068"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Productive_3037"/>
+            <param name="semanticHint" value="3068"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Experiential_3069"
+               name="%metatype.name.Experiential_3069"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Experiential_3038"/>
+            <param name="semanticHint" value="3069"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Evaluative_3070"
+               name="%metatype.name.Evaluative_3070"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Evaluative_3039"/>
+            <param name="semanticHint" value="3070"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Support_3071"
+               name="%metatype.name.Support_3071"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Support_3040"/>
+            <param name="semanticHint" value="3071"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.FaceToFace_3072"
+               name="%metatype.name.FaceToFace_3072"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.FaceToFace_3041"/>
+            <param name="semanticHint" value="3072"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.ComputerSupported_3073"
+               name="%metatype.name.ComputerSupported_3073"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.ComputerSupported_3042"/>
+            <param name="semanticHint" value="3073"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Online_3074"
+               name="%metatype.name.Online_3074"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Online_3043"/>
+            <param name="semanticHint" value="3074"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Object_3075"
+               name="%metatype.name.Object_3075"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Object_3045"/>
+            <param name="semanticHint" value="3075"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.DetailedAbstractTask_3076"
+               name="%metatype.name.DetailedAbstractTask_3076"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DetailedAbstractTask"
+               edithelper="lciat.diagram.edit.helpers.DetailedAbstractTaskEditHelper">
+            <param name="semanticHint" value="3076"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.IndividualTask_3077"
+               name="%metatype.name.IndividualTask_3077"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.IndividualTask_3026"/>
+            <param name="semanticHint" value="3077"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.GroupTask_3078"
+               name="%metatype.name.GroupTask_3078"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.GroupTask_3046"/>
+            <param name="semanticHint" value="3078"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.AbstractTask_3079"
+               name="%metatype.name.AbstractTask_3079"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.AbstractTask_3061"/>
+            <param name="semanticHint" value="3079"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.DetailedAbstractTask_3080"
+               name="%metatype.name.DetailedAbstractTask_3080"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.DetailedAbstractTask_3076"/>
+            <param name="semanticHint" value="3080"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.SessionPanel_3081"
+               name="%metatype.name.SessionPanel_3081"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SessionPanel"
+               edithelper="lciat.diagram.edit.helpers.SessionPanelEditHelper">
+            <param name="semanticHint" value="3081"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Chat_3082"
+               name="%metatype.name.Chat_3082"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Chat"
+               edithelper="lciat.diagram.edit.helpers.ChatEditHelper">
+            <param name="semanticHint" value="3082"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.TurnTakingTool_3083"
+               name="%metatype.name.TurnTakingTool_3083"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="TurnTakingTool"
+               edithelper="lciat.diagram.edit.helpers.TurnTakingToolEditHelper">
+            <param name="semanticHint" value="3083"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Telepointer_3084"
+               name="%metatype.name.Telepointer_3084"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Telepointer"
+               edithelper="lciat.diagram.edit.helpers.TelepointerEditHelper">
+            <param name="semanticHint" value="3084"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.RadarView_3085"
+               name="%metatype.name.RadarView_3085"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="RadarView"
+               edithelper="lciat.diagram.edit.helpers.RadarViewEditHelper">
+            <param name="semanticHint" value="3085"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Properties_3086"
+               name="%metatype.name.Properties_3086"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Properties"
+               edithelper="lciat.diagram.edit.helpers.PropertiesEditHelper">
+            <param name="semanticHint" value="3086"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Console_3087"
+               name="%metatype.name.Console_3087"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Console"
+               edithelper="lciat.diagram.edit.helpers.ConsoleEditHelper">
+            <param name="semanticHint" value="3087"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Problems_3088"
+               name="%metatype.name.Problems_3088"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Problems"
+               edithelper="lciat.diagram.edit.helpers.ProblemsEditHelper">
+            <param name="semanticHint" value="3088"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Init_3089"
+               name="%metatype.name.Init_3089"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Init"
+               edithelper="lciat.diagram.edit.helpers.InitEditHelper">
+            <param name="semanticHint" value="3089"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.End_3090"
+               name="%metatype.name.End_3090"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="End"
+               edithelper="lciat.diagram.edit.helpers.EndEditHelper">
+            <param name="semanticHint" value="3090"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.TemporalCondition_3091"
+               name="%metatype.name.TemporalCondition_3091"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="TemporalCondition"
+               edithelper="lciat.diagram.edit.helpers.TemporalConditionEditHelper">
+            <param name="semanticHint" value="3091"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Notification_3092"
+               name="%metatype.name.Notification_3092"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Notification"
+               edithelper="lciat.diagram.edit.helpers.NotificationEditHelper">
+            <param name="semanticHint" value="3092"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Condition_3093"
+               name="%metatype.name.Condition_3093"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Condition"
+               edithelper="lciat.diagram.edit.helpers.ConditionEditHelper">
+            <param name="semanticHint" value="3093"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.SessionPanel_3094"
+               name="%metatype.name.SessionPanel_3094"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.SessionPanel_3081"/>
+            <param name="semanticHint" value="3094"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Chat_3095"
+               name="%metatype.name.Chat_3095"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Chat_3082"/>
+            <param name="semanticHint" value="3095"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.TurnTakingTool_3096"
+               name="%metatype.name.TurnTakingTool_3096"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.TurnTakingTool_3083"/>
+            <param name="semanticHint" value="3096"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Telepointer_3097"
+               name="%metatype.name.Telepointer_3097"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Telepointer_3084"/>
+            <param name="semanticHint" value="3097"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.RadarView_3098"
+               name="%metatype.name.RadarView_3098"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.RadarView_3085"/>
+            <param name="semanticHint" value="3098"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Properties_3099"
+               name="%metatype.name.Properties_3099"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Properties_3086"/>
+            <param name="semanticHint" value="3099"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Console_3100"
+               name="%metatype.name.Console_3100"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Console_3087"/>
+            <param name="semanticHint" value="3100"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Problems_3101"
+               name="%metatype.name.Problems_3101"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Problems_3088"/>
+            <param name="semanticHint" value="3101"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Init_3102"
+               name="%metatype.name.Init_3102"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Init_3089"/>
+            <param name="semanticHint" value="3102"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.End_3103"
+               name="%metatype.name.End_3103"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.End_3090"/>
+            <param name="semanticHint" value="3103"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.TemporalCondition_3104"
+               name="%metatype.name.TemporalCondition_3104"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.TemporalCondition_3091"/>
+            <param name="semanticHint" value="3104"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Notification_3105"
+               name="%metatype.name.Notification_3105"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Notification_3092"/>
+            <param name="semanticHint" value="3105"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <specializationType
+               id="org.chico.learnciat.diagram.Condition_3106"
+               name="%metatype.name.Condition_3106"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.chico.learnciat.diagram.Condition_3093"/>
+            <param name="semanticHint" value="3106"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefMultimedia1_3107"
+               name="%metatype.name.MolefMultimedia1_3107"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefMultimedia1"
+               edithelper="lciat.diagram.edit.helpers.MolefMultimedia1EditHelper">
+            <param name="semanticHint" value="3107"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefMultimedia2_3108"
+               name="%metatype.name.MolefMultimedia2_3108"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefMultimedia2"
+               edithelper="lciat.diagram.edit.helpers.MolefMultimedia2EditHelper">
+            <param name="semanticHint" value="3108"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefMultimedia3_3109"
+               name="%metatype.name.MolefMultimedia3_3109"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefMultimedia3"
+               edithelper="lciat.diagram.edit.helpers.MolefMultimedia3EditHelper">
+            <param name="semanticHint" value="3109"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefMultimedia4_3110"
+               name="%metatype.name.MolefMultimedia4_3110"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefMultimedia4"
+               edithelper="lciat.diagram.edit.helpers.MolefMultimedia4EditHelper">
+            <param name="semanticHint" value="3110"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefMultimedia5_3111"
+               name="%metatype.name.MolefMultimedia5_3111"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefMultimedia5"
+               edithelper="lciat.diagram.edit.helpers.MolefMultimedia5EditHelper">
+            <param name="semanticHint" value="3111"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefMultimedia6_3112"
+               name="%metatype.name.MolefMultimedia6_3112"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefMultimedia6"
+               edithelper="lciat.diagram.edit.helpers.MolefMultimedia6EditHelper">
+            <param name="semanticHint" value="3112"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.MolefMultimedia7_3113"
+               name="%metatype.name.MolefMultimedia7_3113"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MolefMultimedia7"
+               edithelper="lciat.diagram.edit.helpers.MolefMultimedia7EditHelper">
+            <param name="semanticHint" value="3113"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.ExclusiveEdition_3114"
+               name="%metatype.name.ExclusiveEdition_3114"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ExclusiveEdition"
+               edithelper="lciat.diagram.edit.helpers.ExclusiveEditionEditHelper">
+            <param name="semanticHint" value="3114"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.CollaborativeVisualization_3115"
+               name="%metatype.name.CollaborativeVisualization_3115"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CollaborativeVisualization"
+               edithelper="lciat.diagram.edit.helpers.CollaborativeVisualizationEditHelper">
+            <param name="semanticHint" value="3115"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.IndividualVisualization_3116"
+               name="%metatype.name.IndividualVisualization_3116"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="IndividualVisualization"
+               edithelper="lciat.diagram.edit.helpers.IndividualVisualizationEditHelper">
+            <param name="semanticHint" value="3116"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.UserTask_3117"
+               name="%metatype.name.UserTask_3117"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="UserTask"
+               edithelper="lciat.diagram.edit.helpers.UserTaskEditHelper">
+            <param name="semanticHint" value="3117"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.CTTAbstractTask_3118"
+               name="%metatype.name.CTTAbstractTask_3118"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CTTAbstractTask"
+               edithelper="lciat.diagram.edit.helpers.CTTAbstractTaskEditHelper">
+            <param name="semanticHint" value="3118"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.InteractiveTask_3119"
+               name="%metatype.name.InteractiveTask_3119"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="InteractiveTask"
+               edithelper="lciat.diagram.edit.helpers.InteractiveTaskEditHelper">
+            <param name="semanticHint" value="3119"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.CTTCollaborativeTask_3120"
+               name="%metatype.name.CTTCollaborativeTask_3120"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="CTTCollaborativeTask"
+               edithelper="lciat.diagram.edit.helpers.CTTCollaborativeTaskEditHelper">
+            <param name="semanticHint" value="3120"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.ApplicationTask_3121"
+               name="%metatype.name.ApplicationTask_3121"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ApplicationTask"
+               edithelper="lciat.diagram.edit.helpers.ApplicationTaskEditHelper">
+            <param name="semanticHint" value="3121"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Inheritance_4001"
+               name="%metatype.name.Inheritance_4001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Inheritance"
+               edithelper="lciat.diagram.edit.helpers.InheritanceEditHelper">
+            <param name="semanticHint" value="4001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Acting_4002"
+               name="%metatype.name.Acting_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Acting"
+               edithelper="lciat.diagram.edit.helpers.ActingEditHelper">
+            <param name="semanticHint" value="4002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Association_4003"
+               name="%metatype.name.Association_4003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Association"
+               edithelper="lciat.diagram.edit.helpers.AssociationEditHelper">
+            <param name="semanticHint" value="4003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.EnablingWOInformation_4004"
+               name="%metatype.name.EnablingWOInformation_4004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EnablingWOInformation"
+               edithelper="lciat.diagram.edit.helpers.EnablingWOInformationEditHelper">
+            <param name="semanticHint" value="4004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.EnablingWInformation_4005"
+               name="%metatype.name.EnablingWInformation_4005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EnablingWInformation"
+               edithelper="lciat.diagram.edit.helpers.EnablingWInformationEditHelper">
+            <param name="semanticHint" value="4005"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Choice_4006"
+               name="%metatype.name.Choice_4006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Choice"
+               edithelper="lciat.diagram.edit.helpers.ChoiceEditHelper">
+            <param name="semanticHint" value="4006"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Concurrency_4007"
+               name="%metatype.name.Concurrency_4007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Concurrency"
+               edithelper="lciat.diagram.edit.helpers.ConcurrencyEditHelper">
+            <param name="semanticHint" value="4007"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Aggregation_4008"
+               name="%metatype.name.Aggregation_4008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Aggregation"
+               edithelper="lciat.diagram.edit.helpers.AggregationEditHelper">
+            <param name="semanticHint" value="4008"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Enabling_4009"
+               name="%metatype.name.Enabling_4009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Enabling"
+               edithelper="lciat.diagram.edit.helpers.EnablingEditHelper">
+            <param name="semanticHint" value="4009"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Disabling_4010"
+               name="%metatype.name.Disabling_4010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Disabling"
+               edithelper="lciat.diagram.edit.helpers.DisablingEditHelper">
+            <param name="semanticHint" value="4010"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.EnablingWithInformationPassing_4011"
+               name="%metatype.name.EnablingWithInformationPassing_4011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="EnablingWithInformationPassing"
+               edithelper="lciat.diagram.edit.helpers.EnablingWithInformationPassingEditHelper">
+            <param name="semanticHint" value="4011"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.DisablingWithInformationPassing_4012"
+               name="%metatype.name.DisablingWithInformationPassing_4012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DisablingWithInformationPassing"
+               edithelper="lciat.diagram.edit.helpers.DisablingWithInformationPassingEditHelper">
+            <param name="semanticHint" value="4012"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.IndependentConcurrency_4013"
+               name="%metatype.name.IndependentConcurrency_4013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="IndependentConcurrency"
+               edithelper="lciat.diagram.edit.helpers.IndependentConcurrencyEditHelper">
+            <param name="semanticHint" value="4013"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.OrderIndependence_4014"
+               name="%metatype.name.OrderIndependence_4014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="OrderIndependence"
+               edithelper="lciat.diagram.edit.helpers.OrderIndependenceEditHelper">
+            <param name="semanticHint" value="4014"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.SuspendResume_4015"
+               name="%metatype.name.SuspendResume_4015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SuspendResume"
+               edithelper="lciat.diagram.edit.helpers.SuspendResumeEditHelper">
+            <param name="semanticHint" value="4015"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.ConcurrencyWithInformationPassing_4016"
+               name="%metatype.name.ConcurrencyWithInformationPassing_4016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ConcurrencyWithInformationPassing"
+               edithelper="lciat.diagram.edit.helpers.ConcurrencyWithInformationPassingEditHelper">
+            <param name="semanticHint" value="4016"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.DeterministicChoice_4017"
+               name="%metatype.name.DeterministicChoice_4017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DeterministicChoice"
+               edithelper="lciat.diagram.edit.helpers.DeterministicChoiceEditHelper">
+            <param name="semanticHint" value="4017"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.UndeterministicChoice_4018"
+               name="%metatype.name.UndeterministicChoice_4018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="UndeterministicChoice"
+               edithelper="lciat.diagram.edit.helpers.UndeterministicChoiceEditHelper">
+            <param name="semanticHint" value="4018"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="lciat">
+         <metamodelType
+               id="org.chico.learnciat.diagram.Traceability_4019"
+               name="%metatype.name.Traceability_4019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Traceability"
+               edithelper="lciat.diagram.edit.helpers.TraceabilityEditHelper">
+            <param name="semanticHint" value="4019"/>
+         </metamodelType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.chico.learnciat.diagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.chico.learnciat.diagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.chico.learnciat.diagram.TypeContext">
+         <elementType ref="org.chico.learnciat.diagram.LCIANDiagram_1000"/>
+         <elementType ref="org.chico.learnciat.diagram.Sociogram_2001"/>
+         <elementType ref="org.chico.learnciat.diagram.LearningDiagram_2002"/>
+         <elementType ref="org.chico.learnciat.diagram.CTTDiagram_2003"/>
+         <elementType ref="org.chico.learnciat.diagram.Rol_3001"/>
+         <elementType ref="org.chico.learnciat.diagram.Group_3002"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefContent1_3003"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefContent2_3004"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefContent3_3005"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefContent4_3006"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefContent5_3007"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefContent6_3008"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefTActivities1_3009"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefTActivities2_3010"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefTActivities3_3011"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefTActivities4_3012"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefTActivities5_3013"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefTActivities6_3014"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefTActivities7_3015"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefTActivities8_3016"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefSocial1_3017"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefSocial2_3018"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefSocial3_3019"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefSocial4_3020"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefPersonalization1_3021"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefPersonalization2_3022"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefPersonalization3_3023"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefPersonalization4_3024"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefPersonalization5_3025"/>
+         <elementType ref="org.chico.learnciat.diagram.IndividualTask_3026"/>
+         <elementType ref="org.chico.learnciat.diagram.Rol_3027"/>
+         <elementType ref="org.chico.learnciat.diagram.Group_3028"/>
+         <elementType ref="org.chico.learnciat.diagram.GraphicalEditor_3029"/>
+         <elementType ref="org.chico.learnciat.diagram.TextEditor_3030"/>
+         <elementType ref="org.chico.learnciat.diagram.CodeEditor_3031"/>
+         <elementType ref="org.chico.learnciat.diagram.WebViewer_3032"/>
+         <elementType ref="org.chico.learnciat.diagram.Assimilative_3033"/>
+         <elementType ref="org.chico.learnciat.diagram.InformationHandling_3034"/>
+         <elementType ref="org.chico.learnciat.diagram.Adaptive_3035"/>
+         <elementType ref="org.chico.learnciat.diagram.Communicative_3036"/>
+         <elementType ref="org.chico.learnciat.diagram.Productive_3037"/>
+         <elementType ref="org.chico.learnciat.diagram.Experiential_3038"/>
+         <elementType ref="org.chico.learnciat.diagram.Evaluative_3039"/>
+         <elementType ref="org.chico.learnciat.diagram.Support_3040"/>
+         <elementType ref="org.chico.learnciat.diagram.FaceToFace_3041"/>
+         <elementType ref="org.chico.learnciat.diagram.ComputerSupported_3042"/>
+         <elementType ref="org.chico.learnciat.diagram.Online_3043"/>
+         <elementType ref="org.chico.learnciat.diagram.Tool_3044"/>
+         <elementType ref="org.chico.learnciat.diagram.Object_3045"/>
+         <elementType ref="org.chico.learnciat.diagram.GroupTask_3046"/>
+         <elementType ref="org.chico.learnciat.diagram.Rol_3047"/>
+         <elementType ref="org.chico.learnciat.diagram.Group_3048"/>
+         <elementType ref="org.chico.learnciat.diagram.Assimilative_3049"/>
+         <elementType ref="org.chico.learnciat.diagram.InformationHandling_3050"/>
+         <elementType ref="org.chico.learnciat.diagram.Adaptive_3051"/>
+         <elementType ref="org.chico.learnciat.diagram.Communicative_3052"/>
+         <elementType ref="org.chico.learnciat.diagram.Productive_3053"/>
+         <elementType ref="org.chico.learnciat.diagram.Experiential_3054"/>
+         <elementType ref="org.chico.learnciat.diagram.Evaluative_3055"/>
+         <elementType ref="org.chico.learnciat.diagram.Support_3056"/>
+         <elementType ref="org.chico.learnciat.diagram.FaceToFace_3057"/>
+         <elementType ref="org.chico.learnciat.diagram.ComputerSupported_3058"/>
+         <elementType ref="org.chico.learnciat.diagram.Online_3059"/>
+         <elementType ref="org.chico.learnciat.diagram.Object_3060"/>
+         <elementType ref="org.chico.learnciat.diagram.AbstractTask_3061"/>
+         <elementType ref="org.chico.learnciat.diagram.Rol_3062"/>
+         <elementType ref="org.chico.learnciat.diagram.Group_3063"/>
+         <elementType ref="org.chico.learnciat.diagram.Assimilative_3064"/>
+         <elementType ref="org.chico.learnciat.diagram.InformationHandling_3065"/>
+         <elementType ref="org.chico.learnciat.diagram.Adaptive_3066"/>
+         <elementType ref="org.chico.learnciat.diagram.Communicative_3067"/>
+         <elementType ref="org.chico.learnciat.diagram.Productive_3068"/>
+         <elementType ref="org.chico.learnciat.diagram.Experiential_3069"/>
+         <elementType ref="org.chico.learnciat.diagram.Evaluative_3070"/>
+         <elementType ref="org.chico.learnciat.diagram.Support_3071"/>
+         <elementType ref="org.chico.learnciat.diagram.FaceToFace_3072"/>
+         <elementType ref="org.chico.learnciat.diagram.ComputerSupported_3073"/>
+         <elementType ref="org.chico.learnciat.diagram.Online_3074"/>
+         <elementType ref="org.chico.learnciat.diagram.Object_3075"/>
+         <elementType ref="org.chico.learnciat.diagram.DetailedAbstractTask_3076"/>
+         <elementType ref="org.chico.learnciat.diagram.IndividualTask_3077"/>
+         <elementType ref="org.chico.learnciat.diagram.GroupTask_3078"/>
+         <elementType ref="org.chico.learnciat.diagram.AbstractTask_3079"/>
+         <elementType ref="org.chico.learnciat.diagram.DetailedAbstractTask_3080"/>
+         <elementType ref="org.chico.learnciat.diagram.SessionPanel_3081"/>
+         <elementType ref="org.chico.learnciat.diagram.Chat_3082"/>
+         <elementType ref="org.chico.learnciat.diagram.TurnTakingTool_3083"/>
+         <elementType ref="org.chico.learnciat.diagram.Telepointer_3084"/>
+         <elementType ref="org.chico.learnciat.diagram.RadarView_3085"/>
+         <elementType ref="org.chico.learnciat.diagram.Properties_3086"/>
+         <elementType ref="org.chico.learnciat.diagram.Console_3087"/>
+         <elementType ref="org.chico.learnciat.diagram.Problems_3088"/>
+         <elementType ref="org.chico.learnciat.diagram.Init_3089"/>
+         <elementType ref="org.chico.learnciat.diagram.End_3090"/>
+         <elementType ref="org.chico.learnciat.diagram.TemporalCondition_3091"/>
+         <elementType ref="org.chico.learnciat.diagram.Notification_3092"/>
+         <elementType ref="org.chico.learnciat.diagram.Condition_3093"/>
+         <elementType ref="org.chico.learnciat.diagram.SessionPanel_3094"/>
+         <elementType ref="org.chico.learnciat.diagram.Chat_3095"/>
+         <elementType ref="org.chico.learnciat.diagram.TurnTakingTool_3096"/>
+         <elementType ref="org.chico.learnciat.diagram.Telepointer_3097"/>
+         <elementType ref="org.chico.learnciat.diagram.RadarView_3098"/>
+         <elementType ref="org.chico.learnciat.diagram.Properties_3099"/>
+         <elementType ref="org.chico.learnciat.diagram.Console_3100"/>
+         <elementType ref="org.chico.learnciat.diagram.Problems_3101"/>
+         <elementType ref="org.chico.learnciat.diagram.Init_3102"/>
+         <elementType ref="org.chico.learnciat.diagram.End_3103"/>
+         <elementType ref="org.chico.learnciat.diagram.TemporalCondition_3104"/>
+         <elementType ref="org.chico.learnciat.diagram.Notification_3105"/>
+         <elementType ref="org.chico.learnciat.diagram.Condition_3106"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefMultimedia1_3107"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefMultimedia2_3108"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefMultimedia3_3109"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefMultimedia4_3110"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefMultimedia5_3111"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefMultimedia6_3112"/>
+         <elementType ref="org.chico.learnciat.diagram.MolefMultimedia7_3113"/>
+         <elementType ref="org.chico.learnciat.diagram.ExclusiveEdition_3114"/>
+         <elementType ref="org.chico.learnciat.diagram.CollaborativeVisualization_3115"/>
+         <elementType ref="org.chico.learnciat.diagram.IndividualVisualization_3116"/>
+         <elementType ref="org.chico.learnciat.diagram.UserTask_3117"/>
+         <elementType ref="org.chico.learnciat.diagram.CTTAbstractTask_3118"/>
+         <elementType ref="org.chico.learnciat.diagram.InteractiveTask_3119"/>
+         <elementType ref="org.chico.learnciat.diagram.CTTCollaborativeTask_3120"/>
+         <elementType ref="org.chico.learnciat.diagram.ApplicationTask_3121"/>
+         <elementType ref="org.chico.learnciat.diagram.Inheritance_4001"/>
+         <elementType ref="org.chico.learnciat.diagram.Acting_4002"/>
+         <elementType ref="org.chico.learnciat.diagram.Association_4003"/>
+         <elementType ref="org.chico.learnciat.diagram.EnablingWOInformation_4004"/>
+         <elementType ref="org.chico.learnciat.diagram.EnablingWInformation_4005"/>
+         <elementType ref="org.chico.learnciat.diagram.Choice_4006"/>
+         <elementType ref="org.chico.learnciat.diagram.Concurrency_4007"/>
+         <elementType ref="org.chico.learnciat.diagram.Aggregation_4008"/>
+         <elementType ref="org.chico.learnciat.diagram.Enabling_4009"/>
+         <elementType ref="org.chico.learnciat.diagram.Disabling_4010"/>
+         <elementType ref="org.chico.learnciat.diagram.EnablingWithInformationPassing_4011"/>
+         <elementType ref="org.chico.learnciat.diagram.DisablingWithInformationPassing_4012"/>
+         <elementType ref="org.chico.learnciat.diagram.IndependentConcurrency_4013"/>
+         <elementType ref="org.chico.learnciat.diagram.OrderIndependence_4014"/>
+         <elementType ref="org.chico.learnciat.diagram.SuspendResume_4015"/>
+         <elementType ref="org.chico.learnciat.diagram.ConcurrencyWithInformationPassing_4016"/>
+         <elementType ref="org.chico.learnciat.diagram.DeterministicChoice_4017"/>
+         <elementType ref="org.chico.learnciat.diagram.UndeterministicChoice_4018"/>
+         <elementType ref="org.chico.learnciat.diagram.Traceability_4019"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.chico.learnciat.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.chico.learnciat.diagram"
+           properties="isURIEditorInput"
+           class="lciat.diagram.part.LciatUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.chico.learnciat.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="org.chico.learnciat.diagram"
+           properties="isShortcut"
+           class="lciat.diagram.part.LciatShortcutPropertyTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="org.chico.learnciat.diagram.resourceContent"/>
+			<contentExtension pattern="org.chico.learnciat.diagram.domainResourceContent"/>
+            <contentExtension pattern="org.chico.learnciat.diagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="org.chico.learnciat.diagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="org.chico.learnciat.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="lciat.diagram.navigator.LciatNavigatorContentProvider" 
+            labelProvider="lciat.diagram.navigator.LciatNavigatorLabelProvider"
+            icon="icons/obj16/LciatDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="lciat_diagram"/>
+               </and>
+               <instanceof value="lciat.diagram.navigator.LciatAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="org.chico.learnciat.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="lciat.diagram.navigator.LciatAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="org.chico.learnciat.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="org.chico.learnciat.diagram.navigatorSorter" 
+               class="lciat.diagram.navigator.LciatNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="lciat_diagram"/>
+                  </and>
+                  <instanceof value="lciat.diagram.navigator.LciatAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="org.chico.learnciat.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="lciat.diagram.navigator.LciatDomainNavigatorContentProvider" 
+            labelProvider="lciat.diagram.navigator.LciatDomainNavigatorLabelProvider"
+            icon="icons/obj16/LciatDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="lciat"/>
+               </and>
+               <instanceof value="lciat.diagram.navigator.LciatDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="lciat.diagram.navigator.LciatDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="org.chico.learnciat.diagram.navigatorActionProvider"
+            class="lciat.diagram.navigator.LciatNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="lciat.diagram.navigator.LciatAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="org.chico.learnciat.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="org.chico.learnciat.diagram.navigatorLinkHelper"
+            class="lciat.diagram.navigator.LciatNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="org.chico.learnciat.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="lciat.diagram.navigator.LciatAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="lciat.diagram.part.LciatDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="lciat.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="lciat.diagram.updateDiagram"
+         contextId="lciat.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="org.chico.learnciat.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="lciat.diagram.part.LciatDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="lciat.diagram.edit.parts.LCIANDiagramEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="lciat.diagram.part.LciatDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="org.chico.learnciat.diagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="lciat.diagram.part.LciatDiagramEditorID"
+         defaultHandler="lciat.diagram.part.LoadResourceAction"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+
+   <!-- optionally, specify keybindings -->
+</plugin>

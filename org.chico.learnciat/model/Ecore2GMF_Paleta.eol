@@ -1,0 +1,40 @@
+var palette = GmfTool!Palette.all.first();
+var currentTools = palette.tools;
+
+var toolGroupSociogram = new GmfTool!ToolGroup;
+toolGroupSociogram.title = "Sociogram";
+toolGroupSociogram.collapsible = true;
+// ...
+
+palette.tools.add(toolGroupSociogram);
+// ...
+
+var toolGroupObjects = GmfTool!ToolGroup.all.selectOne(r|r.title = 'Objects');
+var toolGroupConnections = GmfTool!ToolGroup.all.selectOne(r|r.title = 'Connections');
+
+var SociogramObjects : Sequence = Sequence{"Sociogram","Sep","Actor","Rol","Software Agent","Group","Team","Sep"};
+var SociogramConnections : Sequence = Sequence{"Acting","Inheritance","Association"};
+// ...
+
+objectsConnectionsToPalette(SociogramObjects, toolGroupSociogram, true);
+objectsConnectionsToPalette(SociogramConnections, toolGroupSociogram, false);
+// ...
+
+delete toolGroupObjects;
+delete toolGroupConnections;
+
+operation objectsConnectionsToPalette(myseq: Sequence, mytg: GmfTool!ToolGroup, isObject: Boolean) {
+	var toolEntry;
+	for (o in myseq) {
+		if (o.matches('Sep')) {
+			mytg.tools.add(new GmfTool!PaletteSeparator);
+		} else {
+			if (isObject) {
+				toolEntry = toolGroupObjects.tools.selectOne(r|r.title = o);
+			} else {
+				toolEntry = toolGroupConnections.tools.selectOne(r|r.title = o);
+			}
+			mytg.tools.add(toolEntry);
+		}
+	}
+}

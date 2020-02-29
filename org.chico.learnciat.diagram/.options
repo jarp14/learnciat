@@ -1,0 +1,7 @@
+# Tracing options for the org.chico.learnciat.diagram plug-in
+
+# Common issues
+org.chico.learnciat.diagram/debug=false
+
+# Visual IDs
+org.chico.learnciat.diagram/debug/visualID=false

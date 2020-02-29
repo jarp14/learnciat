@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmftool:ToolRegistry
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <palette
+      title="lciatPalette">
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Sociogram"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Sociogram"
+          description="Create new Sociogram">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Sociogram.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Rol"
+          description="Create new Rol">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Rol.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Group"
+          description="Create new Group">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Group.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Acting"
+          description="Create new Acting">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Acting.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Inheritance"
+          description="Create new Inheritance">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Inheritance.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Association"
+          description="Create new Association">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Association.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Learning-Design Diagram"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Learning Diagram"
+          description="Create new Learning Diagram">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/LearningDesignDiagram.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Individual Learning"
+          description="Create new Individual Learning">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/IndividualLearningTask.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Group Learning"
+          description="Create new Group Learning">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/GroupLearningTask.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Abstract Learning"
+          description="Create new Abstract Learning">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/AbstractLearningTask.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Detailed Abstract Learning"
+          description="Create new Detailed Abstract Learning">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/AbstractLearningTask.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Initial"
+          description="Create new Initial">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Initial.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Final"
+          description="Create new Final">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Final.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Object"
+          description="Create new Object">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Object.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Temporal Condition"
+          description="Create new Temporal Condition">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/TemporalCondition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Notification"
+          description="Create new Notification">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Notification.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Condition"
+          description="Create new Condition">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Condition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Face-to-face"
+          description="Create new Face-to-face">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/FaceToFace.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Computer-Supported"
+          description="Create new Computer-Supported">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/ComputerSupported.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Online"
+          description="Create new Online">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Online.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Assimilative"
+          description="Create new Assimilative">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Assimilative.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Information Handling"
+          description="Create new Information Handling">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/InformationHandling.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Adaptive"
+          description="Create new Adaptive">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Adaptive.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Communicative"
+          description="Create new Communicative">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Communicative.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Productive"
+          description="Create new Productive">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Productive.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Experiential"
+          description="Create new Experiential">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Experiential.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Evaluative"
+          description="Create new Evaluative">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Evaluative.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Support"
+          description="Create new Support">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Support.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Tool"
+          description="Create new Tool">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Tool.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Text Editor"
+          description="Create new Text Editor">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/TextEditor.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Code Editor"
+          description="Create new Code Editor">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/CodeEditor.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Graphical Editor"
+          description="Create new Graphical Editor">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/GraphicalEditor.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Web Viewer"
+          description="Create new Web Viewer">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/WebViewer.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Session Panel"
+          description="Create new Session Panel">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/SessionPanel.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="TurnTaking Panel"
+          description="Create new TurnTaking Panel">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/TurnTaking.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Chat"
+          description="Create new Chat">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Chat.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Telepointer"
+          description="Create new Telepointer">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Telepointer.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Radar View"
+          description="Create new Radar View">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/RadarView.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Properties"
+          description="Create new Properties">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Properties.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Console"
+          description="Create new Console">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Console.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Problems"
+          description="Create new Problems">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/Problems.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Traceability"
+          description="Create new Traceability">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/traceability.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Enabling w/o Information"
+          description="Create new Enabling w/o Information">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/EnablingTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Enabling w Information"
+          description="Create new Enabling w Information">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/EnablingWithInformationPassingTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Choice"
+          description="Create new Choice">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/DeterministicChoiceTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Concurrency"
+          description="Create new Concurrency">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/IndependentConcurrencyTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="CTT Diagram"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="CTTDiagram"
+          description="Create new CTTDiagram">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/CTTDiagram.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Abstract Task"
+          description="Create new Abstract Task">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/AbstractTask.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Application Task"
+          description="Create new Application Task">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/ApplicationTask.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Collaborative Task"
+          description="Create new Collaborative Task">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/CollaborativeTask.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Interactive Task"
+          description="Create new Interactive Task">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/InteractionTask.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="User Task"
+          description="Create new User Task">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/UserTask.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Exclusive Edition"
+          description="Create new Exclusive Edition">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/ExclusiveEdition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Collaborative Visualization"
+          description="Create new Collaborative Visualization">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/CollaborativeVisualization.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Individual Visualization"
+          description="Create new Individual Visualization">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/IndividualVisualization.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Aggregation"
+          description="Create new Aggregation">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/AggregationTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Concurrency With Information Passing"
+          description="Create new Concurrency With Information Passing">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/ConcurrencyWithInformationPassingTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Deterministic Choice"
+          description="Create new Deterministic Choice">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/DeterministicChoiceTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Disabling"
+          description="Create new Disabling">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/DisablingTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Disabling With Information Passing"
+          description="Create new Disabling With Information Passing">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/DisablingWithInformationPassingTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Enabling"
+          description="Create new Enabling">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/EnablingTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Enabling With Information Passing"
+          description="Create new Enabling With Information Passing">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/EnablingWithInformationPassingTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Independent Concurrency"
+          description="Create new Independent Concurrency">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/IndependentConcurrencyTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Order Independence"
+          description="Create new Order Independence">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/OrderIndependenceTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Suspend Resume"
+          description="Create new Suspend Resume">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/SuspendResumeTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Undeterministic Choice"
+          description="Create new Undeterministic Choice">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/UndeterministicChoiceTransition.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="MoLEF"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Content 1"
+          description="The content is organized into modules or units">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefContent1.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Content 2"
+          description="The learning objectives are defined at the beginning of the module or unit">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefContent2.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Content 3"
+          description="Adviced that previous knowledge are required">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefContent3.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Content 4"
+          description="The explanation of the concepts is presented in a clear and concise manner">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefContent4.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Content 5"
+          description="The modules or units are organized according to levels of difficulty">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefContent5.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Content 6"
+          description="There are links to external resources related to the content and adapted for mobile devices">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefContent6.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Task and Activities 1"
+          description="Activities are proposed to acquire new skills that determine their learning -i.e. Questions, exercises, problem resolution, etc.-">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefTActivities1.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Task and Activities 2"
+          description="The activities facilitate the understanding of educational content">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefTActivities2.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Task and Activities 3"
+          description="Learning activities help to improve or strengthen skills">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefTActivities3.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Task and Activities 4"
+          description="The activities allow students to integrate new information with previous learning">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefTActivities4.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Task and Activities 5"
+          description="Activities reflect practices relevant to real or professional life">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefTActivities5.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Task and Activities 6"
+          description="The activities are consistent with the capabilities of students -neither too easy nor too dificult-">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefTActivities6.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Task and Activities 7"
+          description="There are activities to evaluate learning educational content -i.e. Tests, exercises, evaluations, etc.-">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefTActivities7.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Task and Activities 8"
+          description="The activities take advantage of functionalities or advantages of the use of mobile devices">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefTActivities8.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Social 1"
+          description="There are opportunities for students to do projects or group work">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefSocial1.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Social 2"
+          description="The application allows you to communicate with other peers -chat, email, etc.-">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefSocial2.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Social 3"
+          description="The application allows you to share information, photos, videos or work-related documents for discussion">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefSocial3.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Social 4"
+          description="The system allows competitive opportunities among students -ie. Display achievements-">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefSocial4.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Personalization 1"
+          description="The students have freedom to direct their learning">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefPersonalization1.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Personalization 2"
+          description="The students have the control of the contents they learn and the sequence they follow">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefPersonalization2.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Personalization 3"
+          description="The materials represent multiple views of the knowledge">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefPersonalization3.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Personalization 4"
+          description="The students can customize their learning to suit their learning strategies -videos, text or audios-">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefPersonalization4.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Personalization 5"
+          description="The tests and evaluations can be customized to the students abilities">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefPersonalization5.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Multimedia 1"
+          description="Various multimedia resources -videos, images, audios, animations, simulation, etc.- related to the learning objectives are presented">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefMultimedia1.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Multimedia 2"
+          description="Multimedia resources have been properly selected to facilitate learning">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefMultimedia2.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Multimedia 3"
+          description="Multimedia resources have a shorter duration than 7 minutes">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefMultimedia3.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Multimedia 4"
+          description="Multimedia content have good quality video, audio and images">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefMultimedia4.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Multimedia 5"
+          description="Multimedia resources can be downloaded to the mobile device">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefMultimedia5.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Multimedia 6"
+          description="Multimedia resources are appropiately sized to be downloaded to the mobile">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefMultimedia6.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Multimedia 7"
+          description="There is an adequate proportion of multimedia resources">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="images/MolefMultimedia7.gif"
+            bundle="org.chico.learnciat.figures"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+    </tools>
+  </palette>
+</gmftool:ToolRegistry>

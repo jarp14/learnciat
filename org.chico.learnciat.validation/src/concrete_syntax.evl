@@ -1,0 +1,25 @@
+/*(@lazy)?
+context <name> {
+	(guard (:expression) | ({statementBlock}))?
+	(invariant)*
+}
+
+(@lazy)?
+(constraint|critique) <name> {
+	(guard (:expression) | ({statementBlock}))?
+	(check (:expression) | ({statementBlock}))?
+	(message (:expression) | ({statementBlock}))?
+	(fix)*
+}
+
+fix {
+	(guard (:expression) | ({statementBlock}))?
+	(title (:expression) | ({statementBlock}))?
+	do {
+		statementBlock
+	}
+}
+
+(pre|post) <name> {
+	statement+
+}*/

@@ -1,0 +1,4 @@
+var genPlugin = GmfGen!GenPlugin.all.first();
+
+genPlugin.requiredPlugins.add("org.chico.learnciat.figures");
+//genPlugin.requiredPlugins.add("SPACEclipse");

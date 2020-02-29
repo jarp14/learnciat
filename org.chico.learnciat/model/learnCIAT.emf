@@ -1,0 +1,847 @@
+@gmf
+@namespace(uri="lciat", prefix="lciat")
+package lciat;
+
+//########################################
+// Diagrama raiz de la notacion Learn-CIAN
+//########################################
+@gmf.diagram()
+class LCIANDiagram {
+	val Sociogram[*] itsSociograms;
+	val LearningDiagram[*] itsLearningDiagrams;
+	val CTTDiagram[*] itsCttDiagrams;
+	val Link[*] itsLinks;
+}
+
+abstract class Link {}
+
+//########################################
+// Metamodelo que representa un Sociograma
+//########################################
+@gmf.node(label="name",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Sociogram.gif")
+class Sociogram {
+	attr String name = "Sociogram :: ";
+	@gmf.compartment(layout="free", collapsible="false")
+	val SociogramNode[*] itsSociogramNodes;
+	@gmf.compartment(layout="list", collapsible="true")
+	val MolefContentNode[*] mfContentNodes;
+}
+
+class SociogramNode {
+	attr String name = "<...>";
+}
+
+@gmf.node(label="name", tool.name="Rol",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Rol.gif")
+class Rol extends SociogramNode, LeftSideLearningNode {
+	ref Group[*] itsGroup;
+	ref Rol[*] supertype;
+	ref Rol[*] subtype;
+}
+
+@gmf.node(label="name", tool.name="Group",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Group.gif")
+class Group extends SociogramNode, LeftSideLearningNode {
+	ref Rol[*] contains;
+}
+
+class SociogramLink extends Link {
+	ref SociogramNode[1] source;
+  	ref SociogramNode[1] target;
+}
+
+@gmf.link(label="condition", 
+			source="source", target="target", target.decoration="closedarrow",
+			style="solid", width="1", color="0,0,0",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Inheritance.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class Inheritance extends SociogramLink {
+	attr String condition = " ";
+}
+
+@gmf.link(label="name", 
+			source="source", target="target", target.decoration="closedarrow",
+			style="dash", width="1", color="0,0,0",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Acting.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class Acting extends SociogramLink {
+	attr String name = "(n..m)";
+	attr int n;
+	attr int m;
+}
+
+@gmf.link(label="name", 
+			source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Association.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class Association extends SociogramLink {
+	attr String name = "(n..m)";
+	attr int n;
+	attr int m;
+}
+
+//#################################################################################################
+// Metamodelo que representa un diagrama de Aprendizaje (Participacion y Responsabilidad incluidos)
+//#################################################################################################
+@gmf.node(label="name", tool.name="Learning Diagram",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/LearningDesignDiagram.gif")
+class LearningDiagram {
+	attr String name = "Learning-Design :: ";
+	ref MolefLearningNode[*] molefLearningNodes;
+	@gmf.compartment(layout="free", collapsible="true")
+	val LearningNode[*] learningNodes;
+	@gmf.compartment(layout="list", collapsible="true")
+	val MolefLearningNode[*] mfLearningNodes;
+}
+
+class LearningNode {}
+
+@gmf.node(figure="figures.InitialFigure", tool.name="Initial",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Initial.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class Init extends LearningNode {
+	readonly attr String name = " ";
+}
+
+@gmf.node(figure="figures.FinalFigure",tool.name="Final",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Final.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class End extends LearningNode {
+	readonly attr String name = " ";
+}
+
+class LearningActivity extends LearningNode {
+	attr String name = "<...>";
+	attr Modalities[1] itsModality;
+	attr Subtypes[1] itsSubtype;
+	@gmf.affixed()
+	val Tool[*] tools;
+}
+
+// Para poder seleccionar los nodos que queramos del sociograma y usarlos en el compartment izquierdo
+// El rol deseado hereda de esta clase abstracta (restringiendo al resto)
+abstract class LeftSideLearningNode {}
+
+@gmf.node(label="name", tool.name="Individual Learning",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/IndividualLearningTask.gif")
+class IndividualTask extends LearningActivity {
+	@gmf.compartment(layout="list", collapsible="true")
+	val LeftSideLearningNode[1] taskRoles;
+	@gmf.compartment(layout="list", collapsible="true")
+	val Object[*] taskObjects;
+	@gmf.compartment(layout="list", collapsible="false")
+	val Subtype[1] subtype;
+	@gmf.compartment(layout="list", collapsible="false")
+	val Modality[1] modality;
+}
+
+@gmf.node(label="name", tool.name="Group Learning",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/GroupLearningTask.gif")
+class GroupTask extends LearningActivity {
+	@gmf.compartment(layout="list", collapsible="true")
+	val LeftSideLearningNode[*] taskRoles;
+	@gmf.compartment(layout="list", collapsible="true")
+	val Object[*] taskObjects;
+	@gmf.compartment(layout="list", collapsible="false")
+	val Subtype[1] subtype;
+	@gmf.compartment(layout="list", collapsible="false")
+	val Modality[1] modality;
+	// Condiciones necesarias: (1) Referenciar el sistema CSCL e (2) indicar que se quiere transformar
+	// El resto de tareas grupales debe estar en false para evitar confusion (EVL lo comprueba)
+	ref Tool[0..1] EGL_Tool;
+	attr boolean EGL_Transformation = false;
+}
+
+@gmf.node(label="name", tool.name="Abstract Learning",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/AbstractLearningTask.gif")
+class AbstractTask extends LearningActivity {
+	@gmf.compartment(layout="list", collapsible="true")
+	val LeftSideLearningNode[*] taskRoles;
+	@gmf.compartment(layout="list", collapsible="true")
+	val Object[*] taskObjects;
+	@gmf.compartment(layout="list", collapsible="false")
+	val Subtype[1] subtype;
+	@gmf.compartment(layout="list", collapsible="false")
+	val Modality[1] modality;
+}
+
+@gmf.node(label="name", tool.name="Detailed Abstract Learning",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/AbstractLearningTask.gif")
+class DetailedAbstractTask extends LearningActivity {
+	@gmf.compartment(layout="free", collapsible="true")
+	val LearningNode[*] LearningNodes;
+}
+
+@gmf.node(label="name", tool.name="Object", label.icon="false", figure="rectangle", color="154,236,255", size="100,20",
+	border.color="0,179,255", tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Object.gif")
+class Object {
+	attr String name = "C/R/W: Object";
+	ref Object object;
+	attr String modifier;
+	ref LeftSideLearningNode[0..1] modifiedBy;
+}
+
+@gmf.node(label="name", tool.name="Temporal Condition",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/TemporalCondition.gif")
+class TemporalCondition extends LearningNode {
+	attr String name = "...";
+}
+
+@gmf.node(label="name", tool.name="Notification",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Notification.gif")
+class Notification extends LearningNode {
+	attr String name = "...";
+}
+
+@gmf.node(label="name", tool.name="Condition", label.icon="false",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Condition.gif")
+class Condition extends LearningNode {
+	attr String name = "? ...";
+}
+
+enum Subtypes {
+	None;
+	Assimilative;
+	Adaptive;
+	InformationHandling;
+	Communicative;
+	Productive;
+	Experiential;
+	Evaluative;
+	Support;
+}
+
+enum Modalities {
+	None;
+	FaceToFace;
+	ComputerSupported;
+	Online;
+}
+
+class Subtype {}
+
+@gmf.node(label="name", tool.name="Assimilative", label.icon="false",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Assimilative.gif")
+class Assimilative extends Subtype {
+	readonly attr String name = "Assimilative";
+}
+
+@gmf.node(label="name", tool.name="Information Handling", label.icon="false",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/InformationHandling.gif")
+class InformationHandling extends Subtype {
+	readonly attr String name = "Information Handling";
+}
+
+@gmf.node(label="name", tool.name="Adaptive", label.icon="false",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Adaptive.gif")
+class Adaptive extends Subtype {
+	readonly attr String name = "Adaptive";
+}
+
+@gmf.node(label="name", tool.name="Communicative", label.icon="false",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Communicative.gif")
+class Communicative extends Subtype {
+	readonly attr String name = "Communicative";
+}
+
+@gmf.node(label="name", tool.name="Productive", label.icon="false",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Productive.gif")
+class Productive extends Subtype {
+	readonly attr String name = "Productive";
+}
+
+@gmf.node(label="name", tool.name="Experiential", label.icon="false",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Experiential.gif")
+class Experiential extends Subtype {
+	readonly attr String name = "Experiential";
+}
+
+@gmf.node(label="name", tool.name="Evaluative", label.icon="false",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Evaluative.gif")
+class Evaluative extends Subtype {
+	readonly attr String name = "Evaluative";
+}
+
+@gmf.node(label="name", tool.name="Support", label.icon="false",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Support.gif")
+class Support extends Subtype {
+	readonly attr String name = "Support";
+}
+
+class Modality {
+	readonly attr String name = " ";
+}
+
+@gmf.node(figure="figures.FaceToFaceFigure", tool.name="Face-to-face",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/FaceToFace.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class FaceToFace extends Modality {
+	readonly attr String kind = "FaceToFace";
+}
+
+@gmf.node(figure="figures.ComputerSupportedFigure", tool.name="Computer-Supported",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/ComputerSupported.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class ComputerSupported extends Modality {
+	readonly attr String kind = "ComputerSupported";
+}
+
+@gmf.node(figure="figures.OnlineFigure", tool.name="Online",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Online.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class Online extends Modality {
+	readonly attr String kind = "Online";
+}
+
+class LearningLink extends Link {
+	ref LearningNode[1] source;
+	ref LearningNode[1] target;
+}
+
+@gmf.link(label="eLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name = "Enabling w/o Information",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/EnablingTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class EnablingWOInformation extends LearningLink {
+	readonly attr String eLabel = ">>";
+}
+
+@gmf.link(label="ewLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name="Enabling w Information",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/EnablingWithInformationPassingTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class EnablingWInformation extends LearningLink {
+	attr String ewLabel = "[]>>";
+}
+
+@gmf.link(label="dtLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/DeterministicChoiceTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class Choice extends LearningLink {
+	readonly attr String dtLabel = "[]";
+}
+
+@gmf.link(label="icLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/IndependentConcurrencyTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class Concurrency extends LearningLink {
+	readonly attr String icLabel = "|||";
+}
+
+// Espacio de trabajo
+// Workspace definition
+@gmf.node(label="kind", tool.name="Tool", figure="polygon", resizable="false", label.icon="false", polygon.x="0 20 49 69 49 20", 
+	polygon.y="20 0 0 20 40 40", tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Tool.gif")
+class Tool {
+	attr String kind = "Tool";
+	ref Chat[0..1] chat;
+	ref SessionPanel[0..1] sessionPanel;
+}
+
+@gmf.node(label="name", tool.name="Graphical Editor", figure="polygon", resizable="false", label.icon="false", polygon.x="0 20 49 69 49 20", 
+	polygon.y="20 0 0 20 40 40", tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/GraphicalEditor.gif")
+class GraphicalEditor extends Tool {
+	readonly attr String name = "Graph. Editor";
+	ref TurnTakingTool[1] turnTakingTool;
+	ref Telepointer[0..1] telepointer;
+	ref RadarView[0..1] radarView;
+	ref Properties[0..1] properties;
+	ref Problems[0..1] problems;
+}
+
+@gmf.node(label="name", tool.name="Text Editor", figure="polygon", resizable="false", label.icon="false", polygon.x="0 20 49 69 49 20", 
+	polygon.y="20 0 0 20 40 40", tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/TextEditor.gif")
+class TextEditor extends Tool {
+	readonly attr String name = "Text Editor";
+	ref TurnTakingTool[1] turnTakingTool;
+	ref RadarView [0..1] radarView;
+	ref Console[0..1] console;
+	ref Problems[0..1] problems;
+}
+
+@gmf.node(label="name", tool.name="Code Editor", figure="polygon", resizable="false", label.icon="false", polygon.x="0 20 49 69 49 20", 
+	polygon.y="20 0 0 20 40 40", tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/CodeEditor.gif")
+class CodeEditor extends Tool {
+	readonly attr String name = "Code Editor";
+	ref TurnTakingTool[1] turnTakingTool;
+	ref RadarView [0..1] radarView;
+	ref Console[0..1] console;
+	ref Problems[0..1] problems;
+}
+
+@gmf.node(label="name", tool.name="Web Viewer", figure="polygon", resizable="false", label.icon="false", polygon.x="0 20 49 69 49 20", 
+	polygon.y="20 0 0 20 40 40", tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/WebViewer.gif")
+class WebViewer extends Tool {
+	readonly attr String name = "Web";
+}
+
+// Para poder pintar elementos awareness sobre el diagrama
+abstract class Awareness extends LearningNode {}
+
+@gmf.node(label="name", tool.name="Session Panel", figure="ellipse", resizable="false", label.icon="false",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/SessionPanel.gif")
+class SessionPanel extends Awareness {
+	readonly attr String name = "Session";
+	attr Position position;
+	attr Language language;
+	attr Size size;
+}
+
+@gmf.node(label="name", tool.name="Chat", figure="ellipse", resizable="false", label.icon="false",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Chat.gif")
+class Chat extends Awareness {
+	readonly attr String name = "Chat";
+	attr boolean isStructured = false;
+	attr Position position;
+	attr Language language;
+	attr Size size;
+}
+
+@gmf.node(label="name", tool.name="TurnTaking Panel", figure="ellipse", resizable="false", label.icon="false",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/TurnTaking.gif")
+class TurnTakingTool extends Awareness {
+	readonly attr String name = "TurnTaking";
+	attr Position position;
+	attr Language language;
+	attr Size size;
+}
+
+@gmf.node(label="name", tool.name="Telepointer", figure="ellipse", resizable="false", label.icon="false",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Telepointer.gif")
+class Telepointer extends Awareness {
+	readonly attr String name = "Telepointer";
+}
+
+@gmf.node(label="name", tool.name="Radar View", figure="ellipse", resizable="false", label.icon="false",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/RadarView.gif")
+class RadarView extends Awareness {
+	readonly attr String name = "Radar";
+	attr Position position;
+}
+
+@gmf.node(label="name", tool.name="Properties", figure="ellipse", resizable="false", label.icon="false",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Properties.gif")
+class Properties extends Awareness {
+	readonly attr String name = "Properties";
+	attr Position position;
+}
+
+@gmf.node(label="name", tool.name="Console", figure="ellipse", resizable="false", label.icon="false",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Console.gif")
+class Console extends Awareness {
+	readonly attr String name = "Console";
+	attr Position position;
+}
+
+@gmf.node(label="name", tool.name="Problems", figure="ellipse", resizable="false", label.icon="false",
+	tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/Problems.gif")
+class Problems extends Awareness {
+	readonly attr String name = "Problems";
+	attr Position position;
+}
+
+enum Position {
+	None;
+	Left;
+	Right;
+	Bottom;
+}
+
+enum Language {
+	None;
+	English;
+	Spanish;
+}
+
+enum Size {
+	None;
+	Large;
+	Small;
+}
+
+@gmf.link(source="awarelement", target="toolelement", style="dash", width="1", color="0,0,0",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/traceability.gif",
+			target.decoration="arrow", source.constraint="self <> oppositeEnd",target.constraint="self <> oppositeEnd")
+class Traceability extends Link {
+	ref Awareness[1] awarelement;
+	ref Tool[1] toolelement;
+}
+
+//#########################################################
+// Metamodelo que representa un diagrama de interaccion CTT
+//#########################################################
+@gmf.node(label="name",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/CTTDiagram.gif")
+class CTTDiagram {
+	attr String name = "CTT :: ";
+  	ref MolefCttNode[*] molefCttNodes;
+	@gmf.compartment(layout="free", collapsible="true")
+	val CTTTask[*] cttTasks;
+	@gmf.compartment(layout="list", collapsible="true")
+	val MolefCttNode[*] mfCttNodes;
+}
+
+class CTTTask {
+	attr String name = "<...>";
+  	ref CTTLink[*] cttLinks;
+}
+
+@gmf.node(figure="figures.ExclusiveEditionFigure", tool.name="Exclusive Edition",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/ExclusiveEdition.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class ExclusiveEdition extends CTTTask {}
+
+@gmf.node(figure="figures.CollaborativeVisualizationFigure", tool.name="Collaborative Visualization",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/CollaborativeVisualization.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class CollaborativeVisualization extends CTTTask {}
+
+@gmf.node(figure="figures.IndividualVisualizationFigure", tool.name="Individual Visualization",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/IndividualVisualization.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class IndividualVisualization extends CTTTask {}
+
+@gmf.node(figure="figures.UserTaskFigure", tool.name="User Task",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/UserTask.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class UserTask extends CTTTask {}
+
+@gmf.node(figure="figures.AbstractTaskFigure", tool.name="Abstract Task",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/AbstractTask.gif", 
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class CTTAbstractTask extends CTTTask {}
+
+@gmf.node(figure="figures.InteractiveTaskFigure", tool.name="Interactive Task", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/InteractionTask.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class InteractiveTask extends CTTTask {}
+
+@gmf.node(figure="figures.CollaborativeTaskFigure", tool.name="Collaborative Task",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/CollaborativeTask.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class CTTCollaborativeTask extends CTTTask {}
+
+@gmf.node(figure="figures.ApplicationTaskFigure", tool.name="Application Task",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/ApplicationTask.gif",
+			label="name", label.icon="false", label.placement="external", resizable="false", size="16,16")
+class ApplicationTask extends CTTTask {}
+
+class CTTLink extends Link {
+	ref CTTTask[1] source;
+	ref CTTTask[1] target;
+}
+
+@gmf.link(source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/AggregationTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class Aggregation extends CTTLink {}
+
+@gmf.link(label="eLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/EnablingTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class Enabling extends CTTLink {
+	readonly attr String eLabel = ">>";
+}
+
+@gmf.link(label="dLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/DisablingTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class Disabling extends CTTLink {
+	readonly attr String dLabel = "[>";
+}
+
+@gmf.link(label="ewLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name="Enabling With Information Passing",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/EnablingWithInformationPassingTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class EnablingWithInformationPassing extends CTTLink {
+	attr String ewLabel = "[]>>";
+}
+
+@gmf.link(label="dwLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name="Disabling With Information Passing",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/DisablingWithInformationPassingTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class DisablingWithInformationPassing extends CTTLink {
+	readonly attr String dwLabel = "[]|>";
+}
+
+@gmf.link(label="icLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name="Independent Concurrency",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/IndependentConcurrencyTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class IndependentConcurrency extends CTTLink {
+	readonly attr String icLabel = "|||";
+}
+
+@gmf.link(label="oiLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name="Order Independence",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/OrderIndependenceTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class OrderIndependence extends CTTLink {
+	readonly attr String oiLabel = "|=|";
+}
+
+@gmf.link(label="srLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name="Suspend Resume",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/SuspendResumeTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class SuspendResume extends CTTLink {
+	readonly attr String srLabel = "|>";
+}
+
+@gmf.link(label="cLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name="Concurrency With Information Passing",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/ConcurrencyWithInformationPassingTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class ConcurrencyWithInformationPassing extends CTTLink {
+	readonly attr String cLabel = "|[]|";
+}
+
+@gmf.link(label="dtLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name="Deterministic Choice",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/DeterministicChoiceTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class DeterministicChoice extends CTTLink {
+	readonly attr String dtLabel = "[]";
+}
+
+@gmf.link(label="ucLabel", source="source", target="target", style="solid", width="1", color="0,0,0",
+			tool.name="Undeterministic Choice",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/UndeterministicChoiceTransition.gif",
+			source.constraint="self <> oppositeEnd",
+			target.constraint="self <> oppositeEnd")
+class UndeterministicChoice extends CTTLink {
+	readonly attr String ucLabel = "Ç";
+}
+
+//####################################################
+// Metamodelo que recoge las caracteristicas de MoLEF 
+//####################################################
+abstract class MolefNode {}
+abstract class MolefContentNode extends MolefNode {}
+abstract class MolefLearningNode extends MolefNode {}
+abstract class MolefCttNode extends MolefNode {}
+
+// Caracteristicas Contenido de MoLEF
+// Se deben tener en cuenta dentro de un Sociograma
+@gmf.node(label="characteristic", tool.name="Content 1",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefContent1.gif",
+			tool.description="The content is organized into modules or units")
+class MolefContent1 extends MolefContentNode {
+	readonly attr String characteristic = "The content is organized into modules or units";
+}
+@gmf.node(label="characteristic", tool.name="Content 2", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefContent2.gif",
+			tool.description="The learning objectives are defined at the beginning of the module or unit")
+class MolefContent2 extends MolefContentNode {
+	readonly attr String characteristic = "The learning objectives are defined at the beginning of the module or unit";
+}
+@gmf.node(label="characteristic", tool.name="Content 3", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefContent3.gif", 
+			tool.description="Adviced that previous knowledge are required")
+class MolefContent3 extends MolefContentNode {
+	readonly attr String characteristic = "Adviced that previous knowledge are required";
+}
+@gmf.node(label="characteristic", tool.name="Content 4", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefContent4.gif", 
+			tool.description="The explanation of the concepts is presented in a clear and concise manner")
+class MolefContent4 extends MolefContentNode {
+	readonly attr String characteristic = "The explanation of the concepts is presented in a clear and concise manner";
+}
+@gmf.node(label="characteristic", tool.name="Content 5", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefContent5.gif", 
+			tool.description="The modules or units are organized according to levels of difficulty")
+class MolefContent5 extends MolefContentNode {
+	readonly attr String characteristic = "The modules or units are organized according to levels of difficulty";
+}
+@gmf.node(label="characteristic", tool.name="Content 6", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefContent6.gif", 
+			tool.description="There are links to external resources related to the content and adapted for mobile devices")
+class MolefContent6 extends MolefContentNode {
+	readonly attr String characteristic = "There are links to external resources related to the content and adapted for mobile devices";
+}
+
+// Caracteristicas Actividades y Aprendizaje de MoLEF
+// Se deben tener en cuenta en los Diagramas de Procesos
+class MolefTaskAndActivitiesNode extends MolefLearningNode {}
+
+@gmf.node(label="characteristic", tool.name="Task and Activities 1", border.color="255,255,255", size="600,18",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefTActivities1.gif",
+			tool.description="Activities are proposed to acquire new skills that determine their learning -i.e. Questions, exercises, problem resolution, etc.-")
+class MolefTActivities1 extends MolefTaskAndActivitiesNode {
+	readonly attr String characteristic = "Activities are proposed to acquire new skills that determine their learning (i.e. Questions, exercises, problem resolution, etc.)";
+}
+@gmf.node(label="characteristic", tool.name="Task and Activities 2", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefTActivities2.gif", 
+			tool.description="The activities facilitate the understanding of educational content")
+class MolefTActivities2 extends MolefTaskAndActivitiesNode {
+	readonly attr String characteristic = "The activities facilitate the understanding of educational content";
+}
+@gmf.node(label="characteristic", tool.name="Task and Activities 3", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefTActivities3.gif", 
+			tool.description="Learning activities help to improve or strengthen skills")
+class MolefTActivities3 extends MolefTaskAndActivitiesNode {
+	readonly attr String characteristic = "Learning activities help to improve or strengthen skills";
+}
+@gmf.node(label="characteristic", tool.name="Task and Activities 4", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefTActivities4.gif", 
+			tool.description="The activities allow students to integrate new information with previous learning")
+class MolefTActivities4 extends MolefTaskAndActivitiesNode {
+	readonly attr String characteristic = "The activities allow students to integrate new information with previous learning";
+}
+@gmf.node(label="characteristic", tool.name="Task and Activities 5", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefTActivities5.gif", 
+			tool.description="Activities reflect practices relevant to real or professional life")
+class MolefTActivities5 extends MolefTaskAndActivitiesNode {
+	readonly attr String characteristic = "Activities reflect practices relevant to real or professional life";
+}
+@gmf.node(label="characteristic", tool.name="Task and Activities 6", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefTActivities6.gif", 
+			tool.description="The activities are consistent with the capabilities of students -neither too easy nor too dificult-")
+class MolefTActivities6 extends MolefTaskAndActivitiesNode {
+	readonly attr String characteristic = "The activities are consistent with the capabilities of students (neither too easy nor too dificult)";
+}
+@gmf.node(label="characteristic", tool.name="Task and Activities 7", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefTActivities7.gif", 
+			tool.description= "There are activities to evaluate learning educational content -i.e. Tests, exercises, evaluations, etc.-")
+class MolefTActivities7 extends MolefTaskAndActivitiesNode {
+	readonly attr String characteristic = "There are activities to evaluate learning educational content (i.e. Tests, exercises, evaluations, etc.)";
+}
+@gmf.node(label="characteristic", tool.name="Task and Activities 8", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefTActivities8.gif", 
+			tool.description="The activities take advantage of functionalities or advantages of the use of mobile devices")
+class MolefTActivities8 extends MolefTaskAndActivitiesNode {
+	readonly attr String characteristic = "The activities take advantage of functionalities or advantages of the use of mobile devices";
+}
+
+// Caracteristicas Sociales de Molef
+// Deben tenerse en cuenta dentro de un diagrama de Aprendizaje
+class MolefSocialNode extends MolefLearningNode {}
+
+@gmf.node(label="characteristic", tool.name="Social 1",  
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefSocial1.gif",
+			tool.description="There are opportunities for students to do projects or group work")
+class MolefSocial1 extends MolefSocialNode {
+	readonly attr String characteristic = "There are opportunities for students to do projects or group work";
+}
+@gmf.node(label="characteristic", tool.name="Social 2", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefSocial2.gif", 
+			tool.description="The application allows you to communicate with other peers -chat, email, etc.-")
+class MolefSocial2 extends MolefSocialNode {
+	readonly attr String characteristic = "The application allows you to communicate with other peers -chat, email, etc.-";
+}
+@gmf.node(label="characteristic", tool.name="Social 3", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefSocial3.gif", 
+			tool.description="The application allows you to share information, photos, videos or work-related documents for discussion")
+class MolefSocial3 extends MolefSocialNode {
+	readonly attr String characteristic = "The application allows you to share information, photos, videos or work-related documents for discussion";
+}
+@gmf.node(label="characteristic", tool.name="Social 4", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefSocial4.gif", 
+			tool.description="The system allows competitive opportunities among students -ie. Display achievements-")
+class MolefSocial4 extends MolefSocialNode {
+	readonly attr String characteristic = "The system allows competitive opportunities among students (ie. Display achievements)";
+}
+
+class MolefPersonalizationNode extends MolefLearningNode{}
+
+@gmf.node(label="characteristic", tool.name="Personalization 1",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefPersonalization1.gif",
+			tool.description="The students have freedom to direct their learning")
+class MolefPersonalization1 extends MolefPersonalizationNode {
+	readonly attr String characteristic = "The students have freedom to direct their learning";
+}
+
+@gmf.node(label="characteristic", tool.name="Personalization 2",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefPersonalization2.gif",
+			tool.description="The students have the control of the contents they learn and the sequence they follow")
+class MolefPersonalization2 extends MolefPersonalizationNode {
+	readonly attr String characteristic = "The students have the control of the contents they learn and the sequence they follow";
+}
+
+@gmf.node(label="characteristic", tool.name="Personalization 3",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefPersonalization3.gif",
+			tool.description="The materials represent multiple views of the knowledge")
+class MolefPersonalization3 extends MolefPersonalizationNode {
+	readonly attr String characteristic = "The materials represent multiple views of the knowledge";
+}
+
+@gmf.node(label="characteristic", tool.name="Personalization 4",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefPersonalization4.gif",
+			tool.description="The students can customize their learning to suit their learning strategies -videos, text or audios-")
+class MolefPersonalization4 extends MolefPersonalizationNode {
+	readonly attr String characteristic = "The students can customize their learning to suit their learning strategies (videos, text or audios)";
+}
+
+@gmf.node(label="characteristic", tool.name="Personalization 5",
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefPersonalization5.gif",
+			tool.description="The tests and evaluations can be customized to the students abilities")
+class MolefPersonalization5 extends MolefPersonalizationNode {
+	readonly attr String characteristic = "The tests and evaluations can be customized to the students abilities";
+}
+
+// Caracteristicas Multimedia de MoLEF
+// Deben tenerse en cuenta dentro de un diagrama de Interaccion (CTT)
+class MolefMultimediaNode extends MolefCttNode{}
+
+@gmf.node(label="characteristic", tool.name="Multimedia 1", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefMultimedia1.gif", 
+			tool.description="Various multimedia resources -videos, images, audios, animations, simulation, etc.- related to the learning objectives are presented")
+class MolefMultimedia1 extends MolefMultimediaNode {
+	readonly attr String characteristic = "Various multimedia resources (videos, images, audios, animations, simulations, etc.) related to the learning objectives are presented";
+}
+@gmf.node(label="characteristic", tool.name="Multimedia 2", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefMultimedia2.gif", 
+			tool.description="Multimedia resources have been properly selected to facilitate learning")
+class MolefMultimedia2 extends MolefMultimediaNode {
+	readonly attr String characteristic = "Multimedia resources have been properly selected to facilitate learning";
+}
+@gmf.node(label="characteristic", tool.name="Multimedia 3", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefMultimedia3.gif", 
+			tool.description="Multimedia resources have a shorter duration than 7 minutes")
+class MolefMultimedia3 extends MolefMultimediaNode {
+	readonly attr String characteristic = "Multimedia resources have a shorter duration than 7 minutes";
+}
+@gmf.node(label="characteristic", tool.name="Multimedia 4", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefMultimedia4.gif", 
+			tool.description="Multimedia content have good quality video, audio and images")
+class MolefMultimedia4 extends MolefMultimediaNode {
+	readonly attr String characteristic = "Multimedia content have good quality video, audio and images";
+}
+@gmf.node(label="characteristic", tool.name="Multimedia 5", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefMultimedia5.gif", 
+			tool.description="Multimedia resources can be downloaded to the mobile device")
+class MolefMultimedia5 extends MolefMultimediaNode {
+	readonly attr String characteristic = "Multimedia resources can be downloaded to the mobile device";
+}
+@gmf.node(label="characteristic", tool.name="Multimedia 6", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefMultimedia6.gif", 
+			tool.description="Multimedia resources are appropiately sized to be downloaded to the mobile")
+class MolefMultimedia6 extends MolefMultimediaNode {
+	readonly attr String characteristic = "Multimedia resources are appropiately sized to be downloaded to the mobile";
+}
+@gmf.node(label="characteristic", tool.name="Multimedia 7", 
+			tool.small.bundle="org.chico.learnciat.figures", tool.small.path="images/MolefMultimedia7.gif", 
+			tool.description="There is an adequate proportion of multimedia resources")
+class MolefMultimedia7 extends MolefMultimediaNode {
+	readonly attr String characteristic = "There is an adequate proportion of multimedia resources";
+}

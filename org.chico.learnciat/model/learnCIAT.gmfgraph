@@ -1,0 +1,1169 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="lciat">
+  <figures name="Default">
+    <figures xsi:type="gmfgraph:PolygonDecoration" name="ClosedArrow">
+      <backgroundColor xsi:type="gmfgraph:ConstantColor"/>
+      <template/>
+      <template x="-2" y="2"/>
+      <template x="-2" y="-2"/>
+      <template/>
+    </figures>
+    <figures xsi:type="gmfgraph:PolygonDecoration" name="ClosedArrow">
+      <backgroundColor xsi:type="gmfgraph:ConstantColor"/>
+      <template/>
+      <template x="-2" y="2"/>
+      <template x="-2" y="-2"/>
+      <template/>
+    </figures>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="TraceabilityFigureTargetDecoration"/>
+    <descriptors name="SociogramFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="SociogramFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="SociogramLabelFigure" text="Sociogram">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="SociogramItsSociogramNodesCompartmentFigure" outline="false"/>
+        <children xsi:type="gmfgraph:Rectangle" name="SociogramMfContentNodesCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureSociogramLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors accessor="getSociogramItsSociogramNodesCompartmentFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+      <accessors accessor="getSociogramMfContentNodesCompartmentFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.2"/>
+    </descriptors>
+    <descriptors name="RolFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="RolFigure" outline="false">
+        <preferredSize dx="100" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="RolLabelFigure" text="Rol"/>
+      </actualFigure>
+      <accessors accessor="getFigureRolLabelFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="GroupFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="GroupFigure" outline="false">
+        <preferredSize dx="100" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="GroupLabelFigure" text="Group"/>
+      </actualFigure>
+      <accessors accessor="getFigureGroupLabelFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="LearningDiagramFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="LearningDiagramFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="LearningDiagramLabelFigure" text="LearningDiagram">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="LearningDiagramLearningNodesCompartmentFigure" outline="false"/>
+        <children xsi:type="gmfgraph:Rectangle" name="LearningDiagramMfLearningNodesCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureLearningDiagramLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors accessor="getLearningDiagramLearningNodesCompartmentFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.1"/>
+      <accessors accessor="getLearningDiagramMfLearningNodesCompartmentFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.2"/>
+    </descriptors>
+    <descriptors name="InitFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="InitFigure" qualifiedClassName="figures.InitialFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="InitLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="InitLabelFigure" text="Init"/>
+    </descriptors>
+    <descriptors name="EndFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="EndFigure" qualifiedClassName="figures.FinalFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="EndLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="EndLabelFigure" text="End"/>
+    </descriptors>
+    <descriptors name="IndividualTaskFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="IndividualTaskFigure">
+        <children xsi:type="gmfgraph:Rectangle" name="IndividualTaskFigure_Title" outline="false" fill="false">
+          <layout xsi:type="gmfgraph:BorderLayout"/>
+          <maximumSize dx="1000" dy="25"/>
+          <insets top="5" left="5" right="5"/>
+          <children xsi:type="gmfgraph:Label" name="IndividualTaskLabelFigure" text="IndividualTask">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="IndividualTaskModalityCompartmentFigure" outline="false">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="END"/>
+          </children>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="IndividualTaskFigure_Body" outline="false">
+          <layout xsi:type="gmfgraph:BorderLayout"/>
+          <children xsi:type="gmfgraph:Rectangle" name="IndividualTaskTaskRolesCompartmentFigure">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="IndividualTaskTaskObjectsCompartmentFigure">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData"/>
+          </children>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="IndividualTaskFigure_Subtype" outline="false" fill="false">
+          <layout xsi:type="gmfgraph:BorderLayout"/>
+          <maximumSize dx="1000" dy="25"/>
+          <insets left="5" bottom="3" right="5"/>
+          <children xsi:type="gmfgraph:Rectangle" name="IndividualTaskSubtypeCompartmentFigure" outline="false">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
+          </children>
+        </children>
+      </actualFigure>
+      <accessors accessor="getFigureIndividualTaskLabelFigure" figure="//@figures.0/@descriptors.8/@actualFigure/@children.0/@children.0"/>
+      <accessors accessor="getIndividualTaskTaskRolesCompartmentFigure" figure="//@figures.0/@descriptors.8/@actualFigure/@children.1/@children.0"/>
+      <accessors accessor="getIndividualTaskTaskObjectsCompartmentFigure" figure="//@figures.0/@descriptors.8/@actualFigure/@children.1/@children.1"/>
+      <accessors accessor="getIndividualTaskSubtypeCompartmentFigure" figure="//@figures.0/@descriptors.8/@actualFigure/@children.2/@children.0"/>
+      <accessors accessor="getIndividualTaskModalityCompartmentFigure" figure="//@figures.0/@descriptors.8/@actualFigure/@children.0/@children.1"/>
+    </descriptors>
+    <descriptors name="GroupTaskFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="GroupTaskFigure">
+        <children xsi:type="gmfgraph:Rectangle" name="GroupTaskFigure_Title" outline="false" fill="false">
+          <layout xsi:type="gmfgraph:BorderLayout"/>
+          <maximumSize dx="1000" dy="25"/>
+          <insets top="5" left="5" right="5"/>
+          <children xsi:type="gmfgraph:Label" name="GroupTaskLabelFigure" text="GroupTask">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="GroupTaskModalityCompartmentFigure" outline="false">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="END"/>
+          </children>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="GroupTaskFigure_Body" outline="false">
+          <layout xsi:type="gmfgraph:BorderLayout"/>
+          <children xsi:type="gmfgraph:Rectangle" name="GroupTaskTaskRolesCompartmentFigure">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="GroupTaskTaskObjectsCompartmentFigure">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData"/>
+          </children>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="GroupTaskFigure_Subtype" outline="false" fill="false">
+          <layout xsi:type="gmfgraph:BorderLayout"/>
+          <maximumSize dx="1000" dy="25"/>
+          <insets left="5" bottom="3" right="5"/>
+          <children xsi:type="gmfgraph:Rectangle" name="GroupTaskSubtypeCompartmentFigure" outline="false">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
+          </children>
+        </children>
+      </actualFigure>
+      <accessors accessor="getFigureGroupTaskLabelFigure" figure="//@figures.0/@descriptors.9/@actualFigure/@children.0/@children.0"/>
+      <accessors accessor="getGroupTaskTaskRolesCompartmentFigure" figure="//@figures.0/@descriptors.9/@actualFigure/@children.1/@children.0"/>
+      <accessors accessor="getGroupTaskTaskObjectsCompartmentFigure" figure="//@figures.0/@descriptors.9/@actualFigure/@children.1/@children.1"/>
+      <accessors accessor="getGroupTaskSubtypeCompartmentFigure" figure="//@figures.0/@descriptors.9/@actualFigure/@children.2/@children.0"/>
+      <accessors accessor="getGroupTaskModalityCompartmentFigure" figure="//@figures.0/@descriptors.9/@actualFigure/@children.0/@children.1"/>
+    </descriptors>
+    <descriptors name="AbstractTaskFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="AbstractTaskFigure">
+        <children xsi:type="gmfgraph:Rectangle" name="AbstractTaskFigure_Title" outline="false" fill="false">
+          <layout xsi:type="gmfgraph:BorderLayout"/>
+          <maximumSize dx="1000" dy="25"/>
+          <insets top="5" left="5" right="5"/>
+          <children xsi:type="gmfgraph:Label" name="AbstractTaskLabelFigure" text="AbstractTask">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="AbstractTaskModalityCompartmentFigure" outline="false">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="END"/>
+          </children>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="AbstractTaskFigure_Body" outline="false">
+          <layout xsi:type="gmfgraph:BorderLayout"/>
+          <children xsi:type="gmfgraph:Rectangle" name="AbstractTaskTaskRolesCompartmentFigure">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="AbstractTaskTaskObjectsCompartmentFigure">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData"/>
+          </children>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="AbstractTaskFigure_Subtype" outline="false" fill="false">
+          <layout xsi:type="gmfgraph:BorderLayout"/>
+          <maximumSize dx="1000" dy="25"/>
+          <insets left="5" bottom="3" right="5"/>
+          <children xsi:type="gmfgraph:Rectangle" name="AbstractTaskSubtypeCompartmentFigure" outline="false">
+            <layoutData xsi:type="gmfgraph:BorderLayoutData" alignment="BEGINNING"/>
+          </children>
+        </children>
+      </actualFigure>
+      <accessors accessor="getFigureAbstractTaskLabelFigure" figure="//@figures.0/@descriptors.10/@actualFigure/@children.0/@children.0"/>
+      <accessors accessor="getAbstractTaskTaskRolesCompartmentFigure" figure="//@figures.0/@descriptors.10/@actualFigure/@children.1/@children.0"/>
+      <accessors accessor="getAbstractTaskTaskObjectsCompartmentFigure" figure="//@figures.0/@descriptors.10/@actualFigure/@children.1/@children.1"/>
+      <accessors accessor="getAbstractTaskSubtypeCompartmentFigure" figure="//@figures.0/@descriptors.10/@actualFigure/@children.2/@children.0"/>
+      <accessors accessor="getAbstractTaskModalityCompartmentFigure" figure="//@figures.0/@descriptors.10/@actualFigure/@children.0/@children.1"/>
+    </descriptors>
+    <descriptors name="DetailedAbstractTaskFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="DetailedAbstractTaskFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="DetailedAbstractTaskLabelFigure" text="DetailedAbstractTask">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="DetailedAbstractTaskLearningNodesCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureDetailedAbstractTaskLabelFigure" figure="//@figures.0/@descriptors.11/@actualFigure/@children.0"/>
+      <accessors accessor="getDetailedAbstractTaskLearningNodesCompartmentFigure" figure="//@figures.0/@descriptors.11/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="ObjectFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="ObjectFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" green="179" blue="255"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="154" green="236" blue="255"/>
+        <preferredSize dx="100" dy="20"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ObjectLabelFigure" text="Object"/>
+      </actualFigure>
+      <accessors accessor="getFigureObjectLabelFigure" figure="//@figures.0/@descriptors.12/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="TemporalConditionFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="TemporalConditionFigure" outline="false">
+        <preferredSize dx="100" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="TemporalConditionLabelFigure" text="TemporalCondition"/>
+      </actualFigure>
+      <accessors accessor="getFigureTemporalConditionLabelFigure" figure="//@figures.0/@descriptors.13/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="NotificationFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="NotificationFigure" outline="false">
+        <preferredSize dx="100" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="NotificationLabelFigure" text="Notification"/>
+      </actualFigure>
+      <accessors accessor="getFigureNotificationLabelFigure" figure="//@figures.0/@descriptors.14/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ConditionFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ConditionFigure" outline="false">
+        <preferredSize dx="100" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="ConditionLabelFigure" text="Condition"/>
+      </actualFigure>
+      <accessors accessor="getFigureConditionLabelFigure" figure="//@figures.0/@descriptors.15/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="AssimilativeFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="AssimilativeFigure" outline="false">
+        <preferredSize dx="120" dy="16"/>
+        <children xsi:type="gmfgraph:Label" name="AssimilativeLabelFigure" text="Assimilative"/>
+      </actualFigure>
+      <accessors accessor="getFigureAssimilativeLabelFigure" figure="//@figures.0/@descriptors.16/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="InformationHandlingFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="InformationHandlingFigure" outline="false">
+        <preferredSize dx="120" dy="16"/>
+        <children xsi:type="gmfgraph:Label" name="InformationHandlingLabelFigure" text="InformationHandling"/>
+      </actualFigure>
+      <accessors accessor="getFigureInformationHandlingLabelFigure" figure="//@figures.0/@descriptors.17/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="AdaptiveFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="AdaptiveFigure" outline="false">
+        <preferredSize dx="120" dy="16"/>
+        <children xsi:type="gmfgraph:Label" name="AdaptiveLabelFigure" text="Adaptive"/>
+      </actualFigure>
+      <accessors accessor="getFigureAdaptiveLabelFigure" figure="//@figures.0/@descriptors.18/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="CommunicativeFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="CommunicativeFigure" outline="false">
+        <preferredSize dx="120" dy="16"/>
+        <children xsi:type="gmfgraph:Label" name="CommunicativeLabelFigure" text="Communicative"/>
+      </actualFigure>
+      <accessors accessor="getFigureCommunicativeLabelFigure" figure="//@figures.0/@descriptors.19/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ProductiveFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ProductiveFigure" outline="false">
+        <preferredSize dx="120" dy="16"/>
+        <children xsi:type="gmfgraph:Label" name="ProductiveLabelFigure" text="Productive"/>
+      </actualFigure>
+      <accessors accessor="getFigureProductiveLabelFigure" figure="//@figures.0/@descriptors.20/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ExperientialFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ExperientialFigure" outline="false">
+        <preferredSize dx="120" dy="16"/>
+        <children xsi:type="gmfgraph:Label" name="ExperientialLabelFigure" text="Experiential"/>
+      </actualFigure>
+      <accessors accessor="getFigureExperientialLabelFigure" figure="//@figures.0/@descriptors.21/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="EvaluativeFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="EvaluativeFigure" outline="false">
+        <preferredSize dx="120" dy="16"/>
+        <children xsi:type="gmfgraph:Label" name="EvaluativeLabelFigure" text="Evaluative"/>
+      </actualFigure>
+      <accessors accessor="getFigureEvaluativeLabelFigure" figure="//@figures.0/@descriptors.22/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="SupportFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="SupportFigure" outline="false">
+        <preferredSize dx="120" dy="16"/>
+        <children xsi:type="gmfgraph:Label" name="SupportLabelFigure" text="Support"/>
+      </actualFigure>
+      <accessors accessor="getFigureSupportLabelFigure" figure="//@figures.0/@descriptors.23/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="FaceToFaceFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="FaceToFaceFigure" qualifiedClassName="figures.FaceToFaceFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="FaceToFaceLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="FaceToFaceLabelFigure" text="FaceToFace"/>
+    </descriptors>
+    <descriptors name="ComputerSupportedFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="ComputerSupportedFigure" qualifiedClassName="figures.ComputerSupportedFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ComputerSupportedLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ComputerSupportedLabelFigure" text="ComputerSupported"/>
+    </descriptors>
+    <descriptors name="OnlineFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="OnlineFigure" qualifiedClassName="figures.OnlineFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="OnlineLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="OnlineLabelFigure" text="Online"/>
+    </descriptors>
+    <descriptors name="ToolFigure">
+      <actualFigure xsi:type="gmfgraph:ScalablePolygon" name="ToolFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ToolLabelFigure" text="Tool"/>
+        <template y="20"/>
+        <template x="20"/>
+        <template x="49"/>
+        <template x="69" y="20"/>
+        <template x="49" y="40"/>
+        <template x="20" y="40"/>
+      </actualFigure>
+      <accessors accessor="getFigureToolLabelFigure" figure="//@figures.0/@descriptors.30/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="GraphicalEditorFigure">
+      <actualFigure xsi:type="gmfgraph:ScalablePolygon" name="GraphicalEditorFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="GraphicalEditorLabelFigure" text="GraphicalEditor"/>
+        <template y="20"/>
+        <template x="20"/>
+        <template x="49"/>
+        <template x="69" y="20"/>
+        <template x="49" y="40"/>
+        <template x="20" y="40"/>
+      </actualFigure>
+      <accessors accessor="getFigureGraphicalEditorLabelFigure" figure="//@figures.0/@descriptors.31/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="TextEditorFigure">
+      <actualFigure xsi:type="gmfgraph:ScalablePolygon" name="TextEditorFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="TextEditorLabelFigure" text="TextEditor"/>
+        <template y="20"/>
+        <template x="20"/>
+        <template x="49"/>
+        <template x="69" y="20"/>
+        <template x="49" y="40"/>
+        <template x="20" y="40"/>
+      </actualFigure>
+      <accessors accessor="getFigureTextEditorLabelFigure" figure="//@figures.0/@descriptors.32/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="CodeEditorFigure">
+      <actualFigure xsi:type="gmfgraph:ScalablePolygon" name="CodeEditorFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="CodeEditorLabelFigure" text="CodeEditor"/>
+        <template y="20"/>
+        <template x="20"/>
+        <template x="49"/>
+        <template x="69" y="20"/>
+        <template x="49" y="40"/>
+        <template x="20" y="40"/>
+      </actualFigure>
+      <accessors accessor="getFigureCodeEditorLabelFigure" figure="//@figures.0/@descriptors.33/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="WebViewerFigure">
+      <actualFigure xsi:type="gmfgraph:ScalablePolygon" name="WebViewerFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="WebViewerLabelFigure" text="WebViewer"/>
+        <template y="20"/>
+        <template x="20"/>
+        <template x="49"/>
+        <template x="69" y="20"/>
+        <template x="49" y="40"/>
+        <template x="20" y="40"/>
+      </actualFigure>
+      <accessors accessor="getFigureWebViewerLabelFigure" figure="//@figures.0/@descriptors.34/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="SessionPanelFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="SessionPanelFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="SessionPanelLabelFigure" text="SessionPanel"/>
+      </actualFigure>
+      <accessors accessor="getFigureSessionPanelLabelFigure" figure="//@figures.0/@descriptors.35/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ChatFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="ChatFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ChatLabelFigure" text="Chat"/>
+      </actualFigure>
+      <accessors accessor="getFigureChatLabelFigure" figure="//@figures.0/@descriptors.36/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="TurnTakingToolFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="TurnTakingToolFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="TurnTakingToolLabelFigure" text="TurnTakingTool"/>
+      </actualFigure>
+      <accessors accessor="getFigureTurnTakingToolLabelFigure" figure="//@figures.0/@descriptors.37/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="TelepointerFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="TelepointerFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="TelepointerLabelFigure" text="Telepointer"/>
+      </actualFigure>
+      <accessors accessor="getFigureTelepointerLabelFigure" figure="//@figures.0/@descriptors.38/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="RadarViewFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="RadarViewFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="RadarViewLabelFigure" text="RadarView"/>
+      </actualFigure>
+      <accessors accessor="getFigureRadarViewLabelFigure" figure="//@figures.0/@descriptors.39/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="PropertiesFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="PropertiesFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="PropertiesLabelFigure" text="Properties"/>
+      </actualFigure>
+      <accessors accessor="getFigurePropertiesLabelFigure" figure="//@figures.0/@descriptors.40/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ConsoleFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="ConsoleFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ConsoleLabelFigure" text="Console"/>
+      </actualFigure>
+      <accessors accessor="getFigureConsoleLabelFigure" figure="//@figures.0/@descriptors.41/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ProblemsFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="ProblemsFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ProblemsLabelFigure" text="Problems"/>
+      </actualFigure>
+      <accessors accessor="getFigureProblemsLabelFigure" figure="//@figures.0/@descriptors.42/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="CTTDiagramFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="CTTDiagramFigure">
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="CTTDiagramLabelFigure" text="CTTDiagram">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="CTTDiagramCttTasksCompartmentFigure" outline="false"/>
+        <children xsi:type="gmfgraph:Rectangle" name="CTTDiagramMfCttNodesCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureCTTDiagramLabelFigure" figure="//@figures.0/@descriptors.43/@actualFigure/@children.0"/>
+      <accessors accessor="getCTTDiagramCttTasksCompartmentFigure" figure="//@figures.0/@descriptors.43/@actualFigure/@children.1"/>
+      <accessors accessor="getCTTDiagramMfCttNodesCompartmentFigure" figure="//@figures.0/@descriptors.43/@actualFigure/@children.2"/>
+    </descriptors>
+    <descriptors name="ExclusiveEditionFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="ExclusiveEditionFigure" qualifiedClassName="figures.ExclusiveEditionFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ExclusiveEditionLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ExclusiveEditionLabelFigure" text="ExclusiveEdition"/>
+    </descriptors>
+    <descriptors name="CollaborativeVisualizationFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="CollaborativeVisualizationFigure" qualifiedClassName="figures.CollaborativeVisualizationFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="CollaborativeVisualizationLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="CollaborativeVisualizationLabelFigure" text="CollaborativeVisualization"/>
+    </descriptors>
+    <descriptors name="IndividualVisualizationFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="IndividualVisualizationFigure" qualifiedClassName="figures.IndividualVisualizationFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="IndividualVisualizationLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="IndividualVisualizationLabelFigure" text="IndividualVisualization"/>
+    </descriptors>
+    <descriptors name="UserTaskFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="UserTaskFigure" qualifiedClassName="figures.UserTaskFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="UserTaskLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="UserTaskLabelFigure" text="UserTask"/>
+    </descriptors>
+    <descriptors name="CTTAbstractTaskFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="CTTAbstractTaskFigure" qualifiedClassName="figures.AbstractTaskFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="CTTAbstractTaskLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="CTTAbstractTaskLabelFigure" text="CTTAbstractTask"/>
+    </descriptors>
+    <descriptors name="InteractiveTaskFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="InteractiveTaskFigure" qualifiedClassName="figures.InteractiveTaskFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="InteractiveTaskLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="InteractiveTaskLabelFigure" text="InteractiveTask"/>
+    </descriptors>
+    <descriptors name="CTTCollaborativeTaskFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="CTTCollaborativeTaskFigure" qualifiedClassName="figures.CollaborativeTaskFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="CTTCollaborativeTaskLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="CTTCollaborativeTaskLabelFigure" text="CTTCollaborativeTask"/>
+    </descriptors>
+    <descriptors name="ApplicationTaskFigure">
+      <actualFigure xsi:type="gmfgraph:CustomFigure" name="ApplicationTaskFigure" qualifiedClassName="figures.ApplicationTaskFigure">
+        <preferredSize dx="16" dy="16"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ApplicationTaskLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ApplicationTaskLabelFigure" text="ApplicationTask"/>
+    </descriptors>
+    <descriptors name="MolefContent1Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefContent1Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefContent1LabelFigure" text="MolefContent1"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefContent1LabelFigure" figure="//@figures.0/@descriptors.60/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefContent2Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefContent2Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefContent2LabelFigure" text="MolefContent2"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefContent2LabelFigure" figure="//@figures.0/@descriptors.61/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefContent3Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefContent3Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefContent3LabelFigure" text="MolefContent3"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefContent3LabelFigure" figure="//@figures.0/@descriptors.62/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefContent4Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefContent4Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefContent4LabelFigure" text="MolefContent4"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefContent4LabelFigure" figure="//@figures.0/@descriptors.63/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefContent5Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefContent5Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefContent5LabelFigure" text="MolefContent5"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefContent5LabelFigure" figure="//@figures.0/@descriptors.64/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefContent6Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefContent6Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefContent6LabelFigure" text="MolefContent6"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefContent6LabelFigure" figure="//@figures.0/@descriptors.65/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefTActivities1Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefTActivities1Figure" outline="false">
+        <foregroundColor xsi:type="gmfgraph:RGBColor" red="255" green="255" blue="255"/>
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefTActivities1LabelFigure" text="MolefTActivities1"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefTActivities1LabelFigure" figure="//@figures.0/@descriptors.66/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefTActivities2Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefTActivities2Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefTActivities2LabelFigure" text="MolefTActivities2"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefTActivities2LabelFigure" figure="//@figures.0/@descriptors.67/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefTActivities3Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefTActivities3Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefTActivities3LabelFigure" text="MolefTActivities3"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefTActivities3LabelFigure" figure="//@figures.0/@descriptors.68/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefTActivities4Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefTActivities4Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefTActivities4LabelFigure" text="MolefTActivities4"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefTActivities4LabelFigure" figure="//@figures.0/@descriptors.69/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefTActivities5Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefTActivities5Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefTActivities5LabelFigure" text="MolefTActivities5"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefTActivities5LabelFigure" figure="//@figures.0/@descriptors.70/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefTActivities6Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefTActivities6Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefTActivities6LabelFigure" text="MolefTActivities6"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefTActivities6LabelFigure" figure="//@figures.0/@descriptors.71/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefTActivities7Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefTActivities7Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefTActivities7LabelFigure" text="MolefTActivities7"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefTActivities7LabelFigure" figure="//@figures.0/@descriptors.72/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefTActivities8Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefTActivities8Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefTActivities8LabelFigure" text="MolefTActivities8"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefTActivities8LabelFigure" figure="//@figures.0/@descriptors.73/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefSocial1Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefSocial1Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefSocial1LabelFigure" text="MolefSocial1"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefSocial1LabelFigure" figure="//@figures.0/@descriptors.74/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefSocial2Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefSocial2Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefSocial2LabelFigure" text="MolefSocial2"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefSocial2LabelFigure" figure="//@figures.0/@descriptors.75/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefSocial3Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefSocial3Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefSocial3LabelFigure" text="MolefSocial3"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefSocial3LabelFigure" figure="//@figures.0/@descriptors.76/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefSocial4Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefSocial4Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefSocial4LabelFigure" text="MolefSocial4"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefSocial4LabelFigure" figure="//@figures.0/@descriptors.77/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefPersonalization1Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefPersonalization1Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefPersonalization1LabelFigure" text="MolefPersonalization1"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefPersonalization1LabelFigure" figure="//@figures.0/@descriptors.78/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefPersonalization2Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefPersonalization2Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefPersonalization2LabelFigure" text="MolefPersonalization2"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefPersonalization2LabelFigure" figure="//@figures.0/@descriptors.79/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefPersonalization3Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefPersonalization3Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefPersonalization3LabelFigure" text="MolefPersonalization3"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefPersonalization3LabelFigure" figure="//@figures.0/@descriptors.80/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefPersonalization4Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefPersonalization4Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefPersonalization4LabelFigure" text="MolefPersonalization4"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefPersonalization4LabelFigure" figure="//@figures.0/@descriptors.81/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefPersonalization5Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefPersonalization5Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefPersonalization5LabelFigure" text="MolefPersonalization5"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefPersonalization5LabelFigure" figure="//@figures.0/@descriptors.82/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefMultimedia1Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefMultimedia1Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefMultimedia1LabelFigure" text="MolefMultimedia1"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefMultimedia1LabelFigure" figure="//@figures.0/@descriptors.83/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefMultimedia2Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefMultimedia2Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefMultimedia2LabelFigure" text="MolefMultimedia2"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefMultimedia2LabelFigure" figure="//@figures.0/@descriptors.84/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefMultimedia3Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefMultimedia3Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefMultimedia3LabelFigure" text="MolefMultimedia3"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefMultimedia3LabelFigure" figure="//@figures.0/@descriptors.85/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefMultimedia4Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefMultimedia4Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefMultimedia4LabelFigure" text="MolefMultimedia4"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefMultimedia4LabelFigure" figure="//@figures.0/@descriptors.86/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefMultimedia5Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefMultimedia5Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefMultimedia5LabelFigure" text="MolefMultimedia5"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefMultimedia5LabelFigure" figure="//@figures.0/@descriptors.87/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefMultimedia6Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefMultimedia6Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefMultimedia6LabelFigure" text="MolefMultimedia6"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefMultimedia6LabelFigure" figure="//@figures.0/@descriptors.88/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="MolefMultimedia7Figure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="MolefMultimedia7Figure" outline="false">
+        <preferredSize dx="605" dy="18"/>
+        <children xsi:type="gmfgraph:Label" name="MolefMultimedia7LabelFigure" text="MolefMultimedia7"/>
+      </actualFigure>
+      <accessors accessor="getFigureMolefMultimedia7LabelFigure" figure="//@figures.0/@descriptors.89/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="InheritanceFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="InheritanceFigure" targetDecoration="//@figures.0/@figures.0">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="InheritanceLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="InheritanceLabelLabel" text="Inheritance"/>
+    </descriptors>
+    <descriptors name="ActingFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ActingFigure" lineKind="LINE_DASH" targetDecoration="//@figures.0/@figures.1">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ActingLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ActingLabelLabel" text="Acting"/>
+    </descriptors>
+    <descriptors name="AssociationFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="AssociationFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="AssociationLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="AssociationLabelLabel" text="Association"/>
+    </descriptors>
+    <descriptors name="EnablingWOInformationFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EnablingWOInformationFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="EnablingWOInformationLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="EnablingWOInformationLabelLabel" text="EnablingWOInformation"/>
+    </descriptors>
+    <descriptors name="EnablingWInformationFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EnablingWInformationFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="EnablingWInformationLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="EnablingWInformationLabelLabel" text="EnablingWInformation"/>
+    </descriptors>
+    <descriptors name="ChoiceFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ChoiceFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ChoiceLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ChoiceLabelLabel" text="Choice"/>
+    </descriptors>
+    <descriptors name="ConcurrencyFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ConcurrencyFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ConcurrencyLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ConcurrencyLabelLabel" text="Concurrency"/>
+    </descriptors>
+    <descriptors name="TraceabilityFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="TraceabilityFigure" lineKind="LINE_DASH" targetDecoration="//@figures.0/@figures.2">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="AggregationFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="AggregationFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="EnablingFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EnablingFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="EnablingLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="EnablingLabelLabel" text="Enabling"/>
+    </descriptors>
+    <descriptors name="DisablingFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="DisablingFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="DisablingLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="DisablingLabelLabel" text="Disabling"/>
+    </descriptors>
+    <descriptors name="EnablingWithInformationPassingFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EnablingWithInformationPassingFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="EnablingWithInformationPassingLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="EnablingWithInformationPassingLabelLabel" text="EnablingWithInformationPassing"/>
+    </descriptors>
+    <descriptors name="DisablingWithInformationPassingFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="DisablingWithInformationPassingFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="DisablingWithInformationPassingLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="DisablingWithInformationPassingLabelLabel" text="DisablingWithInformationPassing"/>
+    </descriptors>
+    <descriptors name="IndependentConcurrencyFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="IndependentConcurrencyFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="IndependentConcurrencyLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="IndependentConcurrencyLabelLabel" text="IndependentConcurrency"/>
+    </descriptors>
+    <descriptors name="OrderIndependenceFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OrderIndependenceFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="OrderIndependenceLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="OrderIndependenceLabelLabel" text="OrderIndependence"/>
+    </descriptors>
+    <descriptors name="SuspendResumeFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="SuspendResumeFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="SuspendResumeLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="SuspendResumeLabelLabel" text="SuspendResume"/>
+    </descriptors>
+    <descriptors name="ConcurrencyWithInformationPassingFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ConcurrencyWithInformationPassingFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ConcurrencyWithInformationPassingLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ConcurrencyWithInformationPassingLabelLabel" text="ConcurrencyWithInformationPassing"/>
+    </descriptors>
+    <descriptors name="DeterministicChoiceFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="DeterministicChoiceFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="DeterministicChoiceLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="DeterministicChoiceLabelLabel" text="DeterministicChoice"/>
+    </descriptors>
+    <descriptors name="UndeterministicChoiceFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="UndeterministicChoiceFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="UndeterministicChoiceLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="UndeterministicChoiceLabelLabel" text="UndeterministicChoice"/>
+    </descriptors>
+  </figures>
+  <nodes name="Sociogram" figure="SociogramFigure"/>
+  <nodes name="Rol" figure="RolFigure"/>
+  <nodes name="Group" figure="GroupFigure"/>
+  <nodes name="LearningDiagram" figure="LearningDiagramFigure"/>
+  <nodes name="Init" figure="InitFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="End" figure="EndFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="IndividualTask" figure="IndividualTaskFigure"/>
+  <nodes name="GroupTask" figure="GroupTaskFigure"/>
+  <nodes name="AbstractTask" figure="AbstractTaskFigure"/>
+  <nodes name="DetailedAbstractTask" figure="DetailedAbstractTaskFigure"/>
+  <nodes name="Object" figure="ObjectFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="100" dy="20"/>
+    </facets>
+  </nodes>
+  <nodes name="TemporalCondition" figure="TemporalConditionFigure"/>
+  <nodes name="Notification" figure="NotificationFigure"/>
+  <nodes name="Condition" figure="ConditionFigure"/>
+  <nodes name="Assimilative" figure="AssimilativeFigure"/>
+  <nodes name="InformationHandling" figure="InformationHandlingFigure"/>
+  <nodes name="Adaptive" figure="AdaptiveFigure"/>
+  <nodes name="Communicative" figure="CommunicativeFigure"/>
+  <nodes name="Productive" figure="ProductiveFigure"/>
+  <nodes name="Experiential" figure="ExperientialFigure"/>
+  <nodes name="Evaluative" figure="EvaluativeFigure"/>
+  <nodes name="Support" figure="SupportFigure"/>
+  <nodes name="FaceToFace" figure="FaceToFaceFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="ComputerSupported" figure="ComputerSupportedFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="Online" figure="OnlineFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="Tool" figure="ToolFigure" affixedParentSide="NORTH"/>
+  <nodes name="GraphicalEditor" figure="GraphicalEditorFigure" affixedParentSide="NORTH"/>
+  <nodes name="TextEditor" figure="TextEditorFigure" affixedParentSide="NORTH"/>
+  <nodes name="CodeEditor" figure="CodeEditorFigure" affixedParentSide="NORTH"/>
+  <nodes name="WebViewer" figure="WebViewerFigure" affixedParentSide="NORTH"/>
+  <nodes name="SessionPanel" figure="SessionPanelFigure"/>
+  <nodes name="Chat" figure="ChatFigure"/>
+  <nodes name="TurnTakingTool" figure="TurnTakingToolFigure"/>
+  <nodes name="Telepointer" figure="TelepointerFigure"/>
+  <nodes name="RadarView" figure="RadarViewFigure"/>
+  <nodes name="Properties" figure="PropertiesFigure"/>
+  <nodes name="Console" figure="ConsoleFigure"/>
+  <nodes name="Problems" figure="ProblemsFigure"/>
+  <nodes name="CTTDiagram" figure="CTTDiagramFigure"/>
+  <nodes name="ExclusiveEdition" figure="ExclusiveEditionFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="CollaborativeVisualization" figure="CollaborativeVisualizationFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="IndividualVisualization" figure="IndividualVisualizationFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="UserTask" figure="UserTaskFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="CTTAbstractTask" figure="CTTAbstractTaskFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="InteractiveTask" figure="InteractiveTaskFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="CTTCollaborativeTask" figure="CTTCollaborativeTaskFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="ApplicationTask" figure="ApplicationTaskFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="16" dy="16"/>
+    </facets>
+  </nodes>
+  <nodes name="MolefContent1" figure="MolefContent1Figure"/>
+  <nodes name="MolefContent2" figure="MolefContent2Figure"/>
+  <nodes name="MolefContent3" figure="MolefContent3Figure"/>
+  <nodes name="MolefContent4" figure="MolefContent4Figure"/>
+  <nodes name="MolefContent5" figure="MolefContent5Figure"/>
+  <nodes name="MolefContent6" figure="MolefContent6Figure"/>
+  <nodes name="MolefTActivities1" figure="MolefTActivities1Figure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="600" dy="18"/>
+    </facets>
+  </nodes>
+  <nodes name="MolefTActivities2" figure="MolefTActivities2Figure"/>
+  <nodes name="MolefTActivities3" figure="MolefTActivities3Figure"/>
+  <nodes name="MolefTActivities4" figure="MolefTActivities4Figure"/>
+  <nodes name="MolefTActivities5" figure="MolefTActivities5Figure"/>
+  <nodes name="MolefTActivities6" figure="MolefTActivities6Figure"/>
+  <nodes name="MolefTActivities7" figure="MolefTActivities7Figure"/>
+  <nodes name="MolefTActivities8" figure="MolefTActivities8Figure"/>
+  <nodes name="MolefSocial1" figure="MolefSocial1Figure"/>
+  <nodes name="MolefSocial2" figure="MolefSocial2Figure"/>
+  <nodes name="MolefSocial3" figure="MolefSocial3Figure"/>
+  <nodes name="MolefSocial4" figure="MolefSocial4Figure"/>
+  <nodes name="MolefPersonalization1" figure="MolefPersonalization1Figure"/>
+  <nodes name="MolefPersonalization2" figure="MolefPersonalization2Figure"/>
+  <nodes name="MolefPersonalization3" figure="MolefPersonalization3Figure"/>
+  <nodes name="MolefPersonalization4" figure="MolefPersonalization4Figure"/>
+  <nodes name="MolefPersonalization5" figure="MolefPersonalization5Figure"/>
+  <nodes name="MolefMultimedia1" figure="MolefMultimedia1Figure"/>
+  <nodes name="MolefMultimedia2" figure="MolefMultimedia2Figure"/>
+  <nodes name="MolefMultimedia3" figure="MolefMultimedia3Figure"/>
+  <nodes name="MolefMultimedia4" figure="MolefMultimedia4Figure"/>
+  <nodes name="MolefMultimedia5" figure="MolefMultimedia5Figure"/>
+  <nodes name="MolefMultimedia6" figure="MolefMultimedia6Figure"/>
+  <nodes name="MolefMultimedia7" figure="MolefMultimedia7Figure"/>
+  <connections name="Inheritance" figure="InheritanceFigure"/>
+  <connections name="Acting" figure="ActingFigure"/>
+  <connections name="Association" figure="AssociationFigure"/>
+  <connections name="EnablingWOInformation" figure="EnablingWOInformationFigure"/>
+  <connections name="EnablingWInformation" figure="EnablingWInformationFigure"/>
+  <connections name="Choice" figure="ChoiceFigure"/>
+  <connections name="Concurrency" figure="ConcurrencyFigure"/>
+  <connections name="Traceability" figure="TraceabilityFigure"/>
+  <connections name="Aggregation" figure="AggregationFigure"/>
+  <connections name="Enabling" figure="EnablingFigure"/>
+  <connections name="Disabling" figure="DisablingFigure"/>
+  <connections name="EnablingWithInformationPassing" figure="EnablingWithInformationPassingFigure"/>
+  <connections name="DisablingWithInformationPassing" figure="DisablingWithInformationPassingFigure"/>
+  <connections name="IndependentConcurrency" figure="IndependentConcurrencyFigure"/>
+  <connections name="OrderIndependence" figure="OrderIndependenceFigure"/>
+  <connections name="SuspendResume" figure="SuspendResumeFigure"/>
+  <connections name="ConcurrencyWithInformationPassing" figure="ConcurrencyWithInformationPassingFigure"/>
+  <connections name="DeterministicChoice" figure="DeterministicChoiceFigure"/>
+  <connections name="UndeterministicChoice" figure="UndeterministicChoiceFigure"/>
+  <compartments name="SociogramItsSociogramNodesCompartment" figure="SociogramFigure" accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+  <compartments name="SociogramMfContentNodesCompartment" figure="SociogramFigure" collapsible="true" accessor="//@figures.0/@descriptors.0/@accessors.2"/>
+  <compartments name="LearningDiagramLearningNodesCompartment" figure="LearningDiagramFigure" collapsible="true" accessor="//@figures.0/@descriptors.3/@accessors.1"/>
+  <compartments name="LearningDiagramMfLearningNodesCompartment" figure="LearningDiagramFigure" collapsible="true" accessor="//@figures.0/@descriptors.3/@accessors.2"/>
+  <compartments name="IndividualTaskTaskRolesCompartment" figure="IndividualTaskFigure" collapsible="true" accessor="//@figures.0/@descriptors.8/@accessors.1"/>
+  <compartments name="IndividualTaskTaskObjectsCompartment" figure="IndividualTaskFigure" collapsible="true" accessor="//@figures.0/@descriptors.8/@accessors.2"/>
+  <compartments name="IndividualTaskSubtypeCompartment" figure="IndividualTaskFigure" accessor="//@figures.0/@descriptors.8/@accessors.3"/>
+  <compartments name="IndividualTaskModalityCompartment" figure="IndividualTaskFigure" accessor="//@figures.0/@descriptors.8/@accessors.4"/>
+  <compartments name="GroupTaskTaskRolesCompartment" figure="GroupTaskFigure" collapsible="true" accessor="//@figures.0/@descriptors.9/@accessors.1"/>
+  <compartments name="GroupTaskTaskObjectsCompartment" figure="GroupTaskFigure" collapsible="true" accessor="//@figures.0/@descriptors.9/@accessors.2"/>
+  <compartments name="GroupTaskSubtypeCompartment" figure="GroupTaskFigure" accessor="//@figures.0/@descriptors.9/@accessors.3"/>
+  <compartments name="GroupTaskModalityCompartment" figure="GroupTaskFigure" accessor="//@figures.0/@descriptors.9/@accessors.4"/>
+  <compartments name="AbstractTaskTaskRolesCompartment" figure="AbstractTaskFigure" collapsible="true" accessor="//@figures.0/@descriptors.10/@accessors.1"/>
+  <compartments name="AbstractTaskTaskObjectsCompartment" figure="AbstractTaskFigure" collapsible="true" accessor="//@figures.0/@descriptors.10/@accessors.2"/>
+  <compartments name="AbstractTaskSubtypeCompartment" figure="AbstractTaskFigure" accessor="//@figures.0/@descriptors.10/@accessors.3"/>
+  <compartments name="AbstractTaskModalityCompartment" figure="AbstractTaskFigure" accessor="//@figures.0/@descriptors.10/@accessors.4"/>
+  <compartments name="DetailedAbstractTaskLearningNodesCompartment" figure="DetailedAbstractTaskFigure" collapsible="true" accessor="//@figures.0/@descriptors.11/@accessors.1"/>
+  <compartments name="CTTDiagramCttTasksCompartment" figure="CTTDiagramFigure" collapsible="true" accessor="//@figures.0/@descriptors.43/@accessors.1"/>
+  <compartments name="CTTDiagramMfCttNodesCompartment" figure="CTTDiagramFigure" collapsible="true" accessor="//@figures.0/@descriptors.43/@accessors.2"/>
+  <labels name="SociogramLabel" figure="SociogramFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="RolLabel" figure="RolFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="GroupLabel" figure="GroupFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="LearningDiagramLabel" figure="LearningDiagramFigure" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <labels name="InitLabel" figure="InitLabelFigure" elementIcon="false"/>
+  <labels name="EndLabel" figure="EndLabelFigure" elementIcon="false"/>
+  <labels name="IndividualTaskLabel" figure="IndividualTaskFigure" accessor="//@figures.0/@descriptors.8/@accessors.0"/>
+  <labels name="GroupTaskLabel" figure="GroupTaskFigure" accessor="//@figures.0/@descriptors.9/@accessors.0"/>
+  <labels name="AbstractTaskLabel" figure="AbstractTaskFigure" accessor="//@figures.0/@descriptors.10/@accessors.0"/>
+  <labels name="DetailedAbstractTaskLabel" figure="DetailedAbstractTaskFigure" accessor="//@figures.0/@descriptors.11/@accessors.0"/>
+  <labels name="ObjectLabel" figure="ObjectFigure" elementIcon="false" accessor="//@figures.0/@descriptors.12/@accessors.0"/>
+  <labels name="TemporalConditionLabel" figure="TemporalConditionFigure" accessor="//@figures.0/@descriptors.13/@accessors.0"/>
+  <labels name="NotificationLabel" figure="NotificationFigure" accessor="//@figures.0/@descriptors.14/@accessors.0"/>
+  <labels name="ConditionLabel" figure="ConditionFigure" elementIcon="false" accessor="//@figures.0/@descriptors.15/@accessors.0"/>
+  <labels name="AssimilativeLabel" figure="AssimilativeFigure" elementIcon="false" accessor="//@figures.0/@descriptors.16/@accessors.0"/>
+  <labels name="InformationHandlingLabel" figure="InformationHandlingFigure" elementIcon="false" accessor="//@figures.0/@descriptors.17/@accessors.0"/>
+  <labels name="AdaptiveLabel" figure="AdaptiveFigure" elementIcon="false" accessor="//@figures.0/@descriptors.18/@accessors.0"/>
+  <labels name="CommunicativeLabel" figure="CommunicativeFigure" elementIcon="false" accessor="//@figures.0/@descriptors.19/@accessors.0"/>
+  <labels name="ProductiveLabel" figure="ProductiveFigure" elementIcon="false" accessor="//@figures.0/@descriptors.20/@accessors.0"/>
+  <labels name="ExperientialLabel" figure="ExperientialFigure" elementIcon="false" accessor="//@figures.0/@descriptors.21/@accessors.0"/>
+  <labels name="EvaluativeLabel" figure="EvaluativeFigure" elementIcon="false" accessor="//@figures.0/@descriptors.22/@accessors.0"/>
+  <labels name="SupportLabel" figure="SupportFigure" elementIcon="false" accessor="//@figures.0/@descriptors.23/@accessors.0"/>
+  <labels name="FaceToFaceLabel" figure="FaceToFaceLabelFigure" elementIcon="false"/>
+  <labels name="ComputerSupportedLabel" figure="ComputerSupportedLabelFigure" elementIcon="false"/>
+  <labels name="OnlineLabel" figure="OnlineLabelFigure" elementIcon="false"/>
+  <labels name="ToolLabel" figure="ToolFigure" elementIcon="false" accessor="//@figures.0/@descriptors.30/@accessors.0"/>
+  <labels name="GraphicalEditorLabel" figure="GraphicalEditorFigure" elementIcon="false" accessor="//@figures.0/@descriptors.31/@accessors.0"/>
+  <labels name="TextEditorLabel" figure="TextEditorFigure" elementIcon="false" accessor="//@figures.0/@descriptors.32/@accessors.0"/>
+  <labels name="CodeEditorLabel" figure="CodeEditorFigure" elementIcon="false" accessor="//@figures.0/@descriptors.33/@accessors.0"/>
+  <labels name="WebViewerLabel" figure="WebViewerFigure" elementIcon="false" accessor="//@figures.0/@descriptors.34/@accessors.0"/>
+  <labels name="SessionPanelLabel" figure="SessionPanelFigure" elementIcon="false" accessor="//@figures.0/@descriptors.35/@accessors.0"/>
+  <labels name="ChatLabel" figure="ChatFigure" elementIcon="false" accessor="//@figures.0/@descriptors.36/@accessors.0"/>
+  <labels name="TurnTakingToolLabel" figure="TurnTakingToolFigure" elementIcon="false" accessor="//@figures.0/@descriptors.37/@accessors.0"/>
+  <labels name="TelepointerLabel" figure="TelepointerFigure" elementIcon="false" accessor="//@figures.0/@descriptors.38/@accessors.0"/>
+  <labels name="RadarViewLabel" figure="RadarViewFigure" elementIcon="false" accessor="//@figures.0/@descriptors.39/@accessors.0"/>
+  <labels name="PropertiesLabel" figure="PropertiesFigure" elementIcon="false" accessor="//@figures.0/@descriptors.40/@accessors.0"/>
+  <labels name="ConsoleLabel" figure="ConsoleFigure" elementIcon="false" accessor="//@figures.0/@descriptors.41/@accessors.0"/>
+  <labels name="ProblemsLabel" figure="ProblemsFigure" elementIcon="false" accessor="//@figures.0/@descriptors.42/@accessors.0"/>
+  <labels name="CTTDiagramLabel" figure="CTTDiagramFigure" accessor="//@figures.0/@descriptors.43/@accessors.0"/>
+  <labels name="ExclusiveEditionLabel" figure="ExclusiveEditionLabelFigure" elementIcon="false"/>
+  <labels name="CollaborativeVisualizationLabel" figure="CollaborativeVisualizationLabelFigure" elementIcon="false"/>
+  <labels name="IndividualVisualizationLabel" figure="IndividualVisualizationLabelFigure" elementIcon="false"/>
+  <labels name="UserTaskLabel" figure="UserTaskLabelFigure" elementIcon="false"/>
+  <labels name="CTTAbstractTaskLabel" figure="CTTAbstractTaskLabelFigure" elementIcon="false"/>
+  <labels name="InteractiveTaskLabel" figure="InteractiveTaskLabelFigure" elementIcon="false"/>
+  <labels name="CTTCollaborativeTaskLabel" figure="CTTCollaborativeTaskLabelFigure" elementIcon="false"/>
+  <labels name="ApplicationTaskLabel" figure="ApplicationTaskLabelFigure" elementIcon="false"/>
+  <labels name="MolefContent1Label" figure="MolefContent1Figure" accessor="//@figures.0/@descriptors.60/@accessors.0"/>
+  <labels name="MolefContent2Label" figure="MolefContent2Figure" accessor="//@figures.0/@descriptors.61/@accessors.0"/>
+  <labels name="MolefContent3Label" figure="MolefContent3Figure" accessor="//@figures.0/@descriptors.62/@accessors.0"/>
+  <labels name="MolefContent4Label" figure="MolefContent4Figure" accessor="//@figures.0/@descriptors.63/@accessors.0"/>
+  <labels name="MolefContent5Label" figure="MolefContent5Figure" accessor="//@figures.0/@descriptors.64/@accessors.0"/>
+  <labels name="MolefContent6Label" figure="MolefContent6Figure" accessor="//@figures.0/@descriptors.65/@accessors.0"/>
+  <labels name="MolefTActivities1Label" figure="MolefTActivities1Figure" accessor="//@figures.0/@descriptors.66/@accessors.0"/>
+  <labels name="MolefTActivities2Label" figure="MolefTActivities2Figure" accessor="//@figures.0/@descriptors.67/@accessors.0"/>
+  <labels name="MolefTActivities3Label" figure="MolefTActivities3Figure" accessor="//@figures.0/@descriptors.68/@accessors.0"/>
+  <labels name="MolefTActivities4Label" figure="MolefTActivities4Figure" accessor="//@figures.0/@descriptors.69/@accessors.0"/>
+  <labels name="MolefTActivities5Label" figure="MolefTActivities5Figure" accessor="//@figures.0/@descriptors.70/@accessors.0"/>
+  <labels name="MolefTActivities6Label" figure="MolefTActivities6Figure" accessor="//@figures.0/@descriptors.71/@accessors.0"/>
+  <labels name="MolefTActivities7Label" figure="MolefTActivities7Figure" accessor="//@figures.0/@descriptors.72/@accessors.0"/>
+  <labels name="MolefTActivities8Label" figure="MolefTActivities8Figure" accessor="//@figures.0/@descriptors.73/@accessors.0"/>
+  <labels name="MolefSocial1Label" figure="MolefSocial1Figure" accessor="//@figures.0/@descriptors.74/@accessors.0"/>
+  <labels name="MolefSocial2Label" figure="MolefSocial2Figure" accessor="//@figures.0/@descriptors.75/@accessors.0"/>
+  <labels name="MolefSocial3Label" figure="MolefSocial3Figure" accessor="//@figures.0/@descriptors.76/@accessors.0"/>
+  <labels name="MolefSocial4Label" figure="MolefSocial4Figure" accessor="//@figures.0/@descriptors.77/@accessors.0"/>
+  <labels name="MolefPersonalization1Label" figure="MolefPersonalization1Figure" accessor="//@figures.0/@descriptors.78/@accessors.0"/>
+  <labels name="MolefPersonalization2Label" figure="MolefPersonalization2Figure" accessor="//@figures.0/@descriptors.79/@accessors.0"/>
+  <labels name="MolefPersonalization3Label" figure="MolefPersonalization3Figure" accessor="//@figures.0/@descriptors.80/@accessors.0"/>
+  <labels name="MolefPersonalization4Label" figure="MolefPersonalization4Figure" accessor="//@figures.0/@descriptors.81/@accessors.0"/>
+  <labels name="MolefPersonalization5Label" figure="MolefPersonalization5Figure" accessor="//@figures.0/@descriptors.82/@accessors.0"/>
+  <labels name="MolefMultimedia1Label" figure="MolefMultimedia1Figure" accessor="//@figures.0/@descriptors.83/@accessors.0"/>
+  <labels name="MolefMultimedia2Label" figure="MolefMultimedia2Figure" accessor="//@figures.0/@descriptors.84/@accessors.0"/>
+  <labels name="MolefMultimedia3Label" figure="MolefMultimedia3Figure" accessor="//@figures.0/@descriptors.85/@accessors.0"/>
+  <labels name="MolefMultimedia4Label" figure="MolefMultimedia4Figure" accessor="//@figures.0/@descriptors.86/@accessors.0"/>
+  <labels name="MolefMultimedia5Label" figure="MolefMultimedia5Figure" accessor="//@figures.0/@descriptors.87/@accessors.0"/>
+  <labels name="MolefMultimedia6Label" figure="MolefMultimedia6Figure" accessor="//@figures.0/@descriptors.88/@accessors.0"/>
+  <labels name="MolefMultimedia7Label" figure="MolefMultimedia7Figure" accessor="//@figures.0/@descriptors.89/@accessors.0"/>
+  <labels name="InheritanceLabel" figure="InheritanceLabelFigure" elementIcon="false"/>
+  <labels name="ActingLabel" figure="ActingLabelFigure" elementIcon="false"/>
+  <labels name="AssociationLabel" figure="AssociationLabelFigure" elementIcon="false"/>
+  <labels name="EnablingWOInformationLabel" figure="EnablingWOInformationLabelFigure" elementIcon="false"/>
+  <labels name="EnablingWInformationLabel" figure="EnablingWInformationLabelFigure" elementIcon="false"/>
+  <labels name="ChoiceLabel" figure="ChoiceLabelFigure" elementIcon="false"/>
+  <labels name="ConcurrencyLabel" figure="ConcurrencyLabelFigure" elementIcon="false"/>
+  <labels name="EnablingLabel" figure="EnablingLabelFigure" elementIcon="false"/>
+  <labels name="DisablingLabel" figure="DisablingLabelFigure" elementIcon="false"/>
+  <labels name="EnablingWithInformationPassingLabel" figure="EnablingWithInformationPassingLabelFigure" elementIcon="false"/>
+  <labels name="DisablingWithInformationPassingLabel" figure="DisablingWithInformationPassingLabelFigure" elementIcon="false"/>
+  <labels name="IndependentConcurrencyLabel" figure="IndependentConcurrencyLabelFigure" elementIcon="false"/>
+  <labels name="OrderIndependenceLabel" figure="OrderIndependenceLabelFigure" elementIcon="false"/>
+  <labels name="SuspendResumeLabel" figure="SuspendResumeLabelFigure" elementIcon="false"/>
+  <labels name="ConcurrencyWithInformationPassingLabel" figure="ConcurrencyWithInformationPassingLabelFigure" elementIcon="false"/>
+  <labels name="DeterministicChoiceLabel" figure="DeterministicChoiceLabelFigure" elementIcon="false"/>
+  <labels name="UndeterministicChoiceLabel" figure="UndeterministicChoiceLabelFigure" elementIcon="false"/>
+</gmfgraph:Canvas>
