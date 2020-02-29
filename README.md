@@ -3,7 +3,7 @@ The Learn-CIAT graphical editor is the Eclipse platform technological support fo
 
 To run it, make sure you have installed the next components:
 
-Eclipse Modeling Tools - Eclipse Neon 3: https://www.eclipse.org/downloads/packages/release/neon/3/eclipse
+Eclipse Modeling Tools - Eclipse Neon 3: https://www.eclipse.org/downloads/packages/release/neon/3
   
 Epsilon 1.5.0: https://www.eclipse.org/epsilon/download/?version=1.5 / [URI] https://download.eclipse.org/epsilon/1.5/updates/
   
