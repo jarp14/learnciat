@@ -1,0 +1,324 @@
+package spaceclipse.space;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+[% 	if (g.EGL_Tool.isKindOf(WebViewer)) { %]
+import java.net.URL;
+
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.browser.IWebBrowser;
+import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
+[%	}	%]
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.part.FileEditorInput;
+
+import spaceclipse.Activator;
+import spaceclipse.collab.CUtilities;
+import spaceclipse.ecf.SpaceClient;
+[% 	if (g.EGL_Tool.isKindOf(GraphicalEditor)) { %]
+	[%	if (g.EGL_Tool.sessionPanel.isDefined() and g.EGL_Tool.telepointer.isDefined()) {	%]
+import spaceclipse.collab.messages.TelepointerMessage;
+	[%	}	%]
+import org.eclipse.gef.ui.parts.GraphicalEditor;
+import spaceclipse.collab.messages.ModelMessage;
+[%	}	%]
+
+[% 	if (g.EGL_Tool.chat.isDefined()) { %]
+import spaceclipse.herramientas.ChatEstructuradoSWT;
+[%	}	%]
+import spaceclipse.collab.interfaces.ICollaborativeEditor;
+import spaceclipse.collab.messages.FileMessage;
+import spaceclipse.herramientas.IEditor;
+[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) { %]
+	[% 	if (not g.EGL_Tool.isKindOf(GraphicalEditor)) { %]
+import spaceclipse.herramientas.Editor;
+	[%	}	%]
+[% 	if (g.EGL_Tool.turnTakingTool.isDefined()) {	%]
+import spaceclipse.herramientas.PanelPropuestas;
+[%	}	} 	%]
+[% 	if (g.EGL_Tool.sessionPanel.isDefined()) {	%]
+import spaceclipse.herramientas.PanelSesion;
+[%	}	%]
+import spaceclipse.herramientas.ConstPanelTurno;
+import spaceclipse.herramientas.IAplicacion;
+import spaceclipse.herramientas.MensajeEstado;
+import spaceclipse.mensajes.MSNuevoUsuario;
+import spaceclipse.perspectives.Perspectiva;
+import spaceclipse.sincronizacion.FConectarSWT;
+import spaceclipse.sincronizacion.ICliente;
+import spaceclipse.sincronizacion.Mensaje;
+import spaceclipse.util.ConsMensajes;
+
+public class SpacEclipse implements IAplicacion, ICliente {
+	[% 	if (g.EGL_Tool.isKindOf(TextEditor) or g.EGL_Tool.isKindOf(CodeEditor)) {	%]
+	public static final short MENSAJE_FICHERO = 1001;
+	[% 	} 	%]
+	[% 	if (g.EGL_Tool.isKindOf(GraphicalEditor)) {		%]
+	public static final short MENSAJE_MODELO = 1001;
+	[%	if (g.EGL_Tool.sessionPanel.isDefined() and g.EGL_Tool.telepointer.isDefined()) {	%]
+	public static final short MENSAJE_TELEPUNTERO = 2001;
+	[% 	} 	} 	%]
+	
+	private static String canalAplic = "space";
+	private SpaceClient cliente;
+	private String usuario;
+
+	[% 	if (g.EGL_Tool.sessionPanel.isDefined()) {	%]
+	private PanelSesion panelsesion = null;
+	[% 	} 	%]
+	[% 	if (g.EGL_Tool.chat.isDefined()) {	%]
+	private ChatEstructuradoSWT chat = null;
+	[% 	} 	%]
+	[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) { 	%]
+	private ICollaborativeEditor editor = null;
+			[% if (g.EGL_Tool.turnTakingTool.isDefined()) {		%]
+	private PanelPropuestas panelturno = null;
+	[% 	}	} 	%]
+	
+	public SpacEclipse() {}
+	
+	@Override
+	public void iniciarAplicacion(String host, String sesion, String usuario, String tipo, String fichero, boolean esAdmin) {
+		try {
+			setCliente(new SpaceClient(this,host,sesion,tipo,canalAplic,usuario));
+			getCliente().createAndConnect();
+			this.setUsuario(usuario);
+			
+			CUtilities.setAplicacion(this);
+			
+			[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) {	%]
+			IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fichero));
+			// Se guarda el editor para luego acceder a el desde IniciaPerspectiva
+			editor = (ICollaborativeEditor) Activator.getDefault().getWorkbench()
+					.getActiveWorkbenchWindow()
+					.getActivePage()
+					[% 	if (g.EGL_Tool.isKindOf(GraphicalEditor)) {		%]
+					.openEditor(new FileEditorInput(file), "[%=package%].diagram.part.[%=package.firstToUpperCase()%]DiagramEditorID");
+					[%	} else {		%]
+					.openEditor(new FileEditorInput(file), "SPACEclipse.editor");
+					[%	}	%]
+			[% 	} 	%]
+			[% 	if (g.EGL_Tool.isKindOf(WebViewer)) { 	%]
+			try {
+				openWebBrowser("http://www.google.es");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			[%	}	%]
+			Perspectiva.inicializaVistas(this);
+
+			MSNuevoUsuario ms = new MSNuevoUsuario(usuario);
+			getCliente().enviarDatos(ms);
+		} catch(Exception e) {
+			System.out.println("Excepcion de ECF en SPACEclipse");
+			e.printStackTrace();
+		}
+	}
+
+	public void iniciar() {
+		FConectarSWT FConectar = new FConectarSWT(new Shell(),SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL,this,"","EN");
+		try {
+			FConectar.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void procesaMensaje(Mensaje m, String quienEnvia) {
+		switch (m.getTipo()) {
+		[% 	if (g.EGL_Tool.sessionPanel.isDefined()) {	%]
+		case ConstPanelTurno.ESTADO_EDICION:
+			MensajeEstado mEstado = (MensajeEstado) m;
+			if (getPanelSesion() != null)
+				getPanelSesion().asignarEstado(mEstado.getUsuarioEstado(),mEstado.getEstado(),mEstado.getBorrarOtros());
+			break;
+		case ConstPanelTurno.ESTADO_GLOBAL:
+			MensajeEstado mEstadoG = (MensajeEstado) m;
+			if (getPanelSesion() != null)
+				getPanelSesion().asignarEstadoGlobal(mEstadoG.getUsuarioEstado(),mEstadoG.getEstado(),mEstadoG.getBorrarOtros());
+			break;
+			[% 	if (g.EGL_Tool.isKindOf(GraphicalEditor)) {	%]
+		case ConsMensajes.MS_NUEVO_USUARIO :
+			final ICollaborativeEditor editorTP2 = CUtilities.getEditor();
+			((GraphicalEditor) editorTP2).getSite().getShell().getDisplay()
+					.syncExec(new Runnable() {
+						public void run() {
+							editorTP2.actualizaTelepunteros(getPanelSesion().getTablaUsuarios());
+						}
+					});
+			break;
+			[%	} else {		%]	
+		case ConsMensajes.MS_NUEVO_USUARIO :
+			final ICollaborativeEditor editorTP2 = CUtilities.getEditor();
+			[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) {	%]
+			((Editor) editorTP2).getSite().getShell().getDisplay().syncExec(new Runnable() {
+				public void run() {
+					if (getPanelSesion() != null)
+						editorTP2.actualizaTelepunteros(getPanelSesion().getTablaUsuarios());
+				}
+			});
+			break;
+		[%	} 	}	}	%]
+		[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) {	%]
+			[% 	if (g.EGL_Tool.isKindOf(GraphicalEditor)) {	%]
+		case SpacEclipse.MENSAJE_MODELO :
+			final ModelMessage mensaje = (ModelMessage) m;
+			final ICollaborativeEditor editor = CUtilities.getEditor();
+			((GraphicalEditor) editor).getSite().getShell().getDisplay()
+					.syncExec(new Runnable() {
+						public void run() {
+							editor.copiaModelo(mensaje.getArchivoModelo(), 
+									mensaje.getArchivoDiagrama(), 
+									mensaje.getRutaArchivoModelo(),
+									mensaje.getRutaArchivoDiagrama());
+						}
+					});
+			break;
+		[%	if (g.EGL_Tool.sessionPanel.isDefined() and g.EGL_Tool.telepointer.isDefined()) {	%]
+		case SpacEclipse.MENSAJE_TELEPUNTERO :
+			final TelepointerMessage mensajeTelepuntero = (TelepointerMessage) m;
+			final ICollaborativeEditor editorTP = CUtilities.getEditor();
+			((GraphicalEditor) editorTP).getSite().getShell().getDisplay().syncExec(new Runnable() {
+				public void run() {
+					editorTP.mueveTelepuntero(mensajeTelepuntero.getSender(),
+							mensajeTelepuntero.getX(),
+							mensajeTelepuntero.getY());
+				}
+			});
+			break;
+				[%	}	%]
+			[%	} else {		%]
+		case SpacEclipse.MENSAJE_FICHERO :
+			final FileMessage mensajeFichero = (FileMessage) m;
+			final ICollaborativeEditor editor = CUtilities.getEditor();
+			((Editor) editor).getSite().getShell().getDisplay().syncExec(new Runnable() {
+				public void run() {
+					editor.copiaFichero(mensajeFichero.getFichero(), mensajeFichero.getRutaFichero());
+				}
+			});
+			break;
+		[%	}	}	%]
+		}
+	}
+	
+	@Override
+	public void recibirDatos(byte[] message) {
+	[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) {	%]
+		ByteArrayInputStream bins = new ByteArrayInputStream(message);
+		try {
+			ObjectInputStream ois = new ObjectInputStream(bins);
+			final Mensaje m = (Mensaje) ois.readObject();
+			Display.getDefault().asyncExec(new Runnable(){
+				@Override
+				public void run() {
+					procesaMensaje(m,m.getSender());
+				}
+
+			});
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	[%	}	%]
+	}
+	[% 	if (g.EGL_Tool.isKindOf(TextEditor) or g.EGL_Tool.isKindOf(CodeEditor)) {	%]
+	public void notificarFichero(char[] bufferFichero, String rutaFichero) {
+		try {
+			FileMessage mensaje = new FileMessage(SpacEclipse.MENSAJE_FICHERO, getUsuario());
+			mensaje.setFichero(bufferFichero);
+			mensaje.setRutaFichero(rutaFichero);
+			cliente.enviarDatos(mensaje);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	[% 	} 	%]
+	[% 	if (g.EGL_Tool.isKindOf(GraphicalEditor)) {		%]
+		[%  	if (g.EGL_Tool.sessionPanel.isDefined() and g.EGL_Tool.telepointer.isDefined()) {	%]
+	public void notificarTelepuntero(int x, int y) {
+		try {
+			TelepointerMessage mensaje = new TelepointerMessage(SpacEclipse.MENSAJE_TELEPUNTERO, getUsuario());
+			mensaje.setX(x);
+			mensaje.setY(y);
+			cliente.enviarDatos(mensaje);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+		[%	}	%]
+	public void notificarModelo(char[] modelo, char[] diagrama, String rutaModelo, String rutaDiagrama) {
+		try {
+			ModelMessage mensaje = new ModelMessage(SpacEclipse.MENSAJE_MODELO, usuario);
+			mensaje.setArchivoModelo(modelo);
+			mensaje.setArchivoDiagrama(diagrama);
+			mensaje.setRutaArchivoModelo(rutaModelo);
+			mensaje.setRutaArchivoDiagrama(rutaDiagrama);
+			cliente.enviarDatos(mensaje);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	[%	}	%]
+	[% 	if (g.EGL_Tool.isKindOf(WebViewer)) { 	%]
+	public void openWebBrowser(final String url) throws Exception {
+	    final IWebBrowser browser = PlatformUI.getWorkbench().getBrowserSupport()
+	    		.createBrowser(IWorkbenchBrowserSupport.NAVIGATION_BAR | IWorkbenchBrowserSupport.LOCATION_BAR,"SPACEBrowser", null, null);
+	    browser.openURL(new URL(url));
+	}
+	[%	}	%]
+	
+	[% 	if (g.EGL_Tool.sessionPanel.isDefined()) {	%]
+	public PanelSesion getPanelSesion() {
+		return panelsesion;
+	}
+
+	public void setPanelSesion(PanelSesion panelsesion) {
+		this.panelsesion = panelsesion;
+	}
+	[%	}	%]
+	public SpaceClient getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(SpaceClient cliente) {
+		this.cliente = cliente;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+	[% 	if (g.EGL_Tool.chat.isDefined()) {	%]
+	public ChatEstructuradoSWT getChat() {
+		return chat;
+	}
+
+	public void setChat(ChatEstructuradoSWT chat) {
+		this.chat = chat;
+	}
+	[%	}	%]
+	[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) {
+			if (g.EGL_Tool.turnTakingTool.isDefined()) {		%]
+	public PanelPropuestas getPanelturno() {
+		return panelturno;
+	}
+
+	public void setPanelturno(PanelPropuestas panelturno) {
+		this.panelturno = panelturno;
+	}
+			[%	}	%]
+	public IEditor getEditor() {
+		return editor;
+	}
+	[%	}	%]
+}

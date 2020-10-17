@@ -1,0 +1,151 @@
+[%	if (g.EGL_Tool.isDefined() and (g.EGL_Tool.isKindOf(TextEditor) or g.EGL_Tool.isKindOf(CodeEditor))) {	%]
+package spaceclipse.herramientas;
+
+import java.util.Vector;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.PartInitException;
+[% 	if (g.EGL_Tool.isKindOf(TextEditor)) {	%]
+import org.eclipse.ui.editors.text.TextEditor;
+[%	}	%]
+[% 	if (g.EGL_Tool.isKindOf(CodeEditor)) {	%]
+import org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitEditor;
+[%	}	%]
+
+import spaceclipse.collab.CUtilities;
+import spaceclipse.collab.interfaces.ICollaborativeEditor;
+import spaceclipse.space.SpacEclipse;
+
+[% 	if (g.EGL_Tool.isKindOf(TextEditor)) {	%]
+public class Editor extends TextEditor implements ICollaborativeEditor, IEditor {
+[%	}	%]
+[% 	if (g.EGL_Tool.isKindOf(CodeEditor)) {	%]
+public class Editor extends CompilationUnitEditor implements ICollaborativeEditor, IEditor {
+[%	}	%]
+	final static String ID = "SPACEclipse.editor";
+	
+	protected Composite myParent;
+	protected boolean habilitado;
+	private boolean dirty = false;
+	
+	public Editor() {
+		super();
+		CUtilities.setEditor(this);
+	}
+	
+	@Override
+	public void createPartControl(Composite parent) {
+		super.createPartControl(parent);
+		myParent = parent;
+
+		final IDocument doc = (IDocument) getDocumentProvider().getDocument(getEditorInput());
+		if (doc == null) {
+			return;
+		}
+		this.getAdapter(org.eclipse.swt.widgets.Control.class).addKeyListener(new KeyListener() {
+		    @Override
+		    public void keyReleased(KeyEvent e) {}
+
+		    @Override
+		    public void keyPressed(KeyEvent e) {
+		    	setDirty(true);
+				((SpacEclipse) CUtilities.getAplicacion()).notificarFichero(doc.get().toCharArray(), "");
+		    }
+		});
+			
+		// Deshabilitado por defecto
+		deshabilitar();
+	}
+	
+	@Override
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+		this.setSite(site);
+		this.setInput(input);
+	}
+	
+	@Override
+	public void doSave(IProgressMonitor monitor) {
+		super.doSave(monitor);
+		setDirty(false);
+	}
+
+	@Override
+	public void doSaveAs() {
+		super.doSaveAs();
+	}
+
+	@Override
+	public boolean isDirty() {
+		return dirty;
+	}
+	
+	protected void setDirty(boolean value) {
+        dirty = value;
+        firePropertyChange(PROP_DIRTY);
+     }
+
+	@Override
+	public boolean isSaveAsAllowed() {
+		return dirty;
+	}
+
+	@Override
+	public void deshabilitar() {
+		habilitado = false;
+		myParent.setEnabled(false);
+	}
+
+	@Override
+	public void habilitar() {
+		habilitado = true;
+		myParent.setEnabled(true);
+	}
+	
+	@Override
+	public void copiaFichero(char[] contenidoFichero, String rutaArchivo) {
+		boolean antesHabilitado = true;
+		
+		if (!habilitado) {
+			habilitar();
+			antesHabilitado = false;
+		}
+		IDocument doc = getDocumentProvider().getDocument(this.getEditorInput());
+		try {
+			doc.replace(0, doc.getLength(), String.copyValueOf(contenidoFichero));
+			setDirty(false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (!antesHabilitado)
+				deshabilitar();
+		}	
+	}
+
+	@Override
+	public void mueveTelepuntero(String usuario, int x, int y) {
+
+	}
+
+	@Override
+	public void actualizaTelepunteros(Vector<UsuarioPanel> listaUsuarios) {
+
+	}
+	
+	@Override
+	public void copiaModelo(char[] archivoModelo, char[] archivoDiagrama, String rutaArchivoModelo, String rutaArchivoDiagrama) {
+
+	}
+	
+	/*public void salir() {
+		if (cliente != null) {
+			cliente.desconectarSesion();
+		}
+	}*/
+}
+[%	}	%]

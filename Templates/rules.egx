@@ -1,0 +1,50 @@
+pre {
+  var hDir : String = "../SPACEclipse/src/spaceclipse/herramientas/";
+  var pDir : String = "../SPACEclipse/src/spaceclipse/perspectives/";
+  var sDir : String = "../SPACEclipse/src/spaceclipse/space/";
+}
+
+rule SpaceCore transform g : GroupTask {
+	guard: g.EGL_Transformation
+	parameters : Map {
+    					"package" = "digital"
+  				 }
+	template: "./spaceclipse.egl"
+	target: sDir+"SpacEclipse.java"
+}
+
+rule Perspectiva transform g : GroupTask {
+	guard: g.EGL_Transformation
+	template: "./perspective.egl"
+	target: pDir+"Perspectiva.java"
+}
+
+rule PerspectivaComando transform g : GroupTask {
+	guard: g.EGL_Transformation
+	template: "./perspectivecommand.egl"
+	target: pDir+"PerspectivaComando.java"
+}
+
+rule Editor transform g : GroupTask {
+	guard: g.EGL_Transformation
+	template: "./editor.egl"
+	target: hDir+"Editor.java"
+}
+
+rule Chat transform g : GroupTask {
+	guard: g.EGL_Transformation
+	template: "./chat.egl"
+	target: hDir+"ChatEstructuradoSWT.java"
+}
+
+rule PanelTurno transform g : GroupTask {
+	guard: g.EGL_Transformation
+	template: "./turntakingpanel.egl"
+	target: hDir+"PanelPropuestas.java"
+}
+
+rule PanelSesion transform g : GroupTask {
+	guard: g.EGL_Transformation
+	template: "./sessionpanel.egl"
+	target: hDir+"PanelSesion.java"
+}

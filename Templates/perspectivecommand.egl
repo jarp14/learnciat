@@ -1,0 +1,118 @@
+package spaceclipse.perspectives;
+
+import org.eclipse.ui.IFolderLayout;
+import org.eclipse.ui.IPageLayout;
+import org.eclipse.ui.IPerspectiveFactory;
+[% 	if (g.EGL_Tool.isKindOf(CodeEditor)) {	
+		if (g.EGL_Tool.console.isDefined()) {	%]
+import org.eclipse.ui.console.IConsoleConstants;
+[%	}	}	%]
+
+[% 	if (g.EGL_Tool.chat.isDefined()) {	%]
+import spaceclipse.herramientas.ChatEstructuradoSWT;
+[%	}	%]
+[%	if (not g.EGL_Tool.isKindOf(WebViewer)) { %]
+	[%	if (g.EGL_Tool.turnTakingTool.isDefined()) {		%]
+import spaceclipse.herramientas.PanelPropuestasTurno;
+[%	} 	}	%]
+[% 	if (g.EGL_Tool.sessionPanel.isDefined()) {	%]
+import spaceclipse.herramientas.PanelSesion;
+[%	}	%]
+
+public class PerspectivaComando implements IPerspectiveFactory {
+
+	private IPageLayout factory;
+
+	public PerspectivaComando() {
+		super();
+	}
+
+	public void createInitialLayout(IPageLayout factory) {
+		this.factory = factory;
+		addViews();
+	}
+
+	private void addViews() {
+		IFolderLayout bottom = factory.createFolder("bottom", IPageLayout.BOTTOM, 0.80f, factory.getEditorArea());
+		[% 	if (g.EGL_Tool.sessionPanel.isDefined() and g.EGL_Tool.sessionPanel.position = Position#Bottom) {	%]
+		bottom.addView(PanelSesion.ID);
+		[%	}	%]
+		[% 	if ((not g.EGL_Tool.isKindOf(WebViewer)) and g.EGL_Tool.turnTakingTool.isDefined() and g.EGL_Tool.turnTakingTool.position = Position#Bottom) {	%]
+		bottom.addView(PanelPropuestasTurno.ID);
+		[%	}	%]
+		[% 	if (g.EGL_Tool.chat.isDefined() and g.EGL_Tool.chat.position = Position#Bottom) {	%]
+		bottom.addView(ChatEstructuradoSWT.ID);
+		[%	}	%]
+		[%	if (g.EGL_Tool.isKindOf(GraphicalEditor) and g.EGL_Tool.properties.isDefined() and g.EGL_Tool.properties.position = Position#Bottom) {	%]
+		bottom.addView(IPageLayout.ID_PROP_SHEET);
+		[%	}	%]
+		[%	if (g.EGL_Tool.isKindOf(CodeEditor) and g.EGL_Tool.console.isDefined() and g.EGL_Tool.console.position = Position#Bottom) {	%]
+		bottom.addView(IConsoleConstants.ID_CONSOLE_VIEW);
+		[%	}	%]
+		[%	if ((g.EGL_Tool.isKindOf(CodeEditor) or g.EGL_Tool.isKindOf(TextEditor)) and g.EGL_Tool.problems.isDefined() and g.EGL_Tool.problems.position = Position#Bottom) {	%]
+		bottom.addView(IPageLayout.ID_PROBLEM_VIEW);
+		[%	}	%]
+		[%	if ((not g.EGL_Tool.isKindOf(WebViewer)) and g.EGL_Tool.radarView.isDefined() and g.EGL_Tool.radarView.position = Position#Bottom) {	%]
+		bottom.addView(IPageLayout.ID_OUTLINE);
+		[%	}	%]
+		
+		[% 	if ((not g.EGL_Tool.isKindOf(WebViewer) and g.EGL_Tool.turnTakingTool.isDefined() and g.EGL_Tool.turnTakingTool.position = Position#Left) or 
+					(g.EGL_Tool.sessionPanel.isDefined() and g.EGL_Tool.sessionPanel.position = Position#Left)) {	%]
+		IFolderLayout topLeft = factory.createFolder("left", IPageLayout.LEFT, 0.15f, factory.getEditorArea());
+		IFolderLayout bottomLeft = factory.createFolder("bottomLeft", IPageLayout.BOTTOM, 0.55f, "left");
+			[% 	if (g.EGL_Tool.sessionPanel.isDefined() and g.EGL_Tool.sessionPanel.position = Position#Left) { 	%]
+		topLeft.addView(PanelSesion.ID);
+			[%	} 	%]
+			[% 	if ((not g.EGL_Tool.isKindOf(WebViewer)) and g.EGL_Tool.turnTakingTool.isDefined() and g.EGL_Tool.turnTakingTool.position = Position#Left) { %]
+		topLeft.addView(PanelPropuestasTurno.ID);
+			[% 	}	%]
+		[%	} else { 	%]
+		IFolderLayout bottomLeft = factory.createFolder("left", IPageLayout.LEFT, 0.15f, factory.getEditorArea());
+		[%	}	%]
+		bottomLeft.addView(IPageLayout.ID_PROJECT_EXPLORER);
+		[% 	if (g.EGL_Tool.chat.isDefined() and g.EGL_Tool.chat.position = Position#Left) {	%]
+		bottomLeft.addView(ChatEstructuradoSWT.ID);
+		[%	}	%]
+		[%	if (g.EGL_Tool.isKindOf(GraphicalEditor) and g.EGL_Tool.properties.isDefined() and g.EGL_Tool.properties.position = Position#Left) {	%]
+		bottomLeft.addView(IPageLayout.ID_PROP_SHEET);
+		[%	}	%]
+		[%	if ((g.EGL_Tool.isKindOf(CodeEditor) or g.EGL_Tool.isKindOf(TextEditor)) and g.EGL_Tool.console.isDefined() and g.EGL_Tool.console.position = Position#Left) {	%]
+		bottomLeft.addView(IConsoleConstants.ID_CONSOLE_VIEW);
+		[%	}	%]
+		[%	if ((g.EGL_Tool.isKindOf(CodeEditor) or g.EGL_Tool.isKindOf(TextEditor)) and g.EGL_Tool.problems.isDefined() and g.EGL_Tool.problems.position = Position#Left) {	%]
+		bottomLeft.addView(IPageLayout.ID_PROBLEM_VIEW);
+		[%	}	%]
+		[%	if ((not g.EGL_Tool.isKindOf(WebViewer)) and g.EGL_Tool.radarView.isDefined() and g.EGL_Tool.radarView.position = Position#Left) {	%]
+		bottomLeft.addView(IPageLayout.ID_OUTLINE);
+		[%	}	%]
+		
+		[% 	if ((not g.EGL_Tool.isKindOf(WebViewer) and g.EGL_Tool.turnTakingTool.isDefined() and g.EGL_Tool.turnTakingTool.position = Position#Right) or 
+			(g.EGL_Tool.sessionPanel.isDefined() and g.EGL_Tool.sessionPanel.position = Position#Right)) { %]
+		IFolderLayout topRight = factory.createFolder("right", IPageLayout.RIGHT, 0.85f, factory.getEditorArea());
+		IFolderLayout bottomRight = factory.createFolder("bottomRight", IPageLayout.BOTTOM, 0.55f, "right");
+			[% 	if (g.EGL_Tool.sessionPanel.isDefined() and g.EGL_Tool.sessionPanel.position = Position#Right) { 	%]
+		topRight.addView(PanelSesion.ID);
+			[%	}  %]
+			[% 	if ((not g.EGL_Tool.isKindOf(WebViewer)) and g.EGL_Tool.turnTakingTool.isDefined() and g.EGL_Tool.turnTakingTool.position = Position#Right and not g.EGL_Tool.isKindOf(WebViewer)) {		%]
+		topRight.addView(PanelPropuestasTurno.ID);
+			[%	}	%]
+		[% 	} else {		%]
+		IFolderLayout bottomRight = factory.createFolder("right", IPageLayout.RIGHT, 0.85f, factory.getEditorArea());
+		[%	}	%]
+		[% 	if (g.EGL_Tool.chat.isDefined() and g.EGL_Tool.chat.position = Position#Right) {	%]
+		bottomRight.addView(ChatEstructuradoSWT.ID);
+		[%	}	%]
+		[%	if (g.EGL_Tool.isKindOf(GraphicalEditor) and g.EGL_Tool.properties.isDefined() and g.EGL_Tool.properties.position = Position#Right) {	%]
+		bottomRight.addView(IPageLayout.ID_PROP_SHEET);
+		[%	}	%]
+		[%	if (g.EGL_Tool.isKindOf(CodeEditor) and g.EGL_Tool.console.isDefined() and g.EGL_Tool.console.position = Position#Right) {	%]
+		bottomRight.addView(IConsoleConstants.ID_CONSOLE_VIEW);
+		[%	}	%]
+		[%	if ((g.EGL_Tool.isKindOf(CodeEditor) or g.EGL_Tool.isKindOf(TextEditor)) and g.EGL_Tool.problems.isDefined() and g.EGL_Tool.problems.position = Position#Right) {	%]
+		bottomRight.addView(IPageLayout.ID_PROBLEM_VIEW);
+		[%	}	%]
+		[%	if ((not g.EGL_Tool.isKindOf(WebViewer)) and g.EGL_Tool.radarView.isDefined() and g.EGL_Tool.radarView.position = Position#Right) {	%]
+		bottomRight.addView(IPageLayout.ID_OUTLINE);
+		[%	}	%]
+	}
+}

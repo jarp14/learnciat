@@ -1,0 +1,86 @@
+package spaceclipse.perspectives;
+
+import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.WorkbenchException;
+
+import spaceclipse.Activator;
+[% 	if (g.EGL_Tool.chat.isDefined()) {	%]
+import spaceclipse.herramientas.ChatEstructuradoSWT;
+[%	}	%]
+[% 	if (g.EGL_Tool.sessionPanel.isDefined()) {	%]
+import spaceclipse.herramientas.PanelSesion;
+[% 	} 	%]
+[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) {	
+		if (g.EGL_Tool.turnTakingTool.isDefined()) { 	%]
+import spaceclipse.herramientas.CoordinarTurno;
+import spaceclipse.herramientas.PanelPropuestasTurno;
+[%	}	}	%]
+
+import spaceclipse.space.SpacEclipse;
+
+public class Perspectiva {
+
+	public static void inicializaVistas(SpacEclipse app) {
+		IViewPart vp1 = null;
+		IViewPart vp2 = null;
+		IViewPart vp3 = null;
+
+		IWorkbenchPage page = Activator.getDefault().getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		try {
+			[% 	if (g.EGL_Tool.sessionPanel.isDefined()) {	%]
+			vp1 = page.showView(PanelSesion.ID);
+			[%	}	%]
+			[% 	if (g.EGL_Tool.chat.isDefined()) {	%]
+			vp2 = page.showView(ChatEstructuradoSWT.ID);
+			[%	}	%]
+			[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) {	
+					if (g.EGL_Tool.turnTakingTool.isDefined()) {		%]
+			vp3 = page.showView(PanelPropuestasTurno.ID);
+			[%	}	}	%]
+		} catch (PartInitException e) {
+			e.printStackTrace();
+		}
+
+		[% 	if (g.EGL_Tool.sessionPanel.isDefined()) {	%]
+		if (vp1 instanceof PanelSesion) {
+			app.setPanelSesion((PanelSesion) vp1);
+			app.getPanelSesion().iniciarConexion(app.getCliente(), app.getUsuario());
+			app.getPanelSesion().setGrande(true);
+			app.getPanelSesion().setVertical(true);
+		} else {
+			System.out.println("Ha ocurrido un error extraño con la vista del Panel de Sesion");
+		}
+		[%	}	%]
+
+		[% 	if (g.EGL_Tool.chat.isDefined()) {	%]
+		if (vp2 instanceof ChatEstructuradoSWT) {
+			app.setChat((ChatEstructuradoSWT) vp2);
+			app.getChat().iniciarConexion(app.getCliente(), app.getUsuario());
+			app.getChat().setGrande(true);
+		} else {
+			System.out.println("Ha ocurrido un error extraño con la vista del Chat");
+		}
+		[%	}	%]
+
+		[% 	if (not g.EGL_Tool.isKindOf(WebViewer)) {	
+				if (g.EGL_Tool.turnTakingTool.isDefined()) {		%]
+		if (vp3 instanceof PanelPropuestasTurno) {
+			app.setPanelturno((PanelPropuestasTurno) vp3);
+			app.getPanelturno().iniciarConexion(app.getCliente(), app.getUsuario(), 
+					new CoordinarTurno(app.getEditor(), app.getCliente(), app.getUsuario()));
+		} else {
+			System.out.println("Ha ocurrido un error extraño con la vista del Panel de Turno");
+		}
+		[%	}	}	%]
+		
+		try {
+			PlatformUI.getWorkbench().showPerspective("SPACEclipse.perspectiva", page.getWorkbenchWindow());
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().resetPerspective();
+		} catch (WorkbenchException e) {
+			e.printStackTrace();
+		}
+	}	
+}
