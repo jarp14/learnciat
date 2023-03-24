@@ -1,10 +1,11 @@
 # Learn-CIAT
 The Learn-CIAT graphical editor is the Eclipse platform technological support for the configuration and semi-automatic generation of learning flows and CSCL systems
 
-To run it, make sure you have installed the next components:
+To run it, make sure you have installed the Eclipse Epsilon Framework: https://www.eclipse.org/epsilon/download/ or
 
 - Eclipse Neon 3 - Eclipse Modeling Tools:</br>
   - https://www.eclipse.org/downloads/packages/release/neon/3 </br>
+
 - Epsilon 1.5.0:</br>
   - https://www.eclipse.org/epsilon/download/?version=1.5 </br> 
   - [URI] https://download.eclipse.org/epsilon/1.5/updates/
